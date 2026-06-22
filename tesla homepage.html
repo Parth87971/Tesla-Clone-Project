@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .logo {
+        color: black;
+        text-decoration: none;
+    }
+
+    .logo svg {
+        height: 20px;
+        width: auto;
+    }
+
+    .card {
+        background: #f4f4f4;
+        border-radius: 20px;
+    }
+
+    .card h1 {
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    .card p {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        min-width: auto;
+    }
+
+    .card-content {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        color: white;
+    }
+
+    .card-item img {
+        height: 600px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    #self-drive h1 {
+        background: linear-gradient(to right, #171a20, #3e6ae1, #171a20);
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+
+    .stats {
+        display: flex;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+
+    .container {
+        max-width: 1320px;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center bottom;
+    }
+
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        background: transparent;
+        padding: 15px 40px;
+        transition: 0.3s;
+    }
+
+    .navbar-nav .nav-link {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0 16px;
+    }
+
+    .logo {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .logo svg {
+        height: 24px;
+        width: auto;
+        color: #fff;
+    }
+
+    .nav-icons {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        color: #fff;
+    }
+
+    .nav-icons svg {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    .mega-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #f4f4f4;
+    }
+
+    .mega-menu a:hover {
+        opacity: 0.7;
+    }
+
+    .navbar.menu-open {
+        background-color: #fff !important;
+        backdrop-filter: none !important;
+    }
+
+    .navbar.menu-open .nav-link {
+        color: #171a20 !important;
+    }
+
+    .navbar.menu-open .logo {
+        color: #171a20 !important;
+    }
+
+    .navbar.menu-open .logo svg {
+        color: #171a20 !important;
+    }
+
+    .navbar.menu-open .menu-btn {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        color: #171a20 !important;
+    }
+</style>
+
+<body
+    class="page-homepage template-landing-page tcl-page tds-site-header--white-background--desktop tds-site-header--white-background--tablet tds-menu-header--sticky-without-slide--desktop tds-menu-header--sticky-without-slide--tablet tds-site-header--dark tds-menu-header-transparent--light tcl-parallax-effect--off site-body animate-onscroll i18n-en_us is-Chrome"
+    id="page-homepage">
+
+    <!-- Top Navigation Bar Section -->
+    <nav class="navbar navbar-expand-lg" id="main-nav">
+        <div class="container-fluid">
+            <a href="tesla homepage.html" class="logo">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                        d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+                </svg>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" id="nav-vehicles"><a class="nav-link" href="#">Vehicles</a></li>
+                    <li class="nav-item" id="nav-energy"><a class="nav-link" href="#">Energy</a></li>
+                    <li class="nav-item" id="nav-charging"><a class="nav-link" href="#">Charging</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Discover</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+                </ul>
+                <div>
+                    <button class="menu-btn rounded-pill"
+                        style="background: transparent; color: #fff; border: none; padding: 5px 15px; font-weight: 600;">Menu</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Dropdown Menus for the Navigation Bar -->
+        <div class="mega-menu" id="vehicles-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="model_y.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-Y-2-v2.png"
+                                alt="Model Y" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model Y</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_y.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Test
+                            Drive</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">We,
+                            Robot</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Vehicle
+                            Safety Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="energy-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="powerwall.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Powerwall-Global.png"
+                                alt="Powerwall" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Powerwall</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="powerwall.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="megapack.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Megapack.png"
+                                alt="Megapack" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Megapack</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="megapack.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Utilities</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Commercial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="charging-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Charging.png"
+                            alt="Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Home-Charging.png"
+                            alt="Home Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Home Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Supercharging-NA.png"
+                            alt="Supercharging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Supercharging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host a
+                            Supercharger</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host
+                            Wall Connectors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- Main Image Slider (Hero Carousel) -->
+        <div id="teslaCarousel" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#teslaCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#teslaCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Promo-Model-3-Desktop-US-CA-MX.jpg"
+                        class="d-block w-100" alt="Model 3">
+                    <div class="carousel-caption d-flex flex-column align-items-center"
+                        style="top: 15%; bottom: auto; width: 90%; left: 5%; right: 5%;">
+                        <h1 class="fw-bold text-white mb-2"
+                            style="font-size: clamp(36px, 8vw, 56px); text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Model 3
+                        </h1>
+                        <p class="text-white mb-4"
+                            style="font-size: clamp(16px, 4vw, 22px); font-weight: 500; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                            One Year of Free Supercharging Ends June 15
+                        </p>
+                        <div class="buttons d-flex flex-column flex-sm-row gap-3 w-100 justify-content-center"
+                            style="max-width: 500px;">
+                            <button class="btn btn-primary rounded py-2 fw-semibold border-0 w-100"
+                                style="background-color: #3e6ae1;">Order Now</button>
+                            <button class="btn btn-light rounded py-2 fw-semibold border-0 w-100"
+                                style="background-color: #ffffff; color: #393c41;">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Promo-Meet-Model-Y-Desktop.jpg"
+                        class="d-block w-100" alt="Model Y">
+                    <div class="carousel-caption d-flex flex-column align-items-center"
+                        style="top: 15%; bottom: auto; width: 90%; left: 5%; right: 5%;">
+                        <h1 class="fw-bold text-white mb-2"
+                            style="font-size: clamp(36px, 8vw, 56px); text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Model Y
+                        </h1>
+                        <p class="text-white mb-4"
+                            style="font-size: clamp(16px, 4vw, 22px); font-weight: 500; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                            0% APR Available
+                        </p>
+                        <div class="buttons d-flex flex-column flex-sm-row gap-3 w-100 justify-content-center"
+                            style="max-width: 500px;">
+                            <button class="btn btn-primary rounded py-2 fw-semibold border-0 w-100"
+                                style="background-color: #3e6ae1;">Order Now</button>
+                            <button class="btn btn-light rounded py-2 fw-semibold border-0 w-100"
+                                style="background-color: #ffffff; color: #393c41;">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" data-bs-target="#teslaCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" data-bs-target="#teslaCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <section class="container-fluid my-5 pb-5 px-3 px-md-5">
+            <div class="p-4 p-md-5 rounded-4 shadow-sm mx-auto border-0"
+                style="background-color: #f4f4f4; width: 100%; max-width: 1600px;">
+                <div class="row align-items-center g-4 g-lg-5">
+                    <div class="col-md-5 col-lg-4 left-content" id="self-drive">
+                        <h1 class="fw-semibold mb-1"
+                            style="font-size: clamp(32px, 5vw, 40px); letter-spacing: -0.5px; line-height: 1.2;">
+                            Full Self-Driving<br>
+                            <span style="color: #171a20;">(Supervised)</span>
+                        </h1>
+                        <p class="mt-3 text-secondary mb-4" style="font-size: 15px;">
+                            Makes every drive easier. Subscribe for $99/mo.²
+                        </p>
+                        <div class="stats d-flex flex-row gap-4 mb-4 mt-4 text-nowrap">
+                            <div>
+                                <h2 class="fw-bold mb-0" style="font-size: 28px; color: #171a20;">7x</h2>
+                                <p class="text-secondary mb-0" style="font-size: 14px;">Fewer Collisions</p>
+                            </div>
+                            <div>
+                                <h2 id="Miles" class="fw-bold mb-0" style="font-size: 28px; color: #171a20;">
+                                    11,084,353,106</h2>
+                                <p class="text-secondary mb-0" style="font-size: 14px;">Miles Driven</p>
+                            </div>
+                        </div>
+                        <div class="buttons d-flex flex-column flex-sm-row gap-3 mt-4">
+                            <button class="btn btn-dark fw-semibold w-100"
+                                style="background-color: #171a20; border-radius: 4px; padding: 8px 24px; white-space: nowrap;">Schedule
+                                Demo</button>
+                            <button class="btn btn-light fw-semibold w-100"
+                                style="background-color: #ffffff; border-radius: 4px; padding: 8px 24px; white-space: nowrap; color: #393c41;">Learn
+                                More</button>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-8 right-content mt-4 mt-md-0">
+                        <video preload="auto"
+                            poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-FSD-Card-Desktop-Tablet-Poster.jpg"
+                            autoplay muted playsinline loop class="w-100 shadow-sm"
+                            style="border-radius: 12px; width: 100% !important; height: 100% !important; aspect-ratio: 16/9; object-fit: cover;"
+                            src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Homepage-FSD-Card-Desktop.mp4">
+                            <source
+                                src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Homepage-FSD-Card-Desktop.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="vehicle-carousel-section">
+            <div id="vehicleCarousel" class="carousel slide">
+
+                <div class="carousel-inner">
+
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+
+                        <section class="container-fluid px-4 my-5">
+                            <div class="card border-0">
+
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Model-3-Desktop-US_PR_MX.jpg"
+                                    class="img-fluid rounded" alt="Model 3">
+
+                                <div class="card-content p-3">
+                                    <small>Sport Sedan</small>
+                                    <h1>Model 3</h1>
+                                    <p><u>Lease From $329/mo</u></p>
+
+                                    <div class="buttons">
+                                        <button class="btn btn-primary rounded-pill px-5 py-2">Order Now</button>
+                                        <button class="btn btn-light rounded-pill px-5 py-2">Learn More</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+
+                        <section class="container-fluid px-4 my-5">
+                            <div class="card border-0">
+
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Vehicle-Card-Model-Y-Desktop-US-Snow.jpg"
+                                    class="img-fluid rounded" alt="Model Y">
+
+                                <div class="card-content p-3">
+                                    <small>Midsize SUV</small>
+                                    <h1>Model Y</h1>
+                                    <p><u>Lease From $459/mo</u></p>
+
+                                    <div class="buttons">
+                                        <button class="btn btn-primary rounded-pill px-5 py-2">Order Now</button>
+                                        <button class="btn btn-light rounded-pill px-5 py-2">Learn More</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+
+                        <section class="container-fluid px-4 my-5">
+                            <div class="card border-0">
+
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Cybertruck-Desktop-US_PR_MX.jpg"
+                                    class="img-fluid rounded" alt="Cybertruck">
+
+                                <div class="card-content p-3">
+                                    <small>Utility Truck</small>
+                                    <h1>Cybertruck</h1>
+                                    <p><u>Lease From $949/mo</u></p>
+
+                                    <div class="buttons">
+                                        <button class="btn btn-primary rounded-pill px-5 py-2">Order Now</button>
+                                        <button class="btn btn-light rounded-pill px-5 py-2">Learn More</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#vehicleCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#vehicleCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </section>
+        <!-- Current Offers and Shop Grid Section -->
+        <section class="container-fluid my-5 px-3 px-md-5">
+            <div class="row g-4 mx-auto" style="max-width: 1600px; width: 100%;">
+                <div class="col-lg-6">
+                    <div class="p-4 p-lg-5 h-100" style="background-color: #f4f4f4; border-radius: 12px;"
+                        id="offers-container">
+                        <div class="row align-items-center h-100">
+                            <div class="col-md-7 mb-4 mb-md-0">
+                                <h1 class="fw-bold mb-3" style="font-size: 36px; color: #171a20;">Current Offers</h1>
+                                <p class="text-secondary mb-4" style="font-size: 18px;">
+                                    Explore limited-time offers on Tesla vehicles.
+                                </p>
+                                <button class="btn btn-light rounded px-4 py-2 fw-semibold" id="offers-btn"
+                                    style="background-color: #ffffff;">
+                                    Learn More
+                                </button>
+                            </div>
+                            <div class="col-md-5 text-center mt-4 mt-md-0">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Grid-Current-Offers-All-Devices.png"
+                                    class="img-fluid" style="width: 100%; object-fit: contain; transform: scale(1.2);"
+                                    alt="Current Offers">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="p-4 p-lg-5 h-100" style="background-color: #f4f4f4; border-radius: 12px;">
+                        <div class="row align-items-center h-100">
+                            <div class="col-md-7 mb-4 mb-md-0">
+                                <h1 class="fw-bold mb-3" style="font-size: 36px; color: #171a20;">Inventory</h1>
+                                <p class="text-secondary mb-4" style="font-size: 18px;">
+                                    Find nearby vehicles available for immediate delivery.
+                                </p>
+                                <div class="d-flex gap-3">
+                                    <button class="btn btn-light rounded px-4 py-2 fw-semibold w-100"
+                                        style="background-color: #ffffff;">
+                                        New
+                                    </button>
+                                    <button class="btn btn-light rounded px-4 py-2 fw-semibold w-100"
+                                        style="background-color: #ffffff;">
+                                        Pre-Owned
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-5 text-center mt-4 mt-md-0">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Grid-Inventory-All-Devices.jpg"
+                                    class="img-fluid rounded-3 shadow-sm w-100"
+                                    style="height: 250px; object-fit: cover;" alt="Inventory">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid px-4 px-lg-5 mt-5 pt-5 mb-5">
+            <div class="mb-5">
+                <img src="Screenshot 2026-06-08 232046.png" class="w-100 img-fluid rounded-4 shadow-sm"
+                    style="object-fit: cover;" alt="Tesla Map">
+            </div>
+
+            <div class="row align-items-center mt-5 pt-3">
+                <div class="col-md-7 mb-4 mb-md-0 pe-lg-5">
+                    <h1 class="fw-bold mb-3" style="font-size: 56px; color: #171a20;">Find Your Charge</h1>
+                    <p class="text-secondary mb-4" style="font-size: 20px;">View the network of Tesla Superchargers and
+                        Destination Chargers available near you.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <button class="btn btn-dark rounded px-4 py-2 fw-semibold"
+                            style="background-color: #171a20;">View Network</button>
+                        <button class="btn btn-light rounded px-4 py-2 fw-semibold"
+                            style="background-color: #f4f4f4;">Learn More</button>
+                    </div>
+                </div>
+                <div class="col-md-5 d-flex justify-content-md-end gap-4 gap-lg-5">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <h2 class="fw-bold mb-0" style="font-size: 48px; color: #171a20;">37,562</h2>
+                            <div class="d-flex align-items-center justify-content-center text-white"
+                                style="width: 36px; height: 36px; background-color: #FF3A3A; border-radius: 50%;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-0" style="font-size: 18px;">Superchargers</p>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <h2 class="fw-bold mb-0" style="font-size: 48px; color: #171a20;">6,496</h2>
+                            <div class="d-flex align-items-center justify-content-center text-white"
+                                style="width: 36px; height: 36px; background-color: #929292; border-radius: 50%;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 2v4" />
+                                    <path d="M16 2v4" />
+                                    <rect width="12" height="8" x="6" y="6" rx="2" />
+                                    <path d="M12 14v4" />
+                                    <path d="M12 22v-4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-secondary mb-0" style="font-size: 18px;">Destination Chargers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="energy-carousel-section my-5">
+
+            <div id="energyCarousel" class="carousel slide" data-bs-ride="carousel">
+
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#energyCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true"></button>
+
+                    <button type="button" data-bs-target="#energyCarousel" data-bs-slide-to="1"></button>
+
+                    <button type="button" data-bs-target="#energyCarousel" data-bs-slide-to="2"></button>
+
+                    <button type="button" data-bs-target="#energyCarousel" data-bs-slide-to="3"></button>
+                </div>
+
+
+                <div class="carousel-inner">
+
+
+                    <div class="carousel-item active">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Solar-Panels-Desktop-v2.jpg"
+                            class="d-block w-100 rounded" alt="Solar Panels">
+
+                        <div class="carousel-caption text-start">
+                            <h1>Solar Panels</h1>
+                            <p>Power Your Home and Reduce Your Electricity Bills</p>
+
+                            <button class="btn btn-primary rounded-pill px-5 py-2">
+                                Order Now
+                            </button>
+
+                            <button class="btn btn-light rounded-pill px-5 py-2">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="carousel-item">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Powerwall-Desktop.png"
+                            class="d-block w-100 rounded" alt="Powerwall">
+
+                        <div class="carousel-caption text-start">
+                            <h1>Powerwall</h1>
+                            <p>Keep Your Lights On During Outages</p>
+
+                            <button class="btn btn-primary rounded-pill px-5 py-2">
+                                Order Now
+                            </button>
+
+                            <button class="btn btn-light rounded-pill px-5 py-2">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="carousel-item">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Megapack-Desktop-v2.jpg"
+                            class="d-block w-100 rounded" alt="Megapack">
+
+                        <div class="carousel-caption text-start">
+                            <h1>Megapack</h1>
+                            <p>Massive Batteries for Massive Energy Support</p>
+
+                            <button class="btn btn-primary rounded-pill px-5 py-2">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="carousel-item">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Card-Solar-Roof-Desktop-v2.jpg"
+                            class="d-block w-100 rounded" alt="Solar Roof">
+
+                        <div class="carousel-caption text-start">
+                            <h1>Solar Roof</h1>
+                            <p>Generate Clean Energy With Your Roof</p>
+
+                            <button class="btn btn-primary rounded-pill px-5 py-2">
+                                Order Now
+                            </button>
+
+                            <button class="btn btn-light rounded-pill px-5 py-2">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#energyCarousel"
+                    data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                    <span class="visually-hidden">
+                        Previous
+                    </span>
+
+                </button>
+
+
+                <button class="carousel-control-next" type="button" data-bs-target="#energyCarousel"
+                    data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"></span>
+
+                    <span class="visually-hidden">
+                        Next
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+        <!-- Website Footer Links -->
+        <footer class="container my-5 text-center d-flex flex-column align-items-center" style="max-width: 800px;">
+            <p class="text-secondary mb-4" style="font-size: 12px; line-height: 1.6;">
+                <sup>1</sup> Terms and conditions apply. Promotion requires delivery of a Model 3 Premium or Performance
+                vehicle and is subject to change or end at any time. You are still responsible for Supercharging-related
+                fees, like congestion fees, when applicable.<br><br>
+                <sup>2</sup> Price reflects monthly subscription, subject to terms and conditions. Price and feature
+                availability subject to change.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4 text-secondary pb-4"
+                style="font-size: 12px; font-weight: 500;">
+                <a href="#" class="text-secondary text-decoration-none">Tesla © 2026</a>
+                <a href="#" class="text-secondary text-decoration-none">Privacy & Legal</a>
+                <a href="#" class="text-secondary text-decoration-none">Vehicle Recalls</a>
+                <a href="#" class="text-secondary text-decoration-none">Contact</a>
+                <a href="#" class="text-secondary text-decoration-none">News</a>
+                <a href="#" class="text-secondary text-decoration-none">Get Updates</a>
+                <a href="#" class="text-secondary text-decoration-none">Locations</a>
+            </div>
+        </footer>
+
+
+
+
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let timer;
+            const menus = ['vehicles', 'energy', 'charging'];
+
+            menus.forEach(function (menu) {
+                // JavaScript for Dropdown Menus
+                $('#nav-' + menu + ', #' + menu + '-menu').on({
+                    mouseenter: function () {
+                        clearTimeout(timer);
+                        $('.mega-menu').css('display', 'none');
+                        $('#' + menu + '-menu').css('display', 'block');
+
+
+                        $('.navbar').addClass('menu-open');
+                        $('.menu-btn').css({ 'background-color': 'rgba(0,0,0,0.05)', 'color': '#171a20' });
+                    },
+                    mouseleave: function () {
+                        timer = setTimeout(function () {
+                            $('#' + menu + '-menu').css('display', 'none');
+
+                            $('.navbar').removeClass('menu-open');
+                            $('.menu-btn').css({ 'background-color': 'transparent', 'color': '#fff' });
+                        }, 50);
+                    }
+                });
+            });
+
+
+            // JavaScript to Change Navbar Color on Scroll
+            $(window).scroll(function () {
+
+                if ($('.navbar').hasClass('menu-open')) return;
+
+                let scrollPosition = $(window).scrollTop();
+                if (scrollPosition > 50) {
+                    $(".navbar").css({ "background-color": "rgba(0, 0, 0, 0.6)", "backdrop-filter": "blur(10px)" });
+                } else {
+                    $(".navbar").css({ "background-color": "transparent", "backdrop-filter": "none" });
+                }
+            });
+        });
+
+        $(document).ready(() => {
+
+            // JavaScript for Offers Box Hover Animation
+            $("#offers-container").on({
+                mouseenter: function () {
+                    $(this).css("box-shadow", "0 10px 20px rgba(0,0,0,0.1)");
+                    $(this).css("transition", "0.3s");
+                },
+                mouseout: function () {
+                    $(this).css("box-shadow", "none");
+                }
+            });
+
+
+            // JavaScript to Show Offers Disclaimer on Click
+            $("#offers-btn").click(function () {
+                if ($(".c1").length === 0) {
+                    $("#offers-container").append("<p class='c1 text-secondary mt-4 fw-semibold' style='font-size: 14px; cursor: pointer;'>* APR offers available for well-qualified buyers. (Click to dismiss)</p>");
+                }
+            });
+
+
+            // JavaScript to Hide Offers Disclaimer on Click
+            $("#offers-container").on("click", ".c1", function () {
+                $(this).remove();
+            });
+        });
+    </script>
+</body>
+
+</html>

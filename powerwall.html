@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powerwall | Tesla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background: transparent;
+            padding: 15px 40px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 16px;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            height: 24px;
+            width: auto;
+            color: #fff;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            color: #fff;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #f4f4f4;
+            color: #000;
+        }
+
+        .mega-menu a:hover {
+            opacity: 0.7;
+        }
+
+        .navbar.menu-open {
+            background-color: #fff !important;
+            backdrop-filter: none !important;
+        }
+
+        .navbar.menu-open .nav-link {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo svg {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .nav-icons {
+            color: #171a20 !important;
+        }
+
+        /* Secondary Navbar */
+        .secondary-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: transparent;
+            z-index: 998;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .secondary-nav.visible {
+            opacity: 1;
+            pointer-events: all;
+            background-color: #111;
+        }
+
+        .secondary-nav-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .secondary-nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
+        /* General Layout */
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 3px solid #fff;
+            padding: 10px 40px;
+            font-weight: 600;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: #171a20;
+            border: 3px solid #171a20;
+            padding: 10px 40px;
+            font-weight: 600;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-outline-dark:hover {
+            background: #171a20;
+            color: #fff;
+        }
+
+        .split-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .split-left {
+            max-width: 400px;
+        }
+
+        .split-left h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #d0d1d2;
+            margin-bottom: 5px;
+        }
+
+        .split-left h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .split-right {
+            max-width: 500px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #d0d1d2;
+            font-weight: 500;
+        }
+
+        /* Section 1: Hero */
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-image: url('https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/1M-Powerwalls-Powerwall-2-Hero-Desktop.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 15vh;
+        }
+
+        .hero-title h1 {
+            font-size: 56px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title p {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-btn {
+            background-color: #3e6ae1;
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: #3457b1;
+        }
+
+        /* Section 2: Stats Graph */
+        .stats-section {
+            padding: 100px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 80px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .stats-grid h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .stats-grid h2 span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .stats-grid p {
+            font-size: 15px;
+            font-weight: 500;
+            color: #d0d1d2;
+        }
+
+        .stats-graph {
+            max-width: 900px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .stats-graph img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Section 3: Interactive Video */
+        .interactive-video-section {
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .video-tabs {
+            display: flex;
+            max-width: 1200px;
+            gap: 20px;
+            text-align: left;
+            margin: 0 auto 30px;
+        }
+
+        .video-tab {
+            flex: 1;
+            border-top: 3px solid #333;
+            padding-top: 15px;
+            cursor: pointer;
+            color: #888;
+            transition: 0.3s;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .video-tab.active {
+            border-top-color: #fff;
+            color: #fff;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Section: Mobile App */
+        .app-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            min-height: 100vh;
+        }
+
+        .app-left {
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .app-feature h4 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .app-feature p {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .app-right {
+            max-width: 600px;
+        }
+
+        .app-right img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Section: Backup Protection */
+        .backup-section {
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .backup-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .backup-image-container img {
+            width: 100%;
+            height: 65vh;
+            object-fit: cover;
+        }
+
+        .backup-icons {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            z-index: 10;
+        }
+
+        .backup-icon-item {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .backup-icon-item svg {
+            fill: #fff;
+            width: 32px;
+            height: 32px;
+            margin-bottom: 15px;
+        }
+
+        .backup-icon-item p {
+            font-size: 15px;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        /* Section: Monitor & Compact (White background) */
+        .monitor-compact-section {
+            background-color: #fff;
+            color: #171a20;
+            padding-top: 80px;
+        }
+
+        .monitor-compact-section .split-left h3 {
+            color: #5c5e62;
+        }
+
+        .monitor-compact-section .split-right {
+            color: #5c5e62;
+        }
+
+        .design-split {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 0;
+        }
+
+        .design-left {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .design-right {
+            width: 60%;
+            position: relative;
+        }
+
+        .design-right img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .design-features {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px 80px;
+            gap: 20px;
+        }
+
+        .design-feature {
+            text-align: center;
+            flex: 1;
+        }
+
+        .design-feature svg {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 15px;
+            fill: #5c5e62;
+        }
+
+        .design-feature h4 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #5c5e62;
+        }
+
+        .design-feature p {
+            font-size: 15px;
+            font-weight: 600;
+            color: #5c5e62;
+            line-height: 1.4;
+        }
+
+        /* Section: Specs */
+        .specs-section {
+            background-color: #000;
+            padding: 100px 40px;
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .specs-left {
+            width: 45%;
+        }
+
+        .specs-left img {
+            width: 100%;
+            height: auto;
+        }
+
+        .specs-right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .specs-right h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .specs-right h2 span {
+            font-weight: 300;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .spec-item {
+            margin-bottom: 20px;
+        }
+
+        .spec-item h5 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .spec-item p {
+            font-size: 14px;
+            color: #d0d1d2;
+            margin-bottom: 5px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer-section {
+            padding: 120px 20px 40px;
+            text-align: center;
+        }
+
+        .footer-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: #d0d1d2;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #d0d1d2;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <!-- Top Navigation Bar Section -->
+    <nav class="navbar navbar-expand-lg" id="main-nav">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a href="tesla homepage.html" class="logo">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                        d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+                </svg>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" id="nav-vehicles"><a class="nav-link" href="#">Vehicles</a></li>
+                    <li class="nav-item" id="nav-energy"><a class="nav-link" href="#">Energy</a></li>
+                    <li class="nav-item" id="nav-charging"><a class="nav-link" href="#">Charging</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Discover</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+                </ul>
+                <div>
+                    <button class="menu-btn rounded-pill" style="background: transparent; color: #fff; border: none; padding: 5px 15px; font-weight: 600;">Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mega Menus -->
+        <!-- Dropdown Menus for the Navigation Bar -->
+        <div class="mega-menu" id="vehicles-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="model_y.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-Y-2-v2.png"
+                                alt="Model Y" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model Y</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_y.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Test
+                            Drive</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">We,
+                            Robot</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Vehicle
+                            Safety Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="energy-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="powerwall.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Powerwall-Global.png"
+                                alt="Powerwall" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Powerwall</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="powerwall.html" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="megapack.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Megapack.png"
+                                alt="Megapack" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Megapack</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="megapack.html" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Utilities</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Commercial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="charging-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Charging.png"
+                            alt="Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Home-Charging.png"
+                            alt="Home Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Home Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Supercharging-NA.png"
+                            alt="Supercharging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Supercharging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host a
+                            Supercharger</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host
+                            Wall Connectors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Secondary Nav -->
+    <div class="secondary-nav" id="secondary-nav">
+        <div class="secondary-nav-title">Powerwall – Home Battery Storage</div>
+        <div class="secondary-nav-links">
+            <a href="#">Request a Quote</a>
+            <a href="#">Support</a>
+            <a href="#" class="btn btn-light text-dark py-1 px-3 fw-bold rounded" style="margin-left: 20px;">Get
+                Updates</a>
+        </div>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <!-- Main Hero Image Section -->
+    <section class="hero-section">
+        <div class="hero-title text-center">
+            <h1>Powerwall</h1>
+            <p>Over 1 Million Installed Globally</p>
+            <button class="hero-btn">Get Updates</button>
+        </div>
+    </section>
+
+    <!-- Section 2: Stats & Graph -->
+    <!-- Powerwall Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div>
+                <h2>6.7 <span>GW</span></h2>
+                <p>Battery Power</p>
+            </div>
+            <div style="border-left: 1px solid #333; padding-left: 80px;">
+                <h2>17.3 <span>TWh</span></h2>
+                <p>Energy Delivered</p>
+            </div>
+            <div style="border-left: 1px solid #333; padding-left: 80px;">
+                <h2>142.9 <span>Million</span></h2>
+                <p>Hours Protection</p>
+            </div>
+        </div>
+        <div class="stats-graph">
+            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-1-Desktop.png"
+                alt="Powerwall Fleet 1 Million Graph">
+            <div class="timeline" style="display: flex; gap: 20px; text-align: left; margin-top: 20px;">
+                <div style="flex: 1; border-top: 3px solid #fff; padding-top: 15px;">
+                    <h4 style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px;">2015 – The
+                        Beginning</h4>
+                    <p style="font-size: 14px; font-weight: 500; color: #fff; margin: 0;">The first Powerwall was
+                        installed in May 2015.</p>
+                </div>
+                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                    <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2017 – Mass
+                        Production</h4>
+                    <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">Started at Giga Nevada,
+                        incorporating a Tesla-designed DC-to-AC inverter.</p>
+                </div>
+                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                    <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2023 – Next
+                        Generation Powerwall</h4>
+                    <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">September 2023 marked the
+                        release of Powerwall 3 with an integrated solar inverter.</p>
+                </div>
+                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                    <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2025 – 1 Million
+                        Powerwall Units</h4>
+                    <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">The one millionth Powerwall
+                        was installed at a customer's home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Interactive Video -->
+    <section class="interactive-video-section">
+        <div class="video-tabs">
+            <div class="video-tab active">Store solar energy</div>
+            <div class="video-tab">Use your stored energy anytime to power your home</div>
+            <div class="video-tab">At night when the sun isn't shining</div>
+            <div class="video-tab">Or when the power is out during an outage</div>
+            <div class="video-tab">Recharge when the sun rises, or the grid turns back on</div>
+        </div>
+        <div class="video-container">
+            <video class="tcl-video__asset" preload="auto" playsinline="" autoplay="" muted="" loop=""
+                poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/store-solar-energy-carousel-01-desktop-poster.png">
+                <source
+                    src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/store-solar-energy-carousel-01-desktop.mp4"
+                    type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- Section 4: Power Everything -->
+    <section class="split-section">
+        <div class="split-left">
+            <h3>Independence</h3>
+            <h2>Power Everything</h2>
+            <button class="btn-outline">Get Updates</button>
+        </div>
+        <div class="split-right">
+            Powerwall reduces your reliance on the grid by storing your solar energy for use when the sun isn't shining.
+            Use Powerwall alone or combine it with other Tesla products to save money, reduce your carbon footprint and
+            prepare your home for power outages.
+        </div>
+    </section>
+
+    <!-- Section 6: Mobile App -->
+    <section class="app-section">
+        <div class="app-left">
+            <div class="app-feature">
+                <h4>₹</h4>
+                <p>Customise settings<br>for personalised savings</p>
+            </div>
+            <div class="app-feature">
+                <h4>24/7</h4>
+                <p>Stay connected with instant<br>alerts before severe weather</p>
+            </div>
+            <div class="app-feature">
+                <!-- User requested SVG -->
+                <svg viewBox="0 0 28 28" style="width: 28px; height: 28px; fill: #fff; margin-bottom: 5px;">
+                    <!-- Path approximating the manage-energy icon -->
+                    <path
+                        d="M19 2H9C7.3 2 6 3.3 6 5v18c0 1.7 1.3 3 3 3h10c1.7 0 3-1.3 3-3V5c0-1.7-1.3-3-3-3zm1 21c0 .6-.4 1-1 1H9c-.6 0-1-.4-1-1V5c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v18zm-6 0h-4v-2h4v2zm4-16H10v10h8V7z" />
+                </svg>
+                <p>Manage your energy</p>
+            </div>
+        </div>
+        <div class="app-right">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+                alt="Powerwall Mobile App" style="border-radius: 20px;">
+        </div>
+    </section>
+
+    <!-- Section 5: Backup Protection -->
+    <section class="backup-section">
+        <div class="backup-image-container">
+            <img src="https://www.tesla.com/sites/default/files/powerwall/security/D_Powerwall_Security_2880x1800.jpg"
+                alt="Powerwall lighting home during a storm" class="backup-image">
+
+            <div class="backup-icons">
+                <div class="backup-icon-item">
+                    <!-- Home Lightning SVG -->
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M10 21v-4H7l5-8v4h3l-5 8zm-2-12l2.6-4.2c.2-.3.7-.3 1 0L16 9h3c.5 0 .8.5.5.9l-6.5 8c-.3.4-.9.2-1-.2L11 14H8c-.5 0-.8-.5-.5-.9l2.5-4.1zM3 10l9-7 9 7v11h-7v-6h-4v6H3V10z" />
+                    </svg>
+                    <p>Use stored energy to power<br>your home during an outage</p>
+                </div>
+                <div class="backup-icon-item">
+                    <!-- Solar panel SVG -->
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+                    </svg>
+                    <p>Recharge with clean energy<br>when paired with solar</p>
+                </div>
+                <div class="backup-icon-item">
+                    <!-- Refresh SVG -->
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z">
+                        </path>
+                    </svg>
+                    <p>Keep appliances running<br>without interruption</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-section" style="padding-top: 60px;">
+            <div class="split-left">
+                <h3>Security</h3>
+                <h2>Backup Protection</h2>
+                <button class="btn-outline">Get Updates</button>
+            </div>
+            <div class="split-right">
+                Powerwall is a battery that stores energy, detects outages and automatically becomes your home's energy
+                source when the grid goes down. Unlike generators, Powerwall keeps your lights on and phones charged
+                without upkeep, fuel or noise. Pair with solar and recharge with sunlight to keep your appliances
+                running for days.
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Monitor & Compact (White background) -->
+    <section class="monitor-compact-section">
+        <!-- Monitor and Optimise Split -->
+        <div class="split-section" style="padding-bottom: 20px;">
+            <div class="split-left">
+                <h3>Control</h3>
+                <h2 style="color: #171a20;">Monitor and Optimise</h2>
+                <button class="btn-outline-dark">Get Updates</button>
+            </div>
+            <div class="split-right">
+                With the Tesla app, you can monitor your home's energy production and consumption in real time. Set your
+                preferences to optimise for energy independence, outage protection or savings. With instant alerts and
+                remote access, you can control your system from anywhere.
+            </div>
+        </div>
+
+        <!-- Modern and Compact layout -->
+        <div class="design-split">
+            <div class="design-left">
+                <h3 style="font-size: 16px; font-weight: 500; color: #5c5e62; margin-bottom: 5px;">Design</h3>
+                <h2 style="font-size: 32px; font-weight: 600; margin-bottom: 30px; color: #171a20;">Modern and Compact
+                </h2>
+                <p style="color: #5c5e62; font-size: 15px; line-height: 1.6; font-weight: 600; margin-bottom: 40px;">
+                    With easy installation and a minimalist design, Powerwall complements a variety of home styles. The
+                    compact, all-in-one construction features versatile mounting options for indoor or outdoor spaces.
+                </p>
+                <button class="btn-outline-dark" style="width: 200px;">Get Updates</button>
+            </div>
+            <div class="design-right">
+                <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern and Compact Powerwall Installation">
+            </div>
+        </div>
+
+        <div class="design-features">
+            <div class="design-feature">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.04.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.21 0-.69-.47-1.28-1.1-1.42z" />
+                </svg>
+                <p>Child and pet friendly with no<br>exposed wires or hot vents</p>
+            </div>
+            <div class="design-feature">
+                <h4 style="color: #5c5e62;">10x</h4>
+                <p>Stack up to 10 Powerwalls<br>together to meet your needs</p>
+            </div>
+            <div class="design-feature">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                </svg>
+                <p>Water resistant and tough<br>for all weather conditions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Specs -->
+    <!-- Technical Specifications Section -->
+    <section class="specs-section">
+        <div class="specs-left">
+            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_500/Mega-Menu-Energy-Powerwall-Global.png"
+                alt="Powerwall Specs Image">
+        </div>
+        <div class="specs-right">
+            <h2>Powerwall <span>Specs</span></h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h5>Energy Capacity</h5>
+                    <p>13.5 kWh<br>100% depth of discharge<br>90% round trip efficiency</p>
+                </div>
+                <div class="spec-item">
+                    <h5>Installation</h5>
+                    <p>Floor or wall mounted<br>Indoor or outdoor<br>Up to 10 Powerwalls<br>-4°F to 122°F / -20°C to
+                        50°C<br>Water and dust resistance to IP67</p>
+                </div>
+                <div class="spec-item">
+                    <h5>Power</h5>
+                    <p>7kW peak / 5kW continuous<br>Seamless backup transition<br>Pure sine wave output</p>
+                </div>
+                <div class="spec-item">
+                    <h5>Certifications</h5>
+                    <p>Meets U.S. and international safety standards<br>Meets U.S. and international EMI standards</p>
+                </div>
+                <div class="spec-item">
+                    <h5>Size and Weight</h5>
+                    <p>H x W x D<br>45.3" x 29.6" x 5.75"<br>1150 mm x 753 mm x 147 mm<br>251.3 lbs / 114 kg</p>
+                </div>
+                <div class="spec-item">
+                    <h5>Warranty</h5>
+                    <p>10 years</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Footer Protect Your Home -->
+    <!-- Website Footer Links -->
+    <footer class="footer-section">
+        <h2>Protect Your Home</h2>
+        <p>Stay connected and get updates on Powerwall.</p>
+        <button class="btn-outline">Get Updates</button>
+
+        <div class="footer-links">
+            <a href="#">Tesla © 2026</a>
+            <a href="#">Privacy & Legal</a>
+            <a href="#">Contact</a>
+            <a href="#">Locations</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript to make the website interactive -->
+    <script>
+        $(document).ready(function () {
+            let timer;
+            const menus = ['vehicles', 'energy', 'charging'];
+
+            // JavaScript for Dropdown Menus
+            menus.forEach(function (menu) {
+                $('#nav-' + menu + ', #' + menu + '-menu').on({
+                    mouseenter: function () {
+                        clearTimeout(timer);
+                        $('.mega-menu').css('display', 'none'); // hide others
+                        $('#' + menu + '-menu').css('display', 'block');
+                        
+                        // Use class switching for cleaner styling
+                        $('.navbar').addClass('menu-open');
+                        $('.menu-btn').css({'background-color': 'rgba(0,0,0,0.05)', 'color': '#171a20'});
+                    },
+                    mouseleave: function () {
+                        timer = setTimeout(function () {
+                            $('#' + menu + '-menu').css('display', 'none');
+                            
+                            $('.navbar').removeClass('menu-open');
+                            $('.menu-btn').css({'background-color': 'transparent', 'color': '#fff'});
+                        }, 50);
+                    }
+                });
+            });
+
+            // Scroll effect for navbar and secondary-nav
+            // JavaScript to Change Navbar Color on Scroll
+            $(window).scroll(function () {
+                let scrollPosition = $(window).scrollTop();
+
+                // Secondary Nav Reveal
+                if (scrollPosition > 100) {
+                    $("#secondary-nav").addClass("visible");
+                    $(".navbar").css("top", "-100px");
+                } else {
+                    $("#secondary-nav").removeClass("visible");
+                    $(".navbar").css("top", "0");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

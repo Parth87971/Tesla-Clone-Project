@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megapack | Tesla</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+
+    <style>
+        :root {
+            --text-main: #171a20;
+            --text-secondary: #5c5e62;
+            --btn-blue: #3e6ae1;
+            --btn-blue-hover: #3457b1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            color: var(--text-main);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background: transparent;
+            padding: 15px 40px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 16px;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            height: 24px;
+            width: auto;
+            color: #fff;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            color: #fff;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #f4f4f4;
+            color: #000;
+        }
+
+        .mega-menu a:hover {
+            opacity: 0.7;
+        }
+
+        .navbar.menu-open {
+            background-color: #fff !important;
+            backdrop-filter: none !important;
+        }
+
+        .navbar.menu-open .nav-link {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo svg {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .nav-icons {
+            color: #171a20 !important;
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            margin-top: -15vh;
+            /* adjust vertically */
+        }
+
+        .hero-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30vh;
+        }
+
+        .btn-custom {
+            padding: 10px 40px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 4px;
+            width: 250px;
+            border: none;
+            transition: opacity 0.3s;
+        }
+
+        .btn-custom:hover {
+            opacity: 0.9;
+        }
+
+        .btn-blue {
+            background-color: var(--btn-blue);
+            color: white;
+        }
+
+        .btn-white {
+            background-color: white;
+            color: var(--text-main);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0 40px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .stat-box {
+            border-right: 1px solid #e2e3e3;
+        }
+
+        .stat-box:last-child {
+            border-right: none;
+        }
+
+        .stat-value {
+            font-size: 44px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .stat-unit {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 40px);
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-desc {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .img-fluid-custom {
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Features Grid */
+        .feature-grid {
+            margin-top: 50px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Carousel/Cards */
+        .power-card {
+            background: #f4f4f4;
+            padding: 40px;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        .power-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .power-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .stat-box {
+                border-right: none;
+                margin-bottom: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .hero-buttons .btn-custom {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- Top Navigation Bar Section -->
+    <nav class="navbar navbar-expand-lg" id="main-nav">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <a href="tesla homepage.html" class="logo">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                        d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+                </svg>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" id="nav-vehicles"><a class="nav-link" href="#">Vehicles</a></li>
+                    <li class="nav-item" id="nav-energy"><a class="nav-link" href="#">Energy</a></li>
+                    <li class="nav-item" id="nav-charging"><a class="nav-link" href="#">Charging</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Discover</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+                </ul>
+                <div>
+                    <button class="menu-btn rounded-pill" style="background: transparent; color: #fff; border: none; padding: 5px 15px; font-weight: 600;">Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mega Menus -->
+        <!-- Dropdown Menus for the Navigation Bar -->
+        <div class="mega-menu" id="vehicles-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="model_y.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-Y-2-v2.png"
+                                alt="Model Y" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model Y</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_y.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Test
+                            Drive</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">We,
+                            Robot</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Vehicle
+                            Safety Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="energy-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="powerwall.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Powerwall-Global.png"
+                                alt="Powerwall" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Powerwall</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="powerwall.html" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="megapack.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Megapack.png"
+                                alt="Megapack" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Megapack</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="megapack.html" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Utilities</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Commercial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="charging-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Charging.png"
+                            alt="Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Home-Charging.png"
+                            alt="Home Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Home Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Supercharging-NA.png"
+                            alt="Supercharging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Supercharging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host a
+                            Supercharger</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host
+                            Wall Connectors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Main Hero Image Section -->
+    <section class="hero-section">
+        <video preload="auto"
+            poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Hero-V5-Mobile-Poster.jpg"
+            aria-hidden="true" autoplay muted playsinline loop class="hero-video" crossorigin
+            src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/v1759521029/Megapack_Hero_Mobile_V6.mp4">
+            <source
+                src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/v1759521029/Megapack_Hero_Mobile_V6.mp4"
+                type="video/mp4">
+        </video>
+
+        <div class="hero-content w-100">
+            <h1 class="hero-title">Megapack</h1>
+            <p class="hero-subtitle">Large-Scale Energy Storage</p>
+
+            <div class="hero-buttons">
+                <button class="btn-custom btn-blue">Get Updates</button>
+                <button class="btn-custom btn-white">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <!-- Megapack Statistics Section -->
+    <section class="stats-section container">
+        <div class="row align-items-center">
+            <div class="col-md-4 stat-box">
+                <div class="stat-value">>58 <span class="stat-unit">GWh</span></div>
+                <div class="stat-label">Operational Globally</div>
+            </div>
+            <div class="col-md-4 stat-box">
+                <div class="stat-value">99.3<span class="stat-unit">%</span></div>
+                <div class="stat-label">Uptime¹</div>
+            </div>
+            <div class="col-md-4 stat-box">
+                <div class="mb-2 d-flex justify-content-center align-items-center"
+                    style="height: 44px; color: #171a20;">
+                    <svg class="tds-icon tds-icon-megapack" width="40" height="40" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" fill-rule="evenodd"
+                            d="M21.336 6.763 8.326 2.116a1 1 0 0 0-.653-.007l-4.99 1.663A1 1 0 0 0 2 4.721v14.558a1 1 0 0 0 .684.949l5.023 1.674a1 1 0 0 0 .59.013l12.978-3.708a1 1 0 0 0 .139-.052.75.75 0 1 0-.435-1.432l-.909.266a.25.25 0 0 1-.32-.24v-6.494c0-.16l.15-.28.306-.244l1.331.309A.5.5 0 0 0 22 9.832V7.706a1 1 0 0 0-.664-.942M3.5 5.261a.25.25 0 0 1 .17-.237l3.25-1.083a.25.25 0 0 1 .33.237v15.644a.25.25 0 0 1-.33.237l-3.25-1.083a.25.25 0 0 1-.17-.237zm14.569 12.302a.25.25 0 0 0 .181-.24v-2.43H18a.5.5 0 0 1-.5-.5v-2.5a.5.5 0 0 1 .5-.5h.25V9.729a.25.25 0 0 0-.185-.241l-2-.539a.25.25 0 0 0-.315.241v8.705a.25.25 0 0 0 .319.24zM14.25 8.651a.25.25 0 0 0-.185-.241l-1.347-.364a.25.25 0 0 0-.315.242v12.59a.25.25 0 0 0 .319.24l5-1.429a.25.25 0 0 0 .181-.24V15h-.75a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h.75zm0-1.753a.15.15 0 0 1-.194.143L8.927 5.48a.25.25 0 0 1-.177-.239V4.215a.25.25 0 0 1 .334-.235l5 1.786c.1.035.166.13.166.235z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="stat-label">Real-World Tested</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Grid Section -->
+    <section class="container-fluid px-3 px-md-4 mt-4 mb-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Building-a-Sustainable-V1-Desktop.png"
+            class="img-fluid-custom" alt="Rows of Megapacks installed">
+
+        <div class="content-wrapper">
+            <h2 class="section-title">Building a Sustainable, More Resilient Grid</h2>
+            <p class="section-desc">The future of renewable energy relies on large-scale industrial energy storage.
+                Megapack is a powerful, integrated battery system that provides clean, reliable, cost-effective energy
+                storage to help stabilize the grid and prevent outages. Reducing our reliance on fossil fuels and
+                strengthening our grid infrastructure will make sustainable energy more accessible and affordable for
+                everyone on Earth. <a href="#" class="text-dark text-decoration-underline">Learn more in our Master Plan
+                    Part 3.</a></p>
+        </div>
+    </section>
+
+    <!-- Transforming Energy Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Transforming-Industrial-Energy-V1-Desktop.png"
+            class="img-fluid-custom" alt="Close up view of Megapack">
+
+        <div class="content-wrapper">
+            <h2 class="section-title">Transforming Industrial Energy Storage</h2>
+            <p class="section-desc">Megapack is changing the way the grid is powered. Operating in over 65 countries,
+                Megapack provides critical grid support globally and can support multi-GWh projects.</p>
+
+            <div class="row feature-grid g-5">
+                <div class="col-md-4">
+                    <h3 class="feature-title">Easy to Install</h3>
+                    <p class="feature-desc">Each unit ships fully assembled with a built-in foundation and integrated
+                        wireways, reducing installation costs by 25%.² Its flexible configuration allows for faster
+                        installation, and over 99% of deployments are delivered on time. We also offer support during
+                        installation and throughout operation.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="feature-title">Safe to Operate</h3>
+                    <p class="feature-desc">Megapack offers reliable and safe energy storage. It is designed as a
+                        single, vertically integrated system with hardware and controls that reduce fire risk. It meets
+                        over 40 global safety requirements, ensuring a safe environment for site workers and local
+                        communities.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="feature-title">Built for Performance</h3>
+                    <p class="feature-desc">Megapack comes with a 20-year warranty and performance guarantees, ensuring
+                        operational capacity throughout the lifetime of the system. Each installation receives 24/7
+                        support and automated diagnostics, with an average uptime of over 99%, even in harsh
+                        environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Power More Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Power-More-V1-Desktop.png"
+            class="img-fluid-custom" alt="Angled view of rows of Megapacks installed">
+
+        <div class="content-wrapper">
+            <h2 class="section-title">Power More</h2>
+            <p class="section-desc">Megapack installations are fully customizable and can be deployed at scale, making
+                them suitable for a variety of project sizes, locations and applications.</p>
+
+            <div class="d-flex overflow-auto gap-4 mt-4 pb-4 position-relative"
+                style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <style>
+                    .power-card-wrap {
+                        flex: 0 0 calc(33.333% - 1rem);
+                        min-width: 320px;
+                        scroll-snap-align: start;
+                    }
+
+                    /* Hide scrollbar for Chrome, Safari and Opera */
+                    .d-flex.overflow-auto::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                <div class="power-card-wrap">
+                    <div class="power-card">
+                        <h3 class="power-title">Standalone Utilities</h3>
+                        <p class="power-desc">Stabilizes grid voltage, frequency and capacity levels, replacing
+                            fossil-fuel peaker plants and keeping the grid running smoothly.</p>
+                    </div>
+                </div>
+                <div class="power-card-wrap">
+                    <div class="power-card">
+                        <h3 class="power-title">Renewable Paired</h3>
+                        <p class="power-desc">Maintains the stability and reliability of renewable energy sources on the
+                            grid by storing and discharging energy depending on the availability of solar and wind
+                            energy.</p>
+                    </div>
+                </div>
+                <div class="power-card-wrap">
+                    <div class="power-card">
+                        <h3 class="power-title">Data Centers</h3>
+                        <p class="power-desc">Provides reliable power to data centers, ensuring continuous power,
+                            preventing costly downtime and data loss due to outages.</p>
+                    </div>
+                </div>
+                <div class="power-card-wrap">
+                    <div class="power-card">
+                        <h3 class="power-title">Commercial and Industrial</h3>
+                        <p class="power-desc">Offers commercial businesses more reliable energy access and allows them
+                            to share excess energy with the grid during peak demand hours.</p>
+                    </div>
+                </div>
+                <div class="power-card-wrap">
+                    <div class="power-card">
+                        <h3 class="power-title">Microgrids</h3>
+                        <p class="power-desc">Allows electricity to be pooled and then distributed or managed without a
+                            connection to the grid.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel dots mock -->
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #171a20;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d0d1d2;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d0d1d2;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d0d1d2;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background-color: #d0d1d2;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- We Build Big Batteries Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5 text-center mt-5">
+        <video preload="auto"
+            poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-We-Build-Big-V1-Tablet-Poster.png"
+            aria-hidden="true" autoplay muted playsinline loop class="w-100 rounded-3 mb-5" crossorigin
+            src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Megapack-We-Build-Big-V1-Tablet.mp4">
+        </video>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: 40px; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.5px;">We Build Big
+                Batteries</h2>
+            <p
+                style="font-size: 20px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 30px; font-weight: 500;">
+                Our Megafactories in Lathrop, California and Shanghai, China are among the largest industrial battery
+                manufacturing facilities in the world. Together, they have a total manufacturing capacity of 80 GWh, or
+                20,000 units, per year. That's enough energy storage to retire 400 fossil fuel peaker plants (100 MW
+                each) every year.
+            </p>
+            <button class="btn btn-dark mt-2"
+                style="padding: 10px 40px; font-weight: 600; font-size: 14px; border-radius: 4px;">Learn More</button>
+        </div>
+    </section>
+
+    <!-- Fully Integrated Software Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5 pt-4">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Fully-Integrated-Software-V1-Desktop.png"
+            class="img-fluid-custom" alt="UI view of Autobidder">
+        <div class="content-wrapper text-center text-md-start">
+            <h2 class="section-title">Fully Integrated Software</h2>
+            <p class="section-desc">From design to commissioning and long-term management, Megapack is equipped with
+                software that maximizes system storage performance and minimizes risk while increasing revenue potential
+                over time. Our software is vertically integrated and can control, monitor and optimize the entire
+                Megapack system. This software constantly improves through over-the-air updates and hardware-in-loop
+                testing.</p>
+        </div>
+    </section>
+
+    <!-- Streamlined Service Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Streamlined-Service-Maximum-V1-Desktop.png"
+            class="img-fluid-custom" alt="A service technician at a Megapack site">
+        <div class="content-wrapper mt-5">
+            <h2 class="section-title">Streamlined Service, Maximum Performance</h2>
+            <p class="section-desc mb-5">Tesla provides performance guarantees and lifetime support for all Megapack
+                systems, with the option to let Tesla service your system or your own team, certified by us.</p>
+
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h3 class="feature-title" style="font-size: 24px;">Serviced by Tesla</h3>
+                    <p class="feature-desc" style="font-size: 16px;">Tesla handles all service tasks for you, including
+                        corrective and preventative maintenance. Our service technicians continuously monitor, diagnose
+                        and resolve system issues remotely or on-site to ensure maximum performance.</p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="feature-title" style="font-size: 24px;">Certified by Tesla</h3>
+                    <p class="feature-desc" style="font-size: 16px;">If you choose not to use Tesla Servicing, Tesla can
+                        certify your in-house or third-party team to service your system, giving them access to the same
+                        documentation and tools used by Tesla technicians.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Megapack Delivers Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5 mt-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Megapack-Delivers-V1-Desktop.png"
+            class="img-fluid-custom" alt="View of Megapacks and solar panels">
+        <div class="content-wrapper mt-5 text-center text-md-start">
+            <h2 class="section-title">Megapack Delivers</h2>
+            <p class="section-desc">Megapack is making clean industrial energy storage more accessible and affordable.
+                As the world adopts more renewable energy sources like solar and wind, batteries help balance supply and
+                demand on the grid. This offers greater stability, preventing grid outages and reducing reliance on
+                fossil fuel peaker plants. Each Megapack 2 XL avoids 88,000 tons of CO₂e.</p>
+            <button class="btn btn-dark mt-4"
+                style="padding: 10px 40px; font-weight: 600; font-size: 14px; border-radius: 4px;">View Impact
+                Report</button>
+        </div>
+    </section>
+
+    <!-- Additional Resources Section -->
+    <section class="container-fluid px-3 px-md-4 mb-5 pb-5">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-Additional-Resources-V1-Desktop.png"
+            class="img-fluid-custom" alt="Close up angled view of rows of Megapack">
+        <div class="content-wrapper mt-5">
+            <h2 class="section-title">Additional Resources</h2>
+            <p class="section-desc mb-5">Discover how Megapack is powering our world's grids.</p>
+
+            <div class="row g-5 mb-5">
+                <div class="col-md-4">
+                    <h3 class="feature-title" style="font-size: 24px;">Safety</h3>
+                    <p class="feature-desc" style="font-size: 16px;">Designed, tested and monitored to maximize safety.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="feature-title" style="font-size: 24px;">Grid Forming</h3>
+                    <p class="feature-desc" style="font-size: 16px;">Developing technology for a more stable, reliable,
+                        resilient grid.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="feature-title" style="font-size: 24px;">Data Centers</h3>
+                    <p class="feature-desc" style="font-size: 16px;">Powering cloud computing and artificial
+                        intelligence infrastructure.</p>
+                </div>
+            </div>
+            <div class="d-flex gap-3 flex-wrap">
+                <button class="btn btn-dark"
+                    style="padding: 10px 40px; font-weight: 600; font-size: 14px; border-radius: 4px;">Learn
+                    More</button>
+                <button class="btn btn-outline-dark"
+                    style="padding: 10px 40px; border: 2px solid #171a20; font-weight: 600; font-size: 14px; border-radius: 4px; color: #171a20;">Get
+                    Updates</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Updates Form Section -->
+    <section class="container py-5 mb-5" style="max-width: 600px;">
+        <h2 class="mb-4 text-center text-md-start" style="font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
+            Get Updates</h2>
+        <form>
+            <div class="mb-3">
+                <label class="form-label text-secondary" style="font-size: 14px; font-weight: 600;">First Name</label>
+                <input type="text" class="form-control"
+                    style="background-color: #f4f4f4; border: none; border-radius: 4px; padding: 10px;">
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-secondary" style="font-size: 14px; font-weight: 600;">Last Name</label>
+                <input type="text" class="form-control"
+                    style="background-color: #f4f4f4; border: none; border-radius: 4px; padding: 10px;">
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-secondary" style="font-size: 14px; font-weight: 600;">Email</label>
+                <input type="email" class="form-control"
+                    style="background-color: #f4f4f4; border: none; border-radius: 4px; padding: 10px;">
+            </div>
+            <div class="mb-3">
+                <label class="form-label text-secondary" style="font-size: 14px; font-weight: 600;">Company</label>
+                <input type="text" class="form-control"
+                    style="background-color: #f4f4f4; border: none; border-radius: 4px; padding: 10px;">
+            </div>
+            <div class="mb-4">
+                <label class="form-label text-secondary" style="font-size: 14px; font-weight: 600;">Title</label>
+                <input type="text" class="form-control"
+                    style="background-color: #f4f4f4; border: none; border-radius: 4px; padding: 10px;">
+            </div>
+            <button type="button" class="btn w-100 mb-4"
+                style="background-color: #3e6ae1; color: white; padding: 12px; font-weight: 600; border-radius: 4px; border: none;">Submit</button>
+            <p class="text-secondary" style="font-size: 12px; line-height: 1.5;">Learn More about <a href="#"
+                    class="text-secondary text-decoration-underline">Tesla Updates</a>.</p>
+            <p class="text-secondary" style="font-size: 12px; line-height: 1.5;">By checking the box to receive Tesla
+                Updates and clicking "Submit", I authorize Tesla to contact me with information about relevant products
+                and services. I understand I can unsubscribe at any time.</p>
+        </form>
+    </section>
+
+    <!-- Footnotes -->
+    <section class="container px-4 mb-5 pb-4">
+        <p class="text-secondary" style="font-size: 12px; margin-bottom: 8px;">¹ Reflects the average percentage of
+            power available over the previous 12 months, weighted by GWh for projects that have contracted an
+            Availability Guarantee and been in operation for over 30 days.</p>
+        <p class="text-secondary" style="font-size: 12px;">² Compared to competitors.</p>
+    </section>
+
+    <!-- Help Build a Sustainable Grid Section -->
+    <section class="position-relative" style="height: 70vh; min-height: 500px;">
+        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Megapack-End-V1-Desktop.png"
+            alt="Megapacks being installed" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-center"
+            style="background: rgba(0,0,0,0.1);">
+            <h2 class="text-white mb-2"
+                style="font-size: clamp(36px, 5vw, 50px); font-weight: 600; letter-spacing: -0.5px;">Help Build a
+                Sustainable Grid</h2>
+            <p class="text-white mb-4" style="font-size: clamp(16px, 2vw, 20px); font-weight: 500;">Contact us for more
+                information.</p>
+            <button class="btn"
+                style="background-color: #3e6ae1; color: white; padding: 10px 40px; font-weight: 600; font-size: 14px; border-radius: 4px; border: none; min-width: 200px;">Contact
+                Us</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- Website Footer Links -->
+    <footer class="text-center py-4 mt-5" style="background-color: #fff;">
+        <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4 text-secondary"
+            style="font-size: 12px; font-weight: 500;">
+            <a href="#" class="text-secondary text-decoration-none">Tesla © 2026</a>
+            <a href="#" class="text-secondary text-decoration-none">Privacy & Legal</a>
+            <a href="#" class="text-secondary text-decoration-none">Vehicle Recalls</a>
+            <a href="#" class="text-secondary text-decoration-none">Contact</a>
+            <a href="#" class="text-secondary text-decoration-none">News</a>
+            <a href="#" class="text-secondary text-decoration-none">Get Updates</a>
+            <a href="#" class="text-secondary text-decoration-none">Locations</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to make the website interactive -->
+    <script>
+        $(document).ready(function () {
+            let timer;
+            const menus = ['vehicles', 'energy', 'charging'];
+
+            // JavaScript for Dropdown Menus
+            menus.forEach(function (menu) {
+                $('#nav-' + menu + ', #' + menu + '-menu').on({
+                    mouseenter: function () {
+                        clearTimeout(timer);
+                        $('.mega-menu').css('display', 'none'); // hide others
+                        $('#' + menu + '-menu').css('display', 'block');
+                        
+                        // Use class switching for cleaner styling
+                        $('.navbar').addClass('menu-open');
+                        $('.menu-btn').css({'background-color': 'rgba(0,0,0,0.05)', 'color': '#171a20'});
+                    },
+                    mouseleave: function () {
+                        timer = setTimeout(function () {
+                            $('#' + menu + '-menu').css('display', 'none');
+                            
+                            $('.navbar').removeClass('menu-open');
+                            $('.menu-btn').css({'background-color': 'transparent', 'color': '#fff'});
+                        }, 50);
+                    }
+                });
+            });
+
+            // Basic scroll effect for navbar
+            // JavaScript to Change Navbar Color on Scroll
+            $(window).scroll(function() {
+                // If a mega menu is currently open, don't change the background!
+                if ($('.navbar').hasClass('menu-open')) return;
+
+                let scrollPosition = $(window).scrollTop();
+                if (scrollPosition > 50) {
+                    $(".navbar").css({"background-color": "rgba(0, 0, 0, 0.6)", "backdrop-filter": "blur(10px)"});
+                } else {
+                    $(".navbar").css({"background-color": "transparent", "backdrop-filter": "none"});
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
