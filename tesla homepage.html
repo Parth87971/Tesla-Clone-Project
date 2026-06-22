@@ -178,7 +178,7 @@
     class="page-homepage template-landing-page tcl-page tds-site-header--white-background--desktop tds-site-header--white-background--tablet tds-menu-header--sticky-without-slide--desktop tds-menu-header--sticky-without-slide--tablet tds-site-header--dark tds-menu-header-transparent--light tcl-parallax-effect--off site-body animate-onscroll i18n-en_us is-Chrome"
     id="page-homepage">
 
-    <!-- Top Navigation Bar Section -->
+
     <nav class="navbar navbar-expand-lg" id="main-nav">
         <div class="container-fluid">
             <a href="tesla homepage.html" class="logo">
@@ -209,7 +209,7 @@
         </div>
 
 
-        <!-- Dropdown Menus for the Navigation Bar -->
+
         <div class="mega-menu" id="vehicles-menu">
             <div class="container py-5">
                 <div class="row w-100 mx-auto justify-content-center">
@@ -320,7 +320,7 @@
         </div>
     </nav>
     <main>
-        <!-- Main Image Slider (Hero Carousel) -->
+
         <div id="teslaCarousel" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#teslaCarousel" data-bs-slide-to="0" class="active"
@@ -434,7 +434,7 @@
 
                 <div class="carousel-inner">
 
-                    <!-- Slide 1 -->
+
                     <div class="carousel-item active">
 
                         <section class="container-fluid px-4 my-5">
@@ -459,7 +459,7 @@
 
                     </div>
 
-                    <!-- Slide 2 -->
+
                     <div class="carousel-item">
 
                         <section class="container-fluid px-4 my-5">
@@ -484,7 +484,7 @@
 
                     </div>
 
-                    <!-- Slide 3 -->
+
                     <div class="carousel-item">
 
                         <section class="container-fluid px-4 my-5">
@@ -523,7 +523,7 @@
 
             </div>
         </section>
-        <!-- Current Offers and Shop Grid Section -->
+
         <section class="container-fluid my-5 px-3 px-md-5">
             <div class="row g-4 mx-auto" style="max-width: 1600px; width: 100%;">
                 <div class="col-lg-6">
@@ -749,7 +749,7 @@
             </div>
 
         </section>
-        <!-- Website Footer Links -->
+
         <footer class="container my-5 text-center d-flex flex-column align-items-center" style="max-width: 800px;">
             <p class="text-secondary mb-4" style="font-size: 12px; line-height: 1.6;">
                 <sup>1</sup> Terms and conditions apply. Promotion requires delivery of a Model 3 Premium or Performance
@@ -782,13 +782,13 @@
             const menus = ['vehicles', 'energy', 'charging'];
 
             menus.forEach(function (menu) {
-                //Dropdown Menus
+
                 $('#nav-' + menu + ', #' + menu + '-menu').on({
                     mouseenter: function () {
                         clearTimeout(timer);
                         $('.mega-menu').css('display', 'none');
                         $('#' + menu + '-menu').css('display', 'block');
-                        // Use class switching for cleaner styling
+
                         $('.navbar').addClass('menu-open');
                     },
                     mouseleave: function () {
@@ -801,7 +801,7 @@
             });
 
 
-            //Change Navbar Color on Scroll
+
             $(window).scroll(function () {
 
                 if ($('.navbar').hasClass('menu-open')) return;
@@ -817,7 +817,7 @@
 
         $(document).ready(() => {
 
-            //Offers Box Hover Animation
+
             $("#offers-container").on({
                 mouseenter: function () {
                     $(this).css("box-shadow", "0 10px 20px rgba(0,0,0,0.1)");
@@ -829,7 +829,7 @@
             });
 
 
-            // Show Offers Disclaimer on Click
+
             $("#offers-btn").click(function () {
                 if ($(".c1").length === 0) {
                     $("#offers-container").append("<p class='c1 text-secondary mt-4 fw-semibold' style='font-size: 14px; cursor: pointer;'>* APR offers available for well-qualified buyers. (Click to dismiss)</p>");
@@ -837,7 +837,7 @@
             });
 
 
-            // Hide Offers Disclaimer on Click
+
             $("#offers-container").on("click", ".c1", function () {
                 $(this).remove();
             });

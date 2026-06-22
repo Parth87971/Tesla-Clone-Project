@@ -394,7 +394,7 @@
 
 <body>
 
-    <!-- Top Navigation Bar Section -->
+
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a href="tesla homepage.html" class="logo">
@@ -424,7 +424,7 @@
             </div>
         </div>
 
-        <!-- Dropdown Menus for the Navigation Bar -->
+
         <div class="mega-menu" id="vehicles-menu">
             <div class="container py-5">
                 <div class="row w-100 mx-auto justify-content-center">
@@ -538,7 +538,7 @@
     </div>
 
     <main>
-        <!-- Main Image Slider (Hero Carousel) -->
+
         <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
             <div class="carousel-indicators" style="margin-bottom: 40px;">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
@@ -589,7 +589,7 @@
             </button>
         </div>
 
-        <!-- Explore Model Y Features Section -->
+
         <section class="explore-section">
             <h2>Explore Model Y</h2>
 
@@ -1047,7 +1047,7 @@
                 </div>
             </div>
         </section>
-        <!-- Technical Specifications Section -->
+
         <section class="specs-section bg-black text-white" style="padding: 100px 40px; width: 100%;">
             <div class="container-fluid" style="max-width: 1400px; margin: 0 auto;">
                 <div class="row">
@@ -1195,7 +1195,7 @@
             </div>
         </section>
 
-        <!-- Final Footer with Links -->
+
         <section class="footer-hero position-relative text-center text-white"
             style="height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-Premium-End-Desktop-RHD-AU-NZ.jpg"
@@ -1228,13 +1228,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript to make the website interactive -->
+
     <script>
         $(document).ready(function () {
             let timer;
             const menus = ['vehicles', 'energy', 'charging'];
 
-            // JavaScript for Dropdown Menus
+
             menus.forEach(function (menu) {
                 $('#nav-' + menu + ', #' + menu + '-menu').on({
                     mouseenter: function () {
@@ -1254,7 +1254,7 @@
                 });
             });
 
-            // JavaScript to Change Navbar Color on Scroll
+
             $(window).scroll(function () {
                 let scrollPosition = $(window).scrollTop();
 
@@ -1268,7 +1268,7 @@
                 }
                 }
 
-                // Sticky Sub-Navbar Reveal (appears after scrolling past the first hero section, roughly 80vh or 600px)
+
                 if (scrollPosition > 600) {
                     $("#subNavbar").addClass("visible");
                     $(".navbar").css("top", "-100px"); // Hide main navbar to make room
