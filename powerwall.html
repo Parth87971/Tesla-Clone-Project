@@ -21,7 +21,7 @@
             color: #fff;
         }
 
-        /* Navbar Styles */
+    =
         .navbar {
             position: fixed;
             top: 0;
@@ -1031,7 +1031,7 @@
         </div>
     </section>
 
-    <!-- Section 9: Footer Protect Your Home -->
+    <!-- Section 9: Footer-->
     <!-- Website Footer Links -->
     <footer class="footer-section">
         <h2>Protect Your Home</h2>
@@ -1049,21 +1049,21 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript to make the website interactive -->
+ 
     <script>
         $(document).ready(function () {
             let timer;
             const menus = ['vehicles', 'energy', 'charging'];
 
-            // JavaScript for Dropdown Menus
+            // for Dropdown Menus
             menus.forEach(function (menu) {
                 $('#nav-' + menu + ', #' + menu + '-menu').on({
                     mouseenter: function () {
                         clearTimeout(timer);
-                        $('.mega-menu').css('display', 'none'); // hide others
+                        $('.mega-menu').css('display', 'none'); 
                         $('#' + menu + '-menu').css('display', 'block');
                         
-                        // Use class switching for cleaner styling
+                     
                         $('.navbar').addClass('menu-open');
                         $('.menu-btn').css({'background-color': 'rgba(0,0,0,0.05)', 'color': '#171a20'});
                     },
@@ -1078,12 +1078,12 @@
                 });
             });
 
-            // Scroll effect for navbar and secondary-nav
-            // JavaScript to Change Navbar Color on Scroll
+           
+            // Change Navbar Color on Scroll
             $(window).scroll(function () {
                 let scrollPosition = $(window).scrollTop();
 
-                // Secondary Nav Reveal
+           
                 if (scrollPosition > 100) {
                     $("#secondary-nav").addClass("visible");
                     $(".navbar").css("top", "-100px");
