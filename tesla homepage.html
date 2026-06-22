@@ -781,7 +781,7 @@
             const menus = ['vehicles', 'energy', 'charging'];
 
             menus.forEach(function (menu) {
-                // JavaScript for Dropdown Menus
+                //Dropdown Menus
                 $('#nav-' + menu + ', #' + menu + '-menu').on({
                     mouseenter: function () {
                         clearTimeout(timer);
@@ -804,7 +804,7 @@
             });
 
 
-            // JavaScript to Change Navbar Color on Scroll
+            //Change Navbar Color on Scroll
             $(window).scroll(function () {
 
                 if ($('.navbar').hasClass('menu-open')) return;
@@ -820,7 +820,7 @@
 
         $(document).ready(() => {
 
-            // JavaScript for Offers Box Hover Animation
+            //Offers Box Hover Animation
             $("#offers-container").on({
                 mouseenter: function () {
                     $(this).css("box-shadow", "0 10px 20px rgba(0,0,0,0.1)");
@@ -832,7 +832,7 @@
             });
 
 
-            // JavaScript to Show Offers Disclaimer on Click
+            // Show Offers Disclaimer on Click
             $("#offers-btn").click(function () {
                 if ($(".c1").length === 0) {
                     $("#offers-container").append("<p class='c1 text-secondary mt-4 fw-semibold' style='font-size: 14px; cursor: pointer;'>* APR offers available for well-qualified buyers. (Click to dismiss)</p>");
@@ -840,7 +840,7 @@
             });
 
 
-            // JavaScript to Hide Offers Disclaimer on Click
+            // Hide Offers Disclaimer on Click
             $("#offers-container").on("click", ".c1", function () {
                 $(this).remove();
             });
