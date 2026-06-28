@@ -612,6 +612,66 @@
             font-size: 12px;
             font-weight: 600;
         }
+        @media (max-width: 768px) {
+            .stats-grid {
+                flex-direction: column;
+                gap: 40px;
+                padding: 0 20px;
+            }
+            .stats-grid > div {
+                border-left: none !important;
+                padding-left: 0 !important;
+            }
+            .stats-graph {
+                margin-top: 40px;
+            }
+            .timeline-container {
+                flex-direction: column !important;
+                gap: 20px !important;
+                margin-top: 20px !important;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .timeline-item {
+                border-top: none !important;
+                border-left: 1px solid #333;
+                padding-top: 0 !important;
+                padding-left: 15px !important;
+            }
+            .timeline-item.active {
+                border-left-color: #fff !important;
+            }
+            .split-section {
+                flex-direction: column;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 40px !important;
+            }
+            .split-left, .split-right {
+                width: 100% !important;
+                padding-right: 0 !important;
+                margin-bottom: 20px;
+            }
+            .backup-icons {
+                position: static;
+                flex-direction: column;
+                gap: 30px;
+                margin-top: 30px;
+                padding: 0 20px;
+            }
+            .video-tabs {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+            .video-tab {
+                border-top: none !important;
+                border-left: 3px solid #333;
+                padding: 10px 15px !important;
+            }
+            .video-tab.active {
+                border-left-color: #fff !important;
+            }
+        }
     </style>
 </head>
 
@@ -799,7 +859,8 @@
         <div class="stats-graph">
             <img id="timeline-graph-img" src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-1-Desktop.png"
                 alt="Powerwall Fleet 1 Million Graph">
-            <div class="d-flex w-100 gap-4 mt-5 pt-3">
+
+            <div class="timeline-container d-flex w-100 gap-4 mt-5 pt-3">
                 <div class="timeline-item active" style="flex: 1; border-top: 1px solid #fff; padding-top: 15px; cursor: pointer;">
                     <h4 style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px;">2015 - The
                         Beginning</h4>
@@ -1085,8 +1146,8 @@
             });
 
             $('.timeline-item').on('mouseenter', function () {
-                $('.timeline-item').css('border-top-color', '#333').find('h4, p').css('color', '#888');
-                $(this).css('border-top-color', '#fff').find('h4, p').css('color', '#fff');
+                $('.timeline-item').css('border-color', '#333').find('h4, p').css('color', '#888');
+                $(this).css('border-color', '#fff').find('h4, p').css('color', '#fff');
                 
                 // Change the graph image to correspond to the hovered timeline item (Slide 1, 2, 3, or 4)
                 let index = $('.timeline-item').index(this) + 1;
