@@ -92,7 +92,7 @@
 
         .right-col {
             width: 30%;
-            padding: 40px 40px 100px 40px; /* Extra bottom padding for sticky footer */
+            padding: 40px 40px 220px 40px; /* Extra bottom padding for sticky footer */
             overflow-y: auto;
             background-color: #fff;
         }
@@ -240,6 +240,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
+            z-index: 1000;
         }
 
         .sticky-footer-price {
@@ -311,7 +312,7 @@
             }
             .right-col {
                 width: 100%;
-                padding: 24px 24px 120px 24px;
+                padding: 24px 24px 220px 24px;
             }
             .sticky-footer {
                 width: 100%;
@@ -341,6 +342,8 @@
             <div class="image-container">
                 <img id="car-preview" src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,$PN01,$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&" alt="Model Y">
                 <img id="car-preview-overlay" src="" alt="Model Y Overlay">
+                <video id="main-video-player" src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video/q_auto:best/prod/static_assets/COMMON/FSD_Video" style="display: none; width: 100%; height: 100%; object-fit: cover;" loop playsinline controls></video>
+                <button id="close-video-btn" style="display: none; position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 24px; cursor: pointer; z-index: 10; align-items: center; justify-content: center;">&times;</button>
             </div>
         </div>
 
@@ -438,9 +441,12 @@
             
             <p style="text-align: center; font-size: 12px; color: #5c5e62; font-weight: 500; margin-bottom: 40px;">One time purchase available until June 30, 2026.</p>
 
-            <div style="border: 1px solid #d0d1d2; border-radius: 4px; display: flex; cursor: pointer; overflow: hidden; margin-bottom: 30px;">
+            <div id="fsd-video-trigger" style="border: 1px solid #d0d1d2; border-radius: 4px; display: flex; cursor: pointer; overflow: hidden; margin-bottom: 30px; transition: box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='none'">
                 <div style="width: 40%; background-color: #f4f4f4; position: relative;">
-                    <video src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video/q_auto:best/prod/static_assets/COMMON/FSD_Video" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/COMMON/fsd_button?&" alt="FSD Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#171a20"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
                 </div>
                 <div style="padding: 16px; width: 60%; display: flex; flex-direction: column; justify-content: center;">
                     <div style="font-size: 14px; font-weight: 500;">Watch a Video</div>
@@ -571,6 +577,22 @@
                 img.src = imgUrl;
             });
             
+            // FSD Video Player Logic
+            $('#fsd-video-trigger').click(function() {
+                $('#car-preview').css('opacity', '0');
+                $('#car-preview-overlay').css('opacity', '0');
+                $('#main-video-player').show();
+                $('#main-video-player')[0].play();
+                $('#close-video-btn').css('display', 'flex');
+            });
+
+            $('#close-video-btn').click(function() {
+                $('#main-video-player').hide();
+                $('#main-video-player')[0].pause();
+                $('#close-video-btn').hide();
+                $('#car-preview').css('opacity', '1');
+            });
+            
             // Interior Selection
             $('.interior-swatch').click(function() {
                 $('.interior-swatch').removeClass('active');
@@ -599,6 +621,12 @@
                     }, 400); 
                 };
                 img.src = imgUrl;
+                
+                // Hide video if it's playing
+                $('#main-video-player').hide();
+                $('#main-video-player')[0].pause();
+                $('#close-video-btn').hide();
+                $('#car-preview').css('opacity', '1');
                 
                 updatePricing();
             });
