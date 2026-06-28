@@ -66,11 +66,28 @@
             background-color: #f4f4f4; /* Light grey background for the studio */
         }
 
-        .left-col img {
+        .image-container {
+            position: relative;
             width: 100%;
             max-width: 900px;
+        }
+
+        .left-col img {
+            width: 100%;
             object-fit: contain;
-            transition: opacity 0.3s ease;
+        }
+
+        #car-preview {
+            transition: opacity 0.4s ease-in-out;
+            opacity: 1;
+        }
+
+        #car-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
         }
 
         .right-col {
@@ -321,7 +338,10 @@
     <div class="configurator-container">
         <!-- Left Image Column -->
         <div class="left-col">
-            <img id="car-preview" src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,$PN01,$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&" alt="Model Y">
+            <div class="image-container">
+                <img id="car-preview" src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,$PN01,$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&" alt="Model Y">
+                <img id="car-preview-overlay" src="" alt="Model Y Overlay">
+            </div>
         </div>
 
         <!-- Right Options Column -->
@@ -527,10 +547,18 @@
                 // Update car image
                 let imgUrl = `https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,${colorCode},$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&`;
                 
-                $('#car-preview').css('opacity', '0.5');
-                setTimeout(() => {
-                    $('#car-preview').attr('src', imgUrl).css('opacity', '1');
-                }, 150);
+                // Preload new image, then fade it in over the old one
+                let img = new Image();
+                img.onload = function() {
+                    $('#car-preview-overlay').attr('src', imgUrl).css('opacity', '1');
+                    
+                    // After fade transition completes, set base image to new url and hide overlay
+                    setTimeout(() => {
+                        $('#car-preview').attr('src', imgUrl);
+                        $('#car-preview-overlay').css('opacity', '0');
+                    }, 400); // Matches CSS transition time
+                };
+                img.src = imgUrl;
             });
             
             function updatePricing() {
