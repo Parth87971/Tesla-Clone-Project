@@ -797,7 +797,7 @@
             </div>
         </div>
         <div class="stats-graph">
-            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-1-Desktop.png"
+            <img id="timeline-graph-img" src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-1-Desktop.png"
                 alt="Powerwall Fleet 1 Million Graph">
             <div class="d-flex w-100 gap-4 mt-5 pt-3">
                 <div class="timeline-item active" style="flex: 1; border-top: 1px solid #fff; padding-top: 15px; cursor: pointer;">
@@ -1084,9 +1084,13 @@
                 // Note: Normally this would also switch the video source
             });
 
-            $('.timeline-item').click(function () {
+            $('.timeline-item').on('mouseenter', function () {
                 $('.timeline-item').css('border-top-color', '#333').find('h4, p').css('color', '#888');
                 $(this).css('border-top-color', '#fff').find('h4, p').css('color', '#fff');
+                
+                // Change the graph image to correspond to the hovered timeline item (Slide 1, 2, 3, or 4)
+                let index = $('.timeline-item').index(this) + 1;
+                $('#timeline-graph-img').attr('src', 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-' + index + '-Desktop.png');
             });
             $(window).scroll(function () {
                 let scrollPosition = $(window).scrollTop();
