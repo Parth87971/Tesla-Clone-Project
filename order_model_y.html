@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Your Model Y | Tesla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #171a20;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        /* Minimal Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        header svg {
+            height: 16px;
+        }
+
+        .header-lang {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #171a20;
+            text-decoration: none;
+        }
+
+        .header-lang svg {
+            margin-right: 8px;
+            height: 20px;
+        }
+
+        /* Two Column Layout */
+        .configurator-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 60px; /* Offset for header */
+        }
+
+        .left-col {
+            width: 70%;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f4; /* Light grey background for the studio */
+        }
+
+        .left-col img {
+            width: 100%;
+            max-width: 900px;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .right-col {
+            width: 30%;
+            padding: 40px 40px 100px 40px; /* Extra bottom padding for sticky footer */
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        /* Right Column Typography */
+        h1 {
+            font-size: 40px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .specs-banner {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .specs-banner h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .specs-banner p {
+            font-size: 12px;
+            color: #5c5e62;
+            margin: 0;
+        }
+
+        /* Payment Toggle Tabs */
+        .payment-toggle {
+            display: flex;
+            border-bottom: 1px solid #d0d1d2;
+            margin-bottom: 24px;
+        }
+
+        .payment-toggle-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5c5e62;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .payment-toggle-btn.active {
+            color: #171a20;
+            border-bottom-color: #171a20;
+        }
+
+        /* Option Cards */
+        .option-card {
+            border: 1px solid #d0d1d2;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: #5c5e62;
+        }
+
+        .option-card.active {
+            border-color: #3e6ae1;
+            border-width: 2px;
+            padding: 15px; /* Adjust padding to prevent jumping when border changes */
+        }
+
+        .option-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .option-subtitle {
+            font-size: 12px;
+            color: #5c5e62;
+        }
+
+        .option-price {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Paint Swatches */
+        .section-title {
+            font-size: 20px;
+            font-weight: 500;
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .swatch-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .color-swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            padding: 2px;
+            background-clip: content-box;
+            transition: transform 0.2s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch.active {
+            border-color: #3e6ae1;
+        }
+
+        /* Sticky Footer */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 30%;
+            background-color: #fff;
+            padding: 24px 40px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sticky-footer-price {
+            font-size: 24px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+        }
+
+        .sticky-footer-price span {
+            font-size: 14px;
+            color: #5c5e62;
+            margin-left: 8px;
+        }
+
+        .btn-order-now {
+            width: 100%;
+            background-color: #3e6ae1;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-order-now:hover {
+            background-color: #3457b1;
+        }
+
+        /* Checkbox list (FSD) */
+        .fsd-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #d0d1d2;
+            border-radius: 50%;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fsd-checkbox.active {
+            background-color: #3e6ae1;
+            border-color: #3e6ae1;
+        }
+        
+        .fsd-checkbox.active::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .configurator-container {
+                flex-direction: column;
+            }
+            .left-col {
+                width: 100%;
+                position: relative;
+                top: 0;
+                height: 400px;
+            }
+            .right-col {
+                width: 100%;
+                padding: 24px 24px 120px 24px;
+            }
+            .sticky-footer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="tesla homepage.html">
+            <svg viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h49.7V27.4c-1.2-4.1-4.7-6.9-9-7.1h-24.1v-6.6h7.4zm114.7-6.8h-6.8v27.6h24.5v-7h-17.7V0zM97.7.2h-6.8v27.5h24.5v-7h-17.7V.2z" fill="currentColor"></path>
+            </svg>
+        </a>
+        <a href="#" class="header-lang">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            IN
+        </a>
+    </header>
+
+    <div class="configurator-container">
+        <!-- Left Image Column -->
+        <div class="left-col">
+            <img id="car-preview" src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,$PN01,$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&" alt="Model Y">
+        </div>
+
+        <!-- Right Options Column -->
+        <div class="right-col">
+            <h1>Model Y</h1>
+
+            <div class="specs-banner">
+                <div>
+                    <h3>500<span style="font-size: 14px;">km</span></h3>
+                    <p>Range<br>(WLTP)</p>
+                </div>
+                <div>
+                    <h3>201<span style="font-size: 14px;">km/h</span></h3>
+                    <p>Top Speed</p>
+                </div>
+                <div>
+                    <h3>5.9<span style="font-size: 14px;">s</span></h3>
+                    <p>0-100 km/h</p>
+                </div>
+            </div>
+
+            <div class="payment-toggle">
+                <button class="payment-toggle-btn" data-type="cash">Full Payment</button>
+                <button class="payment-toggle-btn active" data-type="loan">Auto Loan</button>
+            </div>
+
+            <!-- Variants -->
+            <div class="option-card active" data-price="96063" data-full="5089000">
+                <div>
+                    <div class="option-title">Model Y <span style="font-style: italic; color: #5c5e62; font-weight: 400;">Premium</span></div>
+                    <div class="option-subtitle">Rear-Wheel Drive</div>
+                </div>
+                <div class="option-price">₹96,063 /mo</div>
+            </div>
+            
+            <div class="option-card" data-price="116764" data-full="6199000">
+                <div>
+                    <div class="option-title">Model Y L <span style="font-style: italic; color: #5c5e62; font-weight: 400;">Premium</span></div>
+                    <div class="option-subtitle">All-Wheel Drive</div>
+                </div>
+                <div class="option-price">₹1,16,764 /mo</div>
+            </div>
+
+            <div style="background-color: #f4f4f4; padding: 12px; border-radius: 4px; text-align: center; margin-bottom: 30px; cursor: pointer; font-size: 14px; font-weight: 500;">
+                View & Compare Features &nbsp; >
+            </div>
+
+            <p style="text-align: center; font-size: 12px; color: #5c5e62; margin-bottom: 20px;">
+                ₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price<br><br>
+                Price excludes est. fuel savings of ₹5,725 /mo<br><br>
+                <a href="#" style="color: #5c5e62;">Edit Financial Terms & Savings</a>
+            </p>
+
+            <!-- Paint Colors -->
+            <h2 class="section-title">Paint</h2>
+            <div class="section-subtitle" id="color-name">Stealth Grey</div>
+            
+            <div class="swatch-container">
+                <div class="color-swatch active" style="background-color: #3b3c3e;" data-code="$PN01" data-name="Stealth Grey"></div>
+                <div class="color-swatch" style="background-color: #e5e5e6;" data-code="$PPSW" data-name="Pearl White Multi-Coat"></div>
+                <div class="color-swatch" style="background-color: #1a1a1a;" data-code="$PX02" data-name="Solid Black"></div>
+                <div class="color-swatch" style="background-color: #2b4561;" data-code="$PB01" data-name="Deep Blue Metallic"></div>
+                <div class="color-swatch" style="background-color: #920b1e;" data-code="$PR01" data-name="Ultra Red"></div>
+            </div>
+
+            <!-- Wheels -->
+            <h2 class="section-title">Wheels</h2>
+            <div class="section-subtitle">19" Crossflow Wheels</div>
+            
+            <div class="swatch-container" style="margin-bottom: 40px;">
+                <div class="color-swatch active" style="background-image: url('https://digitalassets.tesla.com/co/image/upload/f_auto,q_auto/v2/tesla_design_studio/configurator/my/wheels/19_gemini'); background-size: cover; border-color: #3e6ae1; padding: 0;"></div>
+            </div>
+
+            <!-- FSD Section -->
+            <h2 class="section-title" style="margin-top: 60px;">Full Self-Driving Capability</h2>
+            <p style="text-align: center; font-size: 14px; color: #5c5e62; margin-bottom: 24px;">In future updates, your car will be able to drive itself almost anywhere with minimal driver intervention</p>
+            
+            <div class="option-card" id="fsd-toggle" style="justify-content: flex-start; margin-bottom: 8px;">
+                <div class="fsd-checkbox"></div>
+                <div style="flex-grow: 1; display: flex; justify-content: space-between;">
+                    <div class="option-title">Full Self-Driving</div>
+                    <div class="option-price">₹6,00,000</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; font-size: 12px; color: #5c5e62; font-weight: 500; margin-bottom: 40px;">One time purchase available until June 30, 2026.</p>
+
+            <div style="border: 1px solid #d0d1d2; border-radius: 4px; display: flex; cursor: pointer; overflow: hidden; margin-bottom: 30px;">
+                <div style="width: 40%; background-color: #f4f4f4; position: relative;">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/model-y-fsd-video-thumbnail.jpg" alt="FSD Video" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#171a20"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+                <div style="padding: 16px; width: 60%; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 14px; font-weight: 500;">Watch a Video</div>
+                    <div style="font-size: 12px; color: #5c5e62;">See Full Self-Driving in Action</div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <h2 class="section-title" style="margin-top: 60px;">Your Model Y</h2>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a href="#" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Save Your Design</a>
+                <p style="font-size: 14px; color: #171a20; margin-bottom: 8px;">Estimated Delivery: 4 - 6 weeks</p>
+                <a href="#" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Registration in Maharashtra</a>
+                <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Your On-Road Price is calculated based on selected state</p>
+                
+                <a href="#" style="font-size: 14px; font-weight: 500; color: #171a20; text-decoration: none;">Show Pricing Details v</a>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <div style="font-size: 16px; font-weight: 600;">Est. Loan Payment</div>
+                <div style="font-size: 16px; font-weight: 600;" id="summary-price">₹96,063 /mo</div>
+            </div>
+            
+            <p style="font-size: 12px; color: #5c5e62; margin-bottom: 16px;">₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price</p>
+            <a href="#" style="font-size: 14px; color: #5c5e62; display: block; margin-bottom: 32px;">Explore Financing</a>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <div style="font-size: 14px; color: #5c5e62;">Due within 7 days</div>
+                <div style="font-size: 14px; color: #5c5e62;">₹3,00,000</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <div style="font-size: 16px; font-weight: 600;">Due Today</div>
+                <div style="font-size: 16px; font-weight: 600;">₹22,220</div>
+            </div>
+            <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Non-refundable order deposit including TCS</p>
+
+            <button style="width: 100%; padding: 12px; border: 2px solid #171a20; background: white; color: #171a20; font-weight: 600; border-radius: 4px; margin-bottom: 16px;">Order with Card</button>
+            <button style="width: 100%; padding: 12px; border: none; background: #171a20; color: white; font-weight: 600; border-radius: 4px;">Order with UPI</button>
+
+        </div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="sticky-footer">
+        <div class="sticky-footer-price">
+            <span id="footer-price-display" style="font-size: 20px; font-weight: 600; color: #171a20; margin: 0;">₹96,063 /mo</span>
+            <span id="footer-price-subtext" style="font-size: 12px; font-weight: 500; color: #5c5e62;">Auto Loan</span>
+        </div>
+        <button class="btn-order-now">Order Now</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let isLoan = true;
+            let currentPrice = 96063;
+            let currentFullPrice = 5089000;
+            let fsdSelected = false;
+            let fsdPrice = 600000; // Adding FSD to full price
+            let fsdLoanPrice = 11333; // Approx monthly increase for FSD
+            
+            // Payment Toggle
+            $('.payment-toggle-btn').click(function() {
+                $('.payment-toggle-btn').removeClass('active');
+                $(this).addClass('active');
+                isLoan = $(this).data('type') === 'loan';
+                
+                // Update text in options
+                $('.option-card').each(function() {
+                    let price = isLoan ? $(this).data('price') : $(this).data('full');
+                    let suffix = isLoan ? ' /mo' : '';
+                    $(this).find('.option-price').text('₹' + price.toLocaleString('en-IN') + suffix);
+                });
+                
+                updatePricing();
+            });
+            
+            // Variant Selection
+            $('.option-card').not('#fsd-toggle').click(function() {
+                $('.option-card').not('#fsd-toggle').removeClass('active');
+                $(this).addClass('active');
+                
+                currentPrice = $(this).data('price');
+                currentFullPrice = $(this).data('full');
+                
+                updatePricing();
+            });
+            
+            // FSD Toggle
+            $('#fsd-toggle').click(function() {
+                fsdSelected = !fsdSelected;
+                $(this).find('.fsd-checkbox').toggleClass('active');
+                if(fsdSelected) {
+                    $(this).addClass('active');
+                } else {
+                    $(this).removeClass('active');
+                }
+                updatePricing();
+            });
+            
+            // Color Selection
+            $('.color-swatch').not('.swatch-container:last .color-swatch').click(function() {
+                $('.color-swatch').not('.swatch-container:last .color-swatch').removeClass('active');
+                $(this).addClass('active');
+                
+                let colorName = $(this).data('name');
+                let colorCode = $(this).data('code');
+                $('#color-name').text('Included\n' + colorName);
+                
+                // Update car image
+                let imgUrl = `https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,${colorCode},$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&`;
+                
+                $('#car-preview').css('opacity', '0.5');
+                setTimeout(() => {
+                    $('#car-preview').attr('src', imgUrl).css('opacity', '1');
+                }, 150);
+            });
+            
+            function updatePricing() {
+                let displayPrice = isLoan ? currentPrice : currentFullPrice;
+                
+                if (fsdSelected) {
+                    displayPrice += isLoan ? fsdLoanPrice : fsdPrice;
+                }
+                
+                let suffix = isLoan ? ' /mo' : '';
+                let formattedPrice = '₹' + displayPrice.toLocaleString('en-IN') + suffix;
+                
+                $('#summary-price').text(formattedPrice);
+                $('#footer-price-display').text(formattedPrice);
+                $('#footer-price-subtext').text(isLoan ? 'Auto Loan' : 'Purchase Price');
+            }
+        });
+    </script>
+</body>
+</html>
