@@ -575,6 +575,12 @@
                     }, 400); // Matches CSS transition time
                 };
                 img.src = imgUrl;
+                
+                // Hide video if it's playing
+                $('#main-video-player').hide();
+                $('#main-video-player')[0].pause();
+                $('#close-video-btn').hide();
+                $('#car-preview').css('opacity', '1');
             });
             
             // FSD Video Player Logic
