@@ -407,7 +407,6 @@
 
 <body>
 
-
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a href="tesla homepage.html" class="logo">
@@ -436,7 +435,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="mega-menu" id="vehicles-menu">
             <div class="container py-5">
@@ -601,7 +599,6 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
 
         <section class="explore-section">
             <h2>Explore Model Y</h2>
@@ -1208,7 +1205,6 @@
             </div>
         </section>
 
-
         <section class="footer-hero position-relative text-center text-white"
             style="height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-Premium-End-Desktop-RHD-AU-NZ.jpg"
@@ -1247,26 +1243,24 @@
             let timer;
             const menus = ['vehicles', 'energy', 'charging'];
 
-
             menus.forEach(function (menu) {
                 $('#nav-' + menu + ', #' + menu + '-menu').on({
                     mouseenter: function () {
                         clearTimeout(timer);
                         $('.mega-menu').css('display', 'none');
                         $('#' + menu + '-menu').css('display', 'block');
-                        
+
                         $('.navbar').addClass('menu-open');
                     },
                     mouseleave: function () {
                         timer = setTimeout(function () {
                             $('#' + menu + '-menu').css('display', 'none');
-                            
+
                             $('.navbar').removeClass('menu-open');
                         }, 50);
                     }
                 });
             });
-
 
             $(window).scroll(function () {
                 let scrollPosition = $(window).scrollTop();
@@ -1280,7 +1274,6 @@
                     $(".navbar").css("backdrop-filter", "none");
                 }
                 }
-
 
                 if (scrollPosition > 600) {
                     $("#subNavbar").addClass("visible");
