@@ -414,6 +414,15 @@
             <div class="swatch-container" style="margin-bottom: 40px;">
                 <div class="color-swatch active" style="background-image: url('https://digitalassets.tesla.com/co/image/upload/f_auto,q_auto/v2/tesla_design_studio/configurator/my/wheels/19_gemini'); background-size: cover; border-color: #3e6ae1; padding: 0;"></div>
             </div>
+            
+            <!-- Interior Section -->
+            <h2 class="section-title" style="margin-top: 60px;">Interior</h2>
+            <div class="section-subtitle" id="interior-name">Included<br>All Black Interior</div>
+            
+            <div class="swatch-container">
+                <div class="color-swatch interior-swatch active" style="background-color: #171a20;" data-code="$IPB9" data-name="All Black Interior" data-price="0"></div>
+                <div class="color-swatch interior-swatch" style="background-color: #fff; border: 1px solid #ddd;" data-code="$IPW9" data-name="Zen Grey Interior" data-price="95000"></div>
+            </div>
 
             <!-- FSD Section -->
             <h2 class="section-title" style="margin-top: 60px;">Full Self-Driving Capability</h2>
@@ -454,11 +463,11 @@
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
-                <div style="font-size: 16px; font-weight: 600;">Est. Loan Payment</div>
+                <div style="font-size: 16px; font-weight: 600;" id="summary-label">Est. Loan Payment</div>
                 <div style="font-size: 16px; font-weight: 600;" id="summary-price">₹96,063 /mo</div>
             </div>
             
-            <p style="font-size: 12px; color: #5c5e62; margin-bottom: 16px;">₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price</p>
+            <p style="font-size: 12px; color: #5c5e62; margin-bottom: 16px;" id="summary-subtext">₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price</p>
             <a href="#" style="font-size: 14px; color: #5c5e62; display: block; margin-bottom: 32px;">Explore Financing</a>
 
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
@@ -492,6 +501,10 @@
             let isLoan = true;
             let currentPrice = 96063;
             let currentFullPrice = 5089000;
+            let currentInteriorPrice = 0;
+            let currentInteriorLoanPrice = 0;
+            let currentColorCode = '$PN01';
+            let currentInteriorCode = '$IPB9';
             let fsdSelected = false;
             let fsdPrice = 600000; // Adding FSD to full price
             let fsdLoanPrice = 11333; // Approx monthly increase for FSD
@@ -536,16 +549,16 @@
             });
             
             // Color Selection
-            $('.color-swatch').not('.swatch-container:last .color-swatch').click(function() {
-                $('.color-swatch').not('.swatch-container:last .color-swatch').removeClass('active');
+            $('.color-swatch').not('.interior-swatch, .swatch-container:last .color-swatch').click(function() {
+                $('.color-swatch').not('.interior-swatch, .swatch-container:last .color-swatch').removeClass('active');
                 $(this).addClass('active');
                 
                 let colorName = $(this).data('name');
-                let colorCode = $(this).data('code');
+                currentColorCode = $(this).data('code');
                 $('#color-name').text('Included\n' + colorName);
                 
-                // Update car image
-                let imgUrl = `https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,${colorCode},$WY19L,$IPB9,$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&`;
+                // Update car image back to exterior view
+                let imgUrl = `https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,${currentColorCode},$WY19L,${currentInteriorCode},$DRRH&view=FRONT34&model=my&size=1920&size=720&bkba_opt=2&crop=1200,700,370,150&overlay=0&`;
                 
                 // Preload new image, then fade it in over the old one
                 let img = new Image();
@@ -561,11 +574,45 @@
                 img.src = imgUrl;
             });
             
+            // Interior Selection
+            $('.interior-swatch').click(function() {
+                $('.interior-swatch').removeClass('active');
+                $(this).addClass('active');
+                
+                let colorName = $(this).data('name');
+                currentInteriorCode = $(this).data('code');
+                let interiorPriceVal = parseInt($(this).data('price'));
+                
+                let priceText = interiorPriceVal === 0 ? 'Included' : '₹' + interiorPriceVal.toLocaleString('en-IN');
+                $('#interior-name').html(priceText + '<br>' + colorName);
+                
+                currentInteriorPrice = interiorPriceVal;
+                currentInteriorLoanPrice = interiorPriceVal === 0 ? 0 : 1794; // approx loan price for interior
+                
+                // Update car image to interior view
+                let imgUrl = `https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTY76,${currentColorCode},$WY19L,${currentInteriorCode},$DRRH&view=STUD_SEAT&model=my&size=1920&size=720&bkba_opt=2&crop=0,0,0,0&overlay=0&`;
+                
+                // Preload new image, then fade it in over the old one
+                let img = new Image();
+                img.onload = function() {
+                    $('#car-preview-overlay').attr('src', imgUrl).css('opacity', '1');
+                    setTimeout(() => {
+                        $('#car-preview').attr('src', imgUrl);
+                        $('#car-preview-overlay').css('opacity', '0');
+                    }, 400); 
+                };
+                img.src = imgUrl;
+                
+                updatePricing();
+            });
+            
             function updatePricing() {
-                let displayPrice = isLoan ? currentPrice : currentFullPrice;
+                let displayPrice = (isLoan ? currentPrice : currentFullPrice) + (isLoan ? currentInteriorLoanPrice : currentInteriorPrice);
+                let fullPurchasePrice = currentFullPrice + currentInteriorPrice;
                 
                 if (fsdSelected) {
                     displayPrice += isLoan ? fsdLoanPrice : fsdPrice;
+                    fullPurchasePrice += fsdPrice;
                 }
                 
                 let suffix = isLoan ? ' /mo' : '';
@@ -574,6 +621,14 @@
                 $('#summary-price').text(formattedPrice);
                 $('#footer-price-display').text(formattedPrice);
                 $('#footer-price-subtext').text(isLoan ? 'Auto Loan' : 'Purchase Price');
+                
+                if (isLoan) {
+                    $('#summary-label').text('Est. Loan Payment');
+                    $('#summary-subtext').text('₹5,20,246 down payment, 60 months, 8.50% ROI, ₹' + fullPurchasePrice.toLocaleString('en-IN') + ' Purchase Price');
+                } else {
+                    $('#summary-label').text('On-Road Price');
+                    $('#summary-subtext').text('Includes GST of ₹2,89,105');
+                }
             }
         });
     </script>
