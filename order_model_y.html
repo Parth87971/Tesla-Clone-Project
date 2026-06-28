@@ -326,7 +326,7 @@
     <header>
         <a href="tesla homepage.html">
             <svg viewBox="0 0 342 35" width="120" height="16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h49.7V27.4c-1.2-4.1-4.7-6.9-9-7.1h-24.1v-6.6h7.4zm114.7-6.8h-6.8v27.6h24.5v-7h-17.7V0zM97.7.2h-6.8v27.5h24.5v-7h-17.7V.2z" fill="currentColor"></path>
+                <path fill="currentColor" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7"></path>
             </svg>
         </a>
         <a href="#" class="header-lang">
@@ -440,10 +440,7 @@
 
             <div style="border: 1px solid #d0d1d2; border-radius: 4px; display: flex; cursor: pointer; overflow: hidden; margin-bottom: 30px;">
                 <div style="width: 40%; background-color: #f4f4f4; position: relative;">
-                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/COMMON/fsd_button?&" alt="FSD Video" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#171a20"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
+                    <video src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video/q_auto:best/prod/static_assets/COMMON/FSD_Video" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
                 </div>
                 <div style="padding: 16px; width: 60%; display: flex; flex-direction: column; justify-content: center;">
                     <div style="font-size: 14px; font-weight: 500;">Watch a Video</div>
@@ -480,8 +477,8 @@
             </div>
             <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Non-refundable order deposit including TCS</p>
 
-            <button style="width: 100%; padding: 12px; border: 2px solid #171a20; background: white; color: #171a20; font-weight: 600; border-radius: 4px; margin-bottom: 16px;">Order with Card</button>
-            <button style="width: 100%; padding: 12px; border: none; background: #171a20; color: white; font-weight: 600; border-radius: 4px;">Order with UPI</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';">Order with Card</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';">Order with UPI</button>
 
         </div>
     </div>
