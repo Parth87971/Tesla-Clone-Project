@@ -799,26 +799,26 @@
         <div class="stats-graph">
             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Powerwall-Fleet-1-Million-Carousel-Slide-1-Desktop.png"
                 alt="Powerwall Fleet 1 Million Graph">
-            <div class="timeline" style="display: flex; gap: 20px; text-align: left; margin-top: 20px;">
-                <div style="flex: 1; border-top: 3px solid #fff; padding-top: 15px;">
-                    <h4 style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px;">2015 – The
+            <div class="d-flex w-100 gap-4 mt-5 pt-3">
+                <div class="timeline-item active" style="flex: 1; border-top: 1px solid #fff; padding-top: 15px; cursor: pointer;">
+                    <h4 style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px;">2015 - The
                         Beginning</h4>
                     <p style="font-size: 14px; font-weight: 500; color: #fff; margin: 0;">The first Powerwall was
                         installed in May 2015.</p>
                 </div>
-                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                <div class="timeline-item" style="flex: 1; border-top: 1px solid #333; padding-top: 15px; cursor: pointer;">
                     <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2017 – Mass
                         Production</h4>
                     <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">Started at Giga Nevada,
                         incorporating a Tesla-designed DC-to-AC inverter.</p>
                 </div>
-                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                <div class="timeline-item" style="flex: 1; border-top: 1px solid #333; padding-top: 15px; cursor: pointer;">
                     <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2023 – Next
                         Generation Powerwall</h4>
                     <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">September 2023 marked the
                         release of Powerwall 3 with an integrated solar inverter.</p>
                 </div>
-                <div style="flex: 1; border-top: 1px solid #333; padding-top: 15px;">
+                <div class="timeline-item" style="flex: 1; border-top: 1px solid #333; padding-top: 15px; cursor: pointer;">
                     <h4 style="font-size: 16px; font-weight: 600; color: #888; margin-bottom: 10px;">2025 – 1 Million
                         Powerwall Units</h4>
                     <p style="font-size: 14px; font-weight: 500; color: #888; margin: 0;">The one millionth Powerwall
@@ -1078,8 +1078,16 @@
                 });
             });
 
-           
+            $('.video-tab').click(function () {
+                $('.video-tab').removeClass('active');
+                $(this).addClass('active');
+                // Note: Normally this would also switch the video source
+            });
 
+            $('.timeline-item').click(function () {
+                $('.timeline-item').css('border-top-color', '#333').find('h4, p').css('color', '#888');
+                $(this).css('border-top-color', '#fff').find('h4, p').css('color', '#fff');
+            });
             $(window).scroll(function () {
                 let scrollPosition = $(window).scrollTop();
 
