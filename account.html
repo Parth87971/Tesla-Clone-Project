@@ -228,6 +228,21 @@
             background: white;
             z-index: 10;
         }
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #f4f4f4;
+            padding-bottom: 20px;
+        }
+        .mega-menu a:hover {
+            opacity: 0.7;
+        }
         .dash-header .logo { justify-self: start; }
         .dash-header .nav-links {
             display: flex;
@@ -603,15 +618,124 @@
             </svg>
             </a>
             <div class="nav-links">
-                <a href="#">Vehicles</a>
-                <a href="#">Energy</a>
-                <a href="#">Charging</a>
-                <a href="#">Discover</a>
+                <a href="#" id="nav-vehicles">Vehicles</a>
+                <a href="#" id="nav-energy">Energy</a>
+                <a href="#" id="nav-charging">Charging</a>
+                <a href="#" id="nav-discover">Discover</a>
             </div>
             <div class="header-icons">
                 <i class="bi bi-globe" style="font-size: 20px;"></i>
                 <i class="bi bi-person-circle" style="font-size: 20px;"></i>
             </div>
+            
+        <div class="mega-menu" id="vehicles-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="model_y.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-Y-2-v2.png"
+                                alt="Model Y" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model Y</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_y.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="order_model_y.html" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Test
+                            Drive</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">We,
+                            Robot</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Vehicle
+                            Safety Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="energy-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="powerwall.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Powerwall-Global.png"
+                                alt="Powerwall" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Powerwall</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="powerwall.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="megapack.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Megapack.png"
+                                alt="Megapack" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Megapack</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="megapack.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Utilities</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Commercial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="charging-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Charging.png"
+                            alt="Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Home-Charging.png"
+                            alt="Home Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Home Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Supercharging-NA.png"
+                            alt="Supercharging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Supercharging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host a
+                            Supercharger</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host
+                            Wall Connectors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
 
         <div class="dash-container">
@@ -851,6 +975,24 @@
 
         // On Load initialization
         $(document).ready(function() {
+            let timer;
+            const menus = ['vehicles', 'energy', 'charging'];
+
+            menus.forEach(function (menu) {
+                $('#nav-' + menu + ', #' + menu + '-menu').on({
+                    mouseenter: function () {
+                        clearTimeout(timer);
+                        $('.mega-menu').css('display', 'none');
+                        $('#' + menu + '-menu').css('display', 'block');
+                    },
+                    mouseleave: function () {
+                        timer = setTimeout(function () {
+                            $('#' + menu + '-menu').css('display', 'none');
+                        }, 50);
+                    }
+                });
+            });
+
             if(localStorage.getItem('isLoggedIn') === 'true') {
                 populateDashboard();
                 switchView('view-dashboard');
