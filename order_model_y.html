@@ -651,9 +651,12 @@
                 
                 <!-- Toggle Button -->
                 <div style="display: flex; background: #f4f4f4; border-radius: 8px; padding: 4px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                    <div style="flex: 1; text-align: center; padding: 12px; background: white; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; color: #171a20;">Model Y <span style="font-style: italic; color: #5c5e62; font-weight: 400;">Premium</span></div>
-                    <div style="flex: 1; text-align: center; padding: 12px; font-size: 14px; font-weight: 500; color: #5c5e62; cursor: pointer;">Model Y L <span style="font-style: italic; font-weight: 400;">Premium</span></div>
+                    <div id="tab-premium-btn" onclick="switchFeaturesTab('premium')" style="flex: 1; text-align: center; padding: 12px; background: white; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; color: #171a20;">Model Y <span style="font-style: italic; color: #5c5e62; font-weight: 400;">Premium</span></div>
+                    <div id="tab-l-premium-btn" onclick="switchFeaturesTab('l-premium')" style="flex: 1; text-align: center; padding: 12px; font-size: 14px; font-weight: 500; color: #5c5e62; cursor: pointer;">Model Y L <span style="font-style: italic; font-weight: 400;">Premium</span></div>
                 </div>
+                
+                <!-- Premium Content -->
+                <div id="content-premium">
                 
                 <!-- Feature 1: Driving Video -->
                 <div class="feature-block" style="margin-bottom: 60px;">
@@ -734,6 +737,51 @@
                 </div>
                 
                 <p style="font-size: 11px; color: #5c5e62; margin-top: 40px;">¹ Subject to change. Not all vehicles or finance options will be eligible. Terms apply.</p>
+                </div>
+                
+                <!-- L Premium Content -->
+                <div id="content-l-premium" style="display: none;">
+                    
+                    <!-- Feature 1: Hero Video -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <video src="blob:https://www.tesla.com/90f7c42c-bcd8-4504-b835-2197ba55e03a" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/my-f-yl--aus-nz.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px;"></video>
+                    </div>
+                    
+                    <!-- Feature 2: Model Y L -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-yl-hero-aus-nz.jpg?&amp;" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Model Y L</h3>
+                        <p style="font-size: 15px; color: #5c5e62;">Long wheelbase with three rows, six seats and all the comfort.</p>
+                    </div>
+                    
+                    <!-- Feature 3: 3 Rows, 6 Seats -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-yl-seats-aus-nz.jpg?&amp;" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">3 Rows, 6 Seats</h3>
+                        <p style="font-size: 15px; color: #5c5e62;">Each seat is intentionally designed to maximize headroom, legroom and comfort, so everyone arrives refreshed.</p>
+                    </div>
+                    
+                    <!-- Feature 4: Expert Handling -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <video src="blob:https://www.tesla.com/6f5c39ee-ac6f-40bb-8ca7-550ccd5b1010" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/my-f-yl-handling-aus-nz.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; margin-bottom: 20px;"></video>
+                        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Expert Handling</h3>
+                        <p style="font-size: 15px; color: #5c5e62;">A refined chassis with adaptive suspension and electronic damping shocks adjust to road condition to filter out vibrations and provide improved grip.</p>
+                    </div>
+                    
+                    <!-- Feature 5: Designed to Do More -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <video src="blob:https://www.tesla.com/bcac5727-0e51-4c06-b701-c534a956a613" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/270326_DTDM_D.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; margin-bottom: 20px;"></video>
+                        <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Designed to Do More</h3>
+                        <p style="font-size: 15px; color: #5c5e62;">An extended base creates a more spacious, versatile interior that lets you decide whether to prioritise leg room or storage.</p>
+                    </div>
+                    
+                    <!-- Additional Image provided by user -->
+                    <div class="feature-block" style="margin-bottom: 60px;">
+                        <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-yl-efficiency-aus-nz.jpg?&amp;" style="width: 100%; border-radius: 10px;">
+                    </div>
+                    
+                    <p style="font-size: 11px; color: #5c5e62; margin-top: 40px;">¹ Subject to change. Not all vehicles or finance options will be eligible. Terms apply.</p>
+                </div>
 
             </div>
         </div>
@@ -757,6 +805,21 @@
                 $('#features-modal').css('display', 'flex').hide().fadeIn();
                 document.body.style.overflow = 'hidden';
             });
+            
+            // Tab Toggle Function
+            window.switchFeaturesTab = function(tab) {
+                if(tab === 'premium') {
+                    $('#content-premium').show();
+                    $('#content-l-premium').hide();
+                    $('#tab-premium-btn').css({ 'background': 'white', 'box-shadow': '0 1px 3px rgba(0,0,0,0.1)', 'color': '#171a20' });
+                    $('#tab-l-premium-btn').css({ 'background': 'transparent', 'box-shadow': 'none', 'color': '#5c5e62' });
+                } else {
+                    $('#content-premium').hide();
+                    $('#content-l-premium').show();
+                    $('#tab-l-premium-btn').css({ 'background': 'white', 'box-shadow': '0 1px 3px rgba(0,0,0,0.1)', 'color': '#171a20' });
+                    $('#tab-premium-btn').css({ 'background': 'transparent', 'box-shadow': 'none', 'color': '#5c5e62' });
+                }
+            };
         });
     </script>
 </body>
