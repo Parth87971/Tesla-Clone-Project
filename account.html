@@ -466,6 +466,116 @@
         </div>
     </div>
 
+    <!-- Add Product QR Modal -->
+    <div class="popup-overlay" id="add-product-modal">
+        <div class="popup-box" style="max-width: 550px; width: 90%; text-align: left; padding: 40px; position: relative;">
+            <i class="bi bi-x-lg" style="position: absolute; top: 25px; right: 25px; font-size: 22px; cursor: pointer; color: #171a20;" onclick="$('#add-product-modal').removeClass('active')"></i>
+            <h2 class="fw-bold mb-3" style="font-size: 22px; color: #171a20;">Add Products in App</h2>
+            <p style="font-size: 14px; color: #5c5e62; line-height: 1.5; margin-bottom: 20px;">Scan the QR Code below to open the Tesla app to add vehicles or energy products to your Tesla Account. <a href="#" style="color: #5c5e62; text-decoration: underline;">Learn more</a><br>Requires app version 4.33.0 and up</p>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" style="width: 220px; height: 220px; border: 1px solid #e2e3e3; padding: 10px; border-radius: 8px;">
+            </div>
+            <p style="font-size: 13px; color: #5c5e62; margin-bottom: 0;">If you can't scan the QR code, copy this link to a mobile browser: <a href="#" style="color: #171a20; text-decoration: underline;">https://ts.la/app</a></p>
+        </div>
+    </div>
+
+    <!-- Add Card Modal -->
+    <div class="popup-overlay" id="add-card-modal">
+        <div class="popup-box" style="max-width: 650px; width: 95%; text-align: left; padding: 50px; position: relative; max-height: 90vh; overflow-y: auto;">
+            <i class="bi bi-x-lg" style="position: absolute; top: 25px; right: 25px; font-size: 24px; cursor: pointer; color: #171a20;" onclick="$('#add-card-modal').removeClass('active')"></i>
+            
+            <h2 class="fw-bold mb-4" style="font-size: 20px; color: #171a20;">Card</h2>
+            
+            <div class="form-group mb-4">
+                <label>Name on Card</label>
+                <input type="text" id="cc-name" class="form-control-custom">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Card Number</label>
+                <input type="text" id="cc-number" class="form-control-custom" placeholder="">
+                <div class="error-msg" id="cc-number-error" style="color: #d10000; font-size: 13px; margin-top: 6px; display: none;">Required / Invalid</div>
+            </div>
+            
+            <div class="row mb-4">
+                <div class="col-6">
+                    <div class="form-group mb-0">
+                        <label>Expiration Month</label>
+                        <select id="cc-exp-month" class="form-control-custom">
+                            <option value="">Select</option>
+                            <option value="01">01</option><option value="02">02</option>
+                            <option value="03">03</option><option value="04">04</option>
+                            <option value="05">05</option><option value="06">06</option>
+                            <option value="07">07</option><option value="08">08</option>
+                            <option value="09">09</option><option value="10">10</option>
+                            <option value="11">11</option><option value="12">12</option>
+                        </select>
+                        <div class="error-msg" id="cc-exp-month-error" style="color: #d10000; font-size: 13px; margin-top: 6px; display: none;">Required</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group mb-0">
+                        <label>Expiration Year</label>
+                        <select id="cc-exp-year" class="form-control-custom">
+                            <option value="">Select</option>
+                            <option value="2024">2024</option><option value="2025">2025</option>
+                            <option value="2026">2026</option><option value="2027">2027</option>
+                            <option value="2028">2028</option><option value="2029">2029</option>
+                            <option value="2030">2030</option><option value="2031">2031</option>
+                        </select>
+                        <div class="error-msg" id="cc-exp-year-error" style="color: #d10000; font-size: 13px; margin-top: 6px; display: none;">Required</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group mb-4" style="max-width: 200px;">
+                <label>Security Code</label>
+                <input type="text" id="cc-cvc" class="form-control-custom" maxlength="4">
+                <div class="error-msg" id="cc-cvc-error" style="color: #d10000; font-size: 13px; margin-top: 6px; display: none;">Required / Invalid</div>
+            </div>
+            
+            <h2 class="fw-bold mb-4 mt-5" style="font-size: 20px; color: #171a20;">Billing Details</h2>
+            
+            <div class="form-group mb-4">
+                <label>Country</label>
+                <select id="cc-country" class="form-control-custom">
+                    <option value="Angola">Angola</option>
+                    <option value="United States">United States</option>
+                </select>
+                <div class="error-msg" id="cc-country-error" style="color: #d10000; font-size: 13px; margin-top: 6px; display: none;">Required</div>
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Address Line 1</label>
+                <input type="text" id="cc-address" class="form-control-custom">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Address Line 2</label>
+                <input type="text" id="cc-address-2" class="form-control-custom">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>City</label>
+                <input type="text" id="cc-city" class="form-control-custom">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Province</label>
+                <input type="text" id="cc-province" class="form-control-custom">
+            </div>
+            
+            <div class="form-group mb-4">
+                <label>Postal Code</label>
+                <input type="text" id="cc-zip" class="form-control-custom">
+            </div>
+            
+            <p style="font-size: 13px; color: #5c5e62; margin-bottom: 30px;">By continuing, I allow Tesla to save my payment instrument information for future transactions.</p>
+            
+            <button class="btn-primary-custom" onclick="validateCard()">Save</button>
+        </div>
+    </div>
+
     <!-- ==================== SIGN IN VIEW ==================== -->
     <div id="view-signin" class="view-section active">
         <div class="auth-header">
@@ -775,7 +885,7 @@
                         <img src="https://digitalassets.tesla.com/oxp/image/upload/third-party-car_636x300_ed18888cb5f98.jpg" alt="Third Party Car" style="object-fit: contain;">
                         <div class="product-card-body" style="flex-direction: row; justify-content: space-between; align-items: center;">
                             <div class="product-title" style="margin-bottom: 0;">Purchased a car from a third party? <i class="bi bi-info-circle text-secondary"></i></div>
-                            <a class="product-link" style="align-self: center;">Add</a>
+                            <a class="product-link" style="align-self: center; cursor: pointer;" onclick="$('#add-product-modal').addClass('active')">Add</a>
                         </div>
                     </div>
                 </div>
@@ -790,7 +900,7 @@
                         <div class="product-card-body">
                             <div class="product-title">Get Started</div>
                             <div class="product-desc" style="font-size: 13px;">Set up simple and convenient charging</div>
-                            <button class="btn-secondary-custom" style="background: white; border: 2px solid #171a20; margin-top: 10px;">Add Card</button>
+                            <button class="btn-secondary-custom" style="background: white; border: 2px solid #171a20; margin-top: 10px;" onclick="$('#add-card-modal').addClass('active')">Add Card</button>
                         </div>
                     </div>
                 </div>
@@ -970,6 +1080,52 @@
                 $('#disp-region').text(acc.region);
                 $('#disp-lang').text(acc.language);
                 $('#disp-email').text(acc.email);
+            }
+        }
+        
+        function validateCard() {
+            let isValid = true;
+            $('.error-msg').hide();
+            $('.form-control-custom').css('border', 'none');
+            $('.form-control-custom').css('background-color', '#f4f4f4');
+
+            // Card Number: 13-19 digits regex
+            const ccRegex = /^\d{13,19}$/;
+            const ccVal = $('#cc-number').val().replace(/\s+/g, '');
+            if(!ccRegex.test(ccVal)) {
+                $('#cc-number-error').show();
+                $('#cc-number').css({'border': '1px solid #d10000', 'background-color': '#fff'});
+                isValid = false;
+            }
+
+            // Security Code: 3-4 digits regex
+            const cvcRegex = /^\d{3,4}$/;
+            if(!cvcRegex.test($('#cc-cvc').val())) {
+                $('#cc-cvc-error').show();
+                $('#cc-cvc').css({'border': '1px solid #d10000', 'background-color': '#fff'});
+                isValid = false;
+            }
+
+            if(!$('#cc-exp-month').val()) {
+                $('#cc-exp-month-error').show();
+                $('#cc-exp-month').css({'border': '1px solid #d10000', 'background-color': '#fff'});
+                isValid = false;
+            }
+
+            if(!$('#cc-exp-year').val()) {
+                $('#cc-exp-year-error').show();
+                $('#cc-exp-year').css({'border': '1px solid #d10000', 'background-color': '#fff'});
+                isValid = false;
+            }
+
+            if(isValid) {
+                alert("Payment Method added successfully!");
+                $('#add-card-modal').removeClass('active');
+                // Optional: Change the card UI to show a saved card instead of "Get Started"
+                $('#content-payment-method .product-card-body').html(`
+                    <div class="product-title">Visa ending in ` + ccVal.slice(-4) + `</div>
+                    <div class="product-desc" style="font-size: 13px;">Default Payment Method</div>
+                `);
             }
         }
 
