@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #171a20;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .view-section {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .view-section.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Authentication Layouts */
+        .auth-header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .auth-header .logo {
+            width: 120px;
+            height: 24px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg"><path d="M0 .1a9.7 9.7 0 007 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 007-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 006-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm-80.8 0c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm141.4-6.9h-6.7v28h-22.6v6.9h30.1a9.8 9.8 0 006.8-7V0z" fill="%23171a20"/></svg>') no-repeat center;
+            display: block;
+        }
+
+        .auth-header .lang-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            color: #171a20;
+        }
+
+        .auth-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .auth-form-box {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .auth-title {
+            font-size: 34px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .auth-subtitle {
+            font-size: 14px;
+            color: #5c5e62;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #5c5e62;
+            margin-bottom: 8px;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-control-custom:focus {
+            outline: 1px solid #d0d1d2;
+            background-color: #fff;
+        }
+
+        .btn-primary-custom {
+            width: 100%;
+            background-color: #3e6ae1;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #3457b1;
+        }
+
+        .btn-secondary-custom {
+            width: 100%;
+            background-color: #f4f4f4;
+            color: #171a20;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary-custom:hover {
+            background-color: #e2e3e3;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 30px 0;
+            color: #5c5e62;
+            font-size: 14px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e3e3;
+        }
+        .divider:not(:empty)::before { margin-right: .5em; }
+        .divider:not(:empty)::after { margin-left: .5em; }
+
+        .auth-link {
+            text-align: center;
+            display: block;
+            font-size: 14px;
+            color: #5c5e62;
+            text-decoration: underline;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        .auth-link:hover {
+            color: #171a20;
+        }
+
+        /* Password Requirements */
+        .pwd-reqs {
+            font-size: 13px;
+            color: #5c5e62;
+            margin-top: 10px;
+        }
+        .pwd-req {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 3px;
+        }
+        .pwd-req.valid {
+            color: #008000;
+        }
+
+        /* Fake Captcha */
+        .fake-captcha {
+            border: 1px solid #d0d1d2;
+            border-radius: 4px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+        }
+        .captcha-box {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #d0d1d2;
+            border-radius: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        .captcha-box.checked::after {
+            content: '✓';
+            color: #008000;
+            font-weight: bold;
+        }
+
+        /* Dashboard Layout */
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+        .dash-header .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .dash-header .nav-links a {
+            color: #171a20;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .dash-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 60px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+        }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            color: #5c5e62;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background-color: #f4f4f4;
+            color: #171a20;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+        }
+        
+        .dash-title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            display: none; /* toggled via JS */
+        }
+        .products-grid.active {
+            display: grid;
+        }
+
+        .product-card {
+            border: 1px solid #e2e3e3;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .product-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .product-desc {
+            font-size: 14px;
+            color: #5c5e62;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .product-link {
+            font-size: 14px;
+            color: #5c5e62;
+            text-decoration: underline;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        /* Account Settings Section */
+        .settings-section {
+            display: none;
+        }
+        .settings-section.active {
+            display: block;
+        }
+        .settings-subtitle {
+            font-size: 15px;
+            color: #5c5e62;
+            margin-bottom: 40px;
+        }
+        
+        .info-block {
+            margin-bottom: 40px;
+        }
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e3e3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .info-header h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .info-header .edit-btn {
+            font-size: 14px;
+            color: #5c5e62;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .info-row {
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-size: 14px;
+            color: #5c5e62;
+            margin-bottom: 5px;
+        }
+        .info-val {
+            font-size: 15px;
+            font-weight: 500;
+            color: #171a20;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .verified-badge {
+            background-color: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .verified-badge i { color: #008000; }
+
+        /* Popup Notification */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .popup-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            transition: 0.3s;
+        }
+        .popup-overlay.active .popup-box {
+            transform: translateY(0);
+        }
+        .popup-icon {
+            font-size: 40px;
+            color: #008000;
+            margin-bottom: 15px;
+        }
+        .popup-text {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="success-popup">
+        <div class="popup-box">
+            <i class="bi bi-check-circle-fill popup-icon"></i>
+            <div class="popup-text">Account created successfully!</div>
+            <button class="btn-primary-custom" onclick="closePopupAndLogin()">Continue to Account</button>
+        </div>
+    </div>
+
+    <!-- ==================== SIGN IN VIEW ==================== -->
+    <div id="view-signin" class="view-section active">
+        <div class="auth-header">
+            <a href="index.html" class="logo"></a>
+            <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
+        </div>
+        <div class="auth-container">
+            <div class="auth-form-box">
+                <h1 class="auth-title">Sign In</h1>
+                
+                <div id="signin-step-1">
+                    <div class="form-group">
+                        <label>Email <i class="bi bi-info-circle"></i></label>
+                        <input type="email" id="signin-email" class="form-control-custom" placeholder="">
+                    </div>
+                    <button class="btn-primary-custom" onclick="handleSignInNext()">Next</button>
+                    <a class="auth-link">Trouble Signing In?</a>
+                    <div class="divider">Or</div>
+                    <button class="btn-secondary-custom" onclick="switchView('view-register-1')">Create Account</button>
+                </div>
+
+                <div id="signin-step-2" style="display: none;">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signin-password" class="form-control-custom" placeholder="">
+                    </div>
+                    <button class="btn-primary-custom" onclick="handleLogin()">Sign In</button>
+                    <a class="auth-link" onclick="$('#signin-step-2').hide(); $('#signin-step-1').show();">Back</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REGISTER STEP 1 VIEW ==================== -->
+    <div id="view-register-1" class="view-section">
+        <div class="auth-header">
+            <a href="index.html" class="logo"></a>
+            <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
+        </div>
+        <div class="auth-container">
+            <div class="auth-form-box">
+                <div style="font-size: 13px; color: #5c5e62; margin-bottom: 5px;">Step 1 of 3</div>
+                <h1 class="auth-title">Create Account</h1>
+                
+                <div class="form-group">
+                    <label>Region</label>
+                    <select id="reg-region" class="form-control-custom">
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Language</label>
+                    <select id="reg-lang" class="form-control-custom">
+                        <option value="English">English</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="reg-fname" class="form-control-custom">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="reg-lname" class="form-control-custom">
+                </div>
+
+                <p style="font-size: 12px; color: #5c5e62; line-height: 1.5; margin-bottom: 20px;">
+                    By clicking 'Next', I understand and agree to Tesla's <a href="#" style="color: #5c5e62;">Privacy Notice</a> and <a href="#" style="color: #5c5e62;">Terms of Use</a> for creating a Tesla Account...
+                </p>
+
+                <button class="btn-primary-custom" onclick="switchView('view-register-2')">Next</button>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a class="auth-link" style="display: inline;" onclick="switchView('view-signin')">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REGISTER STEP 2 VIEW ==================== -->
+    <div id="view-register-2" class="view-section">
+        <div class="auth-header">
+            <a href="index.html" class="logo"></a>
+            <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
+        </div>
+        <div class="auth-container">
+            <div class="auth-form-box">
+                <div style="font-size: 13px; color: #5c5e62; margin-bottom: 5px;">Step 2 of 3</div>
+                <h1 class="auth-title">Create Account</h1>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" class="form-control-custom">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="reg-password" class="form-control-custom" onkeyup="checkPwd(this.value)">
+                    <div class="pwd-reqs">
+                        <div>Password requirements:</div>
+                        <div class="pwd-req" id="req-len"><i class="bi bi-check2"></i> At least 8 characters</div>
+                        <div class="pwd-req" id="req-let"><i class="bi bi-check2"></i> At least one letter</div>
+                        <div class="pwd-req" id="req-num"><i class="bi bi-check2"></i> At least one number</div>
+                        <div class="pwd-req" id="req-spc"><i class="bi bi-check2"></i> At least one special character</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="reg-confirm" class="form-control-custom">
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="checkbox" id="reg-updates">
+                    <label for="reg-updates" style="font-size: 14px; color: #5c5e62;">Get Tesla Updates [Optional]</label>
+                </div>
+
+                <div class="fake-captcha">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="captcha-box" id="captcha-box" onclick="this.classList.toggle('checked')"></div>
+                        <span style="font-size: 14px;">I am human</span>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/HCaptcha_logo.svg/1024px-HCaptcha_logo.svg.png" height="24" alt="captcha">
+                </div>
+
+                <button class="btn-primary-custom" onclick="handleRegister()">Next</button>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a class="auth-link" style="display: inline;" onclick="switchView('view-register-1')">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD VIEW ==================== -->
+    <div id="view-dashboard" class="view-section">
+        <div class="dash-header">
+            <a href="index.html" class="logo" style="width: 120px; height: 24px; background: url('data:image/svg+xml;utf8,<svg viewBox=\'0 0 342 35\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 .1a9.7 9.7 0 007 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 007-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 006-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm-80.8 0c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm141.4-6.9h-6.7v28h-22.6v6.9h30.1a9.8 9.8 0 006.8-7V0z\' fill=\'%23171a20\'/></svg>') no-repeat center;"></a>
+            <div class="nav-links">
+                <a href="#">Vehicles</a>
+                <a href="#">Energy</a>
+                <a href="#">Charging</a>
+                <a href="#">Discover</a>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <i class="bi bi-globe" style="font-size: 20px;"></i>
+                <i class="bi bi-person-circle" style="font-size: 20px;"></i>
+            </div>
+        </div>
+
+        <div class="dash-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-item active" onclick="switchTab('my-products')" id="tab-my-products">
+                    <i class="bi bi-house-door"></i> My Products
+                </div>
+                <div class="sidebar-item" onclick="switchTab('account-settings')" id="tab-account-settings">
+                    <i class="bi bi-person"></i> Account Settings
+                </div>
+                <div class="sidebar-item">
+                    <i class="bi bi-credit-card"></i> Payment Method
+                </div>
+                <div class="sidebar-item" onclick="handleLogout()" style="margin-top: 20px;">
+                    <i class="bi bi-box-arrow-right"></i> Sign Out
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                
+                <!-- My Products Tab -->
+                <div id="content-my-products" class="products-grid active">
+                    <div class="product-card" style="grid-column: 1 / -1;">
+                        <h1 class="dash-title" style="margin-bottom: 20px;">My Products</h1>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://digitalassets.tesla.com/oxp/image/upload/Family_b9d3b7c65fa26.jpg" alt="Reserve a Car">
+                        <div class="product-card-body">
+                            <div class="product-title">Reserve a Car</div>
+                            <div class="product-desc">Browse our models</div>
+                            <a href="index.html" class="product-link">Order</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://digitalassets.tesla.com/oxp/image/upload/third-party-car_636x300_ed18888cb5f98.jpg" alt="Third Party Car">
+                        <div class="product-card-body">
+                            <div class="product-title">Purchased a car from a third party? <i class="bi bi-info-circle text-secondary"></i></div>
+                            <div class="product-desc"></div>
+                            <a class="product-link">Add</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings Tab -->
+                <div id="content-account-settings" class="settings-section">
+                    <h1 class="dash-title" style="margin-bottom: 10px;">Personal Information</h1>
+                    <div class="settings-subtitle">Manage your basic information, contact methods, and addresses</div>
+                    
+                    <div class="info-block">
+                        <div class="info-header">
+                            <h3>Basic Information</h3>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Name</div>
+                            <div class="info-val" id="disp-name">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Region</div>
+                            <div class="info-val" id="disp-region">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Language</div>
+                            <div class="info-val" id="disp-lang">-</div>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-header">
+                            <h3>Contact Information</h3>
+                        </div>
+                        <div class="info-row" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="info-label">Primary Email <i class="bi bi-info-circle"></i></div>
+                                <div class="info-val">
+                                    <span id="disp-email">-</span>
+                                    <span class="verified-badge"><i class="bi bi-check-circle-fill"></i> Verified</span>
+                                </div>
+                            </div>
+                            <span class="edit-btn">Edit</span>
+                        </div>
+                        <div class="info-row" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="info-label">Primary Phone Number <i class="bi bi-info-circle"></i></div>
+                                <div class="info-val">No phone number added</div>
+                            </div>
+                            <span class="edit-btn">Add</span>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-header">
+                            <h3>Addresses</h3>
+                        </div>
+                        <div class="info-row" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="info-label">Mailing <i class="bi bi-info-circle"></i></div>
+                            </div>
+                            <span class="edit-btn">Add</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // SPA Routing Logic
+        function switchView(viewId) {
+            $('.view-section').removeClass('active');
+            $('#' + viewId).addClass('active');
+        }
+
+        function switchTab(tabName) {
+            $('.sidebar-item').removeClass('active');
+            $('#tab-' + tabName).addClass('active');
+            
+            $('.products-grid, .settings-section').removeClass('active');
+            $('#content-' + tabName).addClass('active');
+        }
+
+        // Authentication Logic
+        function handleSignInNext() {
+            const email = $('#signin-email').val();
+            if(!email) { alert("Please enter an email"); return; }
+            
+            // Simulating DB check
+            const savedAccStr = localStorage.getItem('teslaAccount');
+            if(savedAccStr) {
+                const acc = JSON.parse(savedAccStr);
+                if(acc.email === email) {
+                    $('#signin-step-1').hide();
+                    $('#signin-step-2').fadeIn();
+                    return;
+                }
+            }
+            alert("No account found with this email. Please create an account.");
+        }
+
+        function handleLogin() {
+            const pwd = $('#signin-password').val();
+            const savedAccStr = localStorage.getItem('teslaAccount');
+            if(savedAccStr) {
+                const acc = JSON.parse(savedAccStr);
+                if(acc.password === pwd) {
+                    // Success
+                    localStorage.setItem('isLoggedIn', 'true');
+                    populateDashboard();
+                    switchView('view-dashboard');
+                } else {
+                    alert("Incorrect password!");
+                }
+            }
+        }
+
+        function handleLogout() {
+            localStorage.setItem('isLoggedIn', 'false');
+            $('#signin-step-2').hide();
+            $('#signin-step-1').show();
+            $('#signin-email').val('');
+            $('#signin-password').val('');
+            switchView('view-signin');
+        }
+
+        // Registration Logic
+        function checkPwd(val) {
+            if(val.length >= 8) $('#req-len').addClass('valid'); else $('#req-len').removeClass('valid');
+            if(/[a-zA-Z]/.test(val)) $('#req-let').addClass('valid'); else $('#req-let').removeClass('valid');
+            if(/[0-9]/.test(val)) $('#req-num').addClass('valid'); else $('#req-num').removeClass('valid');
+            if(/[^a-zA-Z0-9]/.test(val)) $('#req-spc').addClass('valid'); else $('#req-spc').removeClass('valid');
+        }
+
+        function handleRegister() {
+            const acc = {
+                region: $('#reg-region').val(),
+                language: $('#reg-lang').val(),
+                fname: $('#reg-fname').val(),
+                lname: $('#reg-lname').val(),
+                email: $('#reg-email').val(),
+                password: $('#reg-password').val()
+            };
+
+            if(!acc.fname || !acc.lname || !acc.email || !acc.password) {
+                alert("Please fill all fields"); return;
+            }
+            if(!$('#captcha-box').hasClass('checked')) {
+                alert("Please complete the captcha"); return;
+            }
+            if($('#reg-password').val() !== $('#reg-confirm').val()) {
+                alert("Passwords do not match!"); return;
+            }
+
+            // Save to 'DB'
+            localStorage.setItem('teslaAccount', JSON.stringify(acc));
+            
+            // Show Popup
+            $('#success-popup').addClass('active');
+        }
+
+        function closePopupAndLogin() {
+            $('#success-popup').removeClass('active');
+            localStorage.setItem('isLoggedIn', 'true');
+            populateDashboard();
+            switchView('view-dashboard');
+        }
+
+        // Dashboard Logic
+        function populateDashboard() {
+            const savedAccStr = localStorage.getItem('teslaAccount');
+            if(savedAccStr) {
+                const acc = JSON.parse(savedAccStr);
+                $('#disp-name').text(acc.fname + " " + acc.lname);
+                $('#disp-region').text(acc.region);
+                $('#disp-lang').text(acc.language);
+                $('#disp-email').text(acc.email);
+            }
+        }
+
+        // On Load initialization
+        $(document).ready(function() {
+            if(localStorage.getItem('isLoggedIn') === 'true') {
+                populateDashboard();
+                switchView('view-dashboard');
+            } else {
+                switchView('view-signin');
+            }
+        });
+    </script>
+</body>
+</html>
