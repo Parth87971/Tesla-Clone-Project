@@ -219,8 +219,8 @@
 
         /* Dashboard Layout */
         .dash-header {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             padding: 15px 40px;
             position: sticky;
@@ -228,15 +228,23 @@
             background: white;
             z-index: 10;
         }
+        .dash-header .logo { justify-self: start; }
         .dash-header .nav-links {
             display: flex;
             gap: 20px;
+            justify-self: center;
         }
         .dash-header .nav-links a {
             color: #171a20;
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
+        }
+        .dash-header .header-icons {
+            display: flex;
+            gap: 15px;
+            justify-self: end;
+            color: #171a20;
         }
         .dash-container {
             display: flex;
@@ -602,7 +610,7 @@
                 <a href="#">Charging</a>
                 <a href="#">Discover</a>
             </div>
-            <div style="display: flex; gap: 15px;">
+            <div class="header-icons">
                 <i class="bi bi-globe" style="font-size: 20px;"></i>
                 <i class="bi bi-person-circle" style="font-size: 20px;"></i>
             </div>
@@ -630,9 +638,7 @@
                 
                 <!-- My Products Tab -->
                 <div id="content-my-products" class="products-grid active">
-                    <div class="product-card" style="grid-column: 1 / -1;">
-                        <h1 class="dash-title" style="margin-bottom: 20px;">My Products</h1>
-                    </div>
+                    <h1 class="dash-title" style="margin-bottom: 20px;">My Products</h1>
                     
                     <div class="product-card">
                         <img src="https://digitalassets.tesla.com/oxp/image/upload/Family_b9d3b7c65fa26.jpg" alt="Reserve a Car">
@@ -644,11 +650,10 @@
                     </div>
 
                     <div class="product-card">
-                        <img src="https://digitalassets.tesla.com/oxp/image/upload/third-party-car_636x300_ed18888cb5f98.jpg" alt="Third Party Car">
-                        <div class="product-card-body">
-                            <div class="product-title">Purchased a car from a third party? <i class="bi bi-info-circle text-secondary"></i></div>
-                            <div class="product-desc"></div>
-                            <a class="product-link">Add</a>
+                        <img src="https://digitalassets.tesla.com/oxp/image/upload/third-party-car_636x300_ed18888cb5f98.jpg" alt="Third Party Car" style="object-fit: contain;">
+                        <div class="product-card-body" style="flex-direction: row; justify-content: space-between; align-items: center;">
+                            <div class="product-title" style="margin-bottom: 0;">Purchased a car from a third party? <i class="bi bi-info-circle text-secondary"></i></div>
+                            <a class="product-link" style="align-self: center;">Add</a>
                         </div>
                     </div>
                 </div>
