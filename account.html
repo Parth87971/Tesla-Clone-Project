@@ -39,8 +39,12 @@
         .auth-header .logo {
             width: 120px;
             height: 24px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 342 35" xmlns="http://www.w3.org/2000/svg"><path d="M0 .1a9.7 9.7 0 007 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 007-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 006-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm-80.8 0c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm141.4-6.9h-6.7v28h-22.6v6.9h30.1a9.8 9.8 0 006.8-7V0z" fill="%23171a20"/></svg>') no-repeat center;
             display: block;
+            color: #171a20;
+        }
+        .auth-header .logo svg {
+            width: 100%;
+            height: 100%;
         }
 
         .auth-header .lang-btn {
@@ -279,10 +283,11 @@
 
         /* Products Grid */
         .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             display: none; /* toggled via JS */
+            max-width: 600px;
         }
         .products-grid.active {
             display: grid;
@@ -443,7 +448,11 @@
     <!-- ==================== SIGN IN VIEW ==================== -->
     <div id="view-signin" class="view-section active">
         <div class="auth-header">
-            <a href="index.html" class="logo"></a>
+            <a href="index.html" class="logo" style="color: #171a20;">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+            </svg>
+            </a>
             <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
         </div>
         <div class="auth-container">
@@ -477,7 +486,11 @@
     <!-- ==================== REGISTER STEP 1 VIEW ==================== -->
     <div id="view-register-1" class="view-section">
         <div class="auth-header">
-            <a href="index.html" class="logo"></a>
+            <a href="index.html" class="logo" style="color: #171a20;">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+            </svg>
+            </a>
             <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
         </div>
         <div class="auth-container">
@@ -522,7 +535,11 @@
     <!-- ==================== REGISTER STEP 2 VIEW ==================== -->
     <div id="view-register-2" class="view-section">
         <div class="auth-header">
-            <a href="index.html" class="logo"></a>
+            <a href="index.html" class="logo" style="color: #171a20;">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+            </svg>
+            </a>
             <button class="lang-btn"><i class="bi bi-globe"></i> IN</button>
         </div>
         <div class="auth-container">
@@ -574,7 +591,11 @@
     <!-- ==================== DASHBOARD VIEW ==================== -->
     <div id="view-dashboard" class="view-section">
         <div class="dash-header">
-            <a href="index.html" class="logo" style="width: 120px; height: 24px; background: url('data:image/svg+xml;utf8,<svg viewBox=\'0 0 342 35\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M0 .1a9.7 9.7 0 007 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 007-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 006-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm-80.8 0c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4v6.9h31.1v-7.1c-4-1.3-6.8-4.3-7.6-7.9h-23.5v-6h24zm141.4-6.9h-6.7v28h-22.6v6.9h30.1a9.8 9.8 0 006.8-7V0z\' fill=\'%23171a20\'/></svg>') no-repeat center;"></a>
+            <a href="index.html" class="logo" style="color: #171a20;">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+            </svg>
+            </a>
             <div class="nav-links">
                 <a href="#">Vehicles</a>
                 <a href="#">Energy</a>
@@ -596,7 +617,7 @@
                 <div class="sidebar-item" onclick="switchTab('account-settings')" id="tab-account-settings">
                     <i class="bi bi-person"></i> Account Settings
                 </div>
-                <div class="sidebar-item">
+                <div class="sidebar-item" onclick="switchTab('payment-method')" id="tab-payment-method">
                     <i class="bi bi-credit-card"></i> Payment Method
                 </div>
                 <div class="sidebar-item" onclick="handleLogout()" style="margin-top: 20px;">
@@ -628,6 +649,21 @@
                             <div class="product-title">Purchased a car from a third party? <i class="bi bi-info-circle text-secondary"></i></div>
                             <div class="product-desc"></div>
                             <a class="product-link">Add</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Payment Method Tab -->
+                <div id="content-payment-method" class="settings-section">
+                    <h1 class="dash-title" style="margin-bottom: 20px;">Payment Method</h1>
+                    
+                    <div class="product-card" style="max-width: 400px; margin-bottom: 40px;">
+                        <img src="https://digitalassets.tesla.com/oxp/image/upload/charging-supercharger_0d8586ed58a85.png" alt="Supercharger" style="object-fit: contain; background: #f4f4f4;">
+                        <div class="product-card-body">
+                            <div class="product-title">Get Started</div>
+                            <div class="product-desc" style="font-size: 13px;">Set up simple and convenient charging</div>
+                            <button class="btn-secondary-custom" style="background: white; border: 2px solid #171a20; margin-top: 10px;">Add Card</button>
                         </div>
                     </div>
                 </div>
