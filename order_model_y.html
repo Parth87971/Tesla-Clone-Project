@@ -376,7 +376,7 @@
                 <div class="option-price">₹1,16,764 /mo</div>
             </div>
 
-            <div style="background-color: #f4f4f4; padding: 12px; border-radius: 4px; text-align: center; margin-bottom: 30px; cursor: pointer; font-size: 14px; font-weight: 500;">
+            <div style="background-color: #f4f4f4; padding: 12px; border-radius: 4px; text-align: center; margin-bottom: 30px; cursor: pointer; font-size: 14px; font-weight: 500;" onclick="$('#features-modal').fadeIn(); document.body.style.overflow='hidden';">
                 View & Compare Features &nbsp; >
             </div>
 
@@ -629,6 +629,112 @@
                     $('#summary-subtext').text('Includes GST of ₹2,89,105');
                 }
             }
+        });
+    </script>
+    </script>
+
+    <!-- Features Modal Overlay -->
+    <div class="features-modal-overlay" id="features-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div class="features-modal-box" style="background: white; width: 90%; max-width: 900px; height: 90vh; border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; position: relative;">
+            
+            <!-- Header -->
+            <div class="features-modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #e2e3e3; position: sticky; top: 0; background: white; z-index: 10;">
+                <h2 id="features-modal-title" style="font-size: 24px; font-weight: 600; margin: 0; color: #171a20;">Features</h2>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <a href="#" style="font-size: 14px; color: #5c5e62; text-decoration: underline;">Compare Models</a>
+                    <i class="bi bi-x-lg" style="font-size: 20px; cursor: pointer; color: #171a20;" onclick="$('#features-modal').fadeOut(); document.body.style.overflow='auto';"></i>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="features-modal-content" style="flex: 1; overflow-y: auto; padding: 30px; background: #fff;">
+                
+                <!-- Toggle Button -->
+                <div style="display: flex; background: #f4f4f4; border-radius: 8px; padding: 4px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    <div style="flex: 1; text-align: center; padding: 12px; background: white; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; color: #171a20;">Model Y <span style="font-style: italic; color: #5c5e62; font-weight: 400;">Premium</span></div>
+                    <div style="flex: 1; text-align: center; padding: 12px; font-size: 14px; font-weight: 500; color: #5c5e62; cursor: pointer;">Model Y L <span style="font-style: italic; font-weight: 400;">Premium</span></div>
+                </div>
+                
+                <!-- Feature 1: Driving Video -->
+                <div class="feature-block" style="margin-bottom: 60px;">
+                    <video src="blob:https://www.tesla.com/2cedad05-6c7a-4326-b677-a52572ca7f4c" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/my-f-prem-apac-rhd.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px;"></video>
+                    <!-- JS will swap data-src to src if blob fails -->
+                </div>
+                
+                <!-- Feature 2: Trunk Luggage -->
+                <div class="feature-block" style="margin-bottom: 60px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-y-in.jpg?&amp;" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Model Y Premium</h3>
+                    <p style="font-size: 15px; color: #5c5e62;">Designed with precision from every angle.</p>
+                </div>
+                
+                <!-- Feature 3: Refined Interior -->
+                <div class="feature-block" style="margin-bottom: 60px;">
+                    <video src="blob:https://www.tesla.com/8b50df62-5d73-4eeb-9223-8bfd85838485" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/my-f-prem-interior-apac-rhd.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; margin-bottom: 20px;"></video>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Refined Interior</h3>
+                    <p style="font-size: 15px; color: #5c5e62;">Wraparound ambient lighting pairs with soft-touch finishes, a 16-inch touchscreen and ventilated seats.</p>
+                </div>
+                
+                <!-- Feature 4: Lightbars (Side-by-side) -->
+                <div class="feature-block" style="margin-bottom: 60px;">
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                        <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-prem-f-lightbars-apac.jpg?&amp;" style="flex: 1; width: calc(50% - 10px); border-radius: 10px; object-fit: cover;">
+                        <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/MY-Feature-Premium-3-Front-and-Rear-Lightbars-2.jpg?&amp;" style="flex: 1; width: calc(50% - 10px); border-radius: 10px; object-fit: cover;">
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Front and Rear Lightbars</h3>
+                    <p style="font-size: 15px; color: #5c5e62;">Increased aerodynamics, efficiency and range.</p>
+                </div>
+                
+                <!-- Feature 5: Rear Screen -->
+                <div class="feature-block" style="margin-bottom: 60px;">
+                    <video src="blob:https://www.tesla.com/7552ff8e-a68d-4a7e-ab18-e3bdd891182f" data-src="https://digitalassets.tesla.com/co1n/video/upload/f_auto:video,q_auto:best/prod/static_assets/MODELY_/my-f-prem-efes-apac-rhd.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 10px; margin-bottom: 20px;"></video>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 8px; color: #171a20;">Rear Display</h3>
+                    <p style="font-size: 15px; color: #5c5e62;">Built-in rear display for entertainment and climate controls.</p>
+                </div>
+                
+                <!-- Additional Images provided by user (stacking them at bottom for now) -->
+                <div class="feature-block" style="margin-bottom: 40px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-prem-mc-apac-in.jpg?&amp;" style="width: 100%; border-radius: 10px;">
+                </div>
+                
+                <div class="feature-block" style="margin-bottom: 40px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-prem-pre-sus-in.jpg?&amp;" style="width: 100%; border-radius: 10px;">
+                </div>
+                
+                <div class="feature-block" style="margin-bottom: 40px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-prem-speakers-rhd.jpg?&amp;" style="width: 100%; border-radius: 10px;">
+                </div>
+                
+                <div class="feature-block" style="margin-bottom: 40px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/my-f-prem-acoustic-glass-rhd.jpg?&amp;" style="width: 100%; border-radius: 10px;">
+                </div>
+                
+                <div class="feature-block" style="margin-bottom: 40px;">
+                    <img src="https://digitalassets.tesla.com/co1n/image/upload/f_auto,q_auto/prod/static_assets/MODELY_/MYL-Card-Premium-Asset.png?&amp;" style="width: 100%; border-radius: 10px;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Fix video sources (since blob URLs only work on the original site)
+        $(document).ready(function() {
+            $('#features-modal video').each(function() {
+                if($(this).attr('data-src')) {
+                    $(this).attr('src', $(this).attr('data-src'));
+                }
+            });
+            
+            // Modal display flex logic
+            $('#features-modal').css('display', 'none').removeClass('active');
+            
+            // When opening modal, make sure it's flex so it aligns center
+            $('[onclick*="features-modal"]').on('click', function(e) {
+                e.preventDefault();
+                $('#features-modal').css('display', 'flex').hide().fadeIn();
+                document.body.style.overflow = 'hidden';
+            });
         });
     </script>
 </body>
