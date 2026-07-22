@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model X | Tesla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background: transparent;
+            padding: 15px 40px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 16px;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            height: 24px;
+            width: auto;
+            color: #fff;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            color: #fff;
+        }
+
+        .nav-icons svg {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #f4f4f4;
+        }
+
+        .mega-menu a:hover {
+            opacity: 0.7;
+        }
+
+        .navbar.menu-open {
+            background-color: #fff !important;
+            backdrop-filter: none !important;
+        }
+
+        .navbar.menu-open .nav-link {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .logo svg {
+            color: #171a20 !important;
+        }
+
+        .navbar.menu-open .nav-icons {
+            color: #171a20 !important;
+        }
+
+        /* Sub Navbar (Sticky) */
+        .sub-navbar {
+            position: fixed;
+            top: -70px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            transition: top 0.3s ease;
+        }
+
+        .sub-navbar.visible {
+            top: 0;
+        }
+
+        .sub-navbar-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .sub-navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sub-navbar-links a {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .sub-navbar .btn-order {
+            background-color: transparent;
+            border: 3px solid #fff;
+            color: #fff;
+            padding: 6px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .sub-navbar .btn-order:hover {
+            background-color: #fff;
+            color: #171a20;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-image: url('https://placehold.co/1920x1080/3e6ae1/FFFFFF.png?text=Model+X+Hero+Image');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15vh;
+            padding-bottom: 80px;
+        }
+
+        .hero-title h1 {
+            font-size: 56px;
+            font-weight: 500;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .hero-buttons .btn {
+            background-color: #3e6ae1;
+            color: white;
+            border: none;
+            width: 250px;
+            padding: 10px;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .hero-buttons .btn:hover {
+            background-color: #3457b1;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 40px;
+            font-weight: 600;
+            color: #171a20;
+            margin-bottom: 5px;
+        }
+
+        .stat-item h2 span {
+            font-size: 20px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            font-weight: 500;
+            color: #5c5e62;
+            margin-bottom: 0;
+        }
+        
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background-color: #e2e3e3;
+        }
+
+        /* Full Width Image Section */
+        .full-width-image {
+            width: 100%;
+            height: 80vh;
+            background-image: url('https://placehold.co/1920x1080/AA2222/FFFFFF.png?text=Red+Model+X+Image');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 60px;
+        }
+
+        .full-width-image h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        /* Signature Section */
+        .signature-media {
+            width: 100%;
+            height: 60vh;
+            background-image: url('https://placehold.co/1920x1080/CCCCCC/000000.png?text=White+Model+X+Image');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .signature-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+        }
+
+        .signature-content h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #171a20;
+            margin-bottom: 20px;
+        }
+
+        .signature-content p {
+            font-size: 18px;
+            color: #5c5e62;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .signature-content .btn-dark-tesla {
+            background-color: #171a20;
+            color: white;
+            padding: 10px 40px;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .signature-content .btn-dark-tesla:hover {
+            background-color: #393c41;
+        }
+
+        /* Interior Section */
+        .interior-media {
+            width: 100%;
+            height: 80vh;
+            background-image: url('https://placehold.co/1920x1080/222222/FFFFFF.png?text=Interior+Image');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .interior-content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .interior-content h2 {
+            font-size: 40px;
+            font-weight: 600;
+            color: #171a20;
+        }
+
+        /* Carousel Section */
+        .features-carousel-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .features-carousel .carousel-inner {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-slide-media {
+            width: 100%;
+            height: 500px;
+            background-color: #000;
+        }
+        
+        .feature-slide-media img, .feature-slide-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-slide-content {
+            padding: 40px;
+            background: #fff;
+        }
+
+        .feature-slide-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #171a20;
+            margin-bottom: 15px;
+        }
+
+        .feature-slide-content p {
+            font-size: 16px;
+            color: #5c5e62;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 342 35" width="120" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor"
+                        d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7" />
+                </svg>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Vehicles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Energy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Charging</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Discover</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                    <a href="account.html" style="color: inherit;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub Navbar -->
+    <div class="sub-navbar" id="subNavbar">
+        <div class="sub-navbar-title">Model X</div>
+        <div class="sub-navbar-links">
+            <a href="#">Trade In</a>
+            <button class="btn-order">Browse Inventory</button>
+        </div>
+    </div>
+
+    <main>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-title">
+                <h1>Model X</h1>
+                <div class="hero-buttons mt-4">
+                    <button class="btn">Browse Inventory</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <h2>352<span>mi</span></h2>
+                <p>Range (EPA est.)</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h2>2.5<span>s</span></h2>
+                <p>0-60 mph*</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h2>5+</h2>
+                <p>Seats</p>
+            </div>
+        </section>
+
+        <!-- Full Width Image Section -->
+        <section class="full-width-image">
+            <h2>First EV to surpass 400 mi of range</h2>
+        </section>
+
+        <!-- Signature Section -->
+        <section>
+            <div class="signature-media"></div>
+            <div class="signature-content">
+                <h2>Signature From Start to Finish</h2>
+                <p>Model S and Model X marked the beginning of the world's transition to electric transportation. Our limited-release Signature Edition honors their legacy—and made way for what's next.</p>
+                <p>Model X is no longer in production. Pre-owned non-Signature Edition inventory vehicles may still be available.</p>
+                <button class="btn-dark-tesla">Browse Inventory</button>
+            </div>
+        </section>
+
+        <!-- Interior Section -->
+        <section>
+            <div class="interior-media"></div>
+            <div class="interior-content">
+                <h2>Next-Level Interior</h2>
+            </div>
+        </section>
+
+        <!-- Features Carousel Section -->
+        <section class="features-carousel-section">
+            <div id="featuresCarousel" class="carousel slide features-carousel" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="feature-slide-media">
+                                    <img src="https://placehold.co/800x500/222222/FFFFFF.png?text=Dashboard+Image" alt="Get Comfortable">
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="feature-slide-content">
+                                    <h3>Get Comfortable</h3>
+                                    <p>Integrated air vents, tri-zone climate controls and HEPA filtration create your ideal cabin atmosphere.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="feature-slide-media">
+                                    <img src="https://placehold.co/800x500/222222/FFFFFF.png?text=Rear+Screen+Image" alt="Entertain">
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="feature-slide-content">
+                                    <h3>Entertain</h3>
+                                    <p>Play your favorite games, watch movies and more from the rear screen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Custom Carousel Controls below -->
+                <div class="d-flex justify-content-center mt-4 gap-3">
+                    <button type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev" style="background: none; border: 1px solid #171a20; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button type="button" data-bs-target="#featuresCarousel" data-bs-slide="next" style="background: none; border: 1px solid #171a20; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <script>
+        $(document).ready(function () {
+            // Navbar color change on scroll
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').css('background-color', '#fff');
+                    $('.nav-link, .logo, .nav-icons').css('color', '#171a20');
+                    $('.logo svg').css('color', '#171a20');
+                } else {
+                    if (!$('.navbar').hasClass('menu-open')) {
+                        $('.navbar').css('background-color', 'transparent');
+                        $('.nav-link, .logo, .nav-icons').css('color', '#fff');
+                        $('.logo svg').css('color', '#fff');
+                    }
+                }
+
+                // Show/hide sub-navbar
+                if ($(this).scrollTop() > $(window).height() - 100) {
+                    $('#subNavbar').addClass('visible');
+                } else {
+                    $('#subNavbar').removeClass('visible');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
