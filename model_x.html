@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Model X | Tesla</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
             overflow-x: hidden;
             width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #fff;
         }
 
@@ -196,12 +197,12 @@
 
         /* Stats Section */
         .stats-section {
-            padding: 60px 0;
+            padding: 60px 0 140px 0;
             background: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 80px;
+            gap: 120px;
             text-align: center;
         }
 
@@ -227,6 +228,20 @@
             width: 1px;
             height: 40px;
             background-color: #e2e3e3;
+        }
+
+        /* Overlay Text for Video */
+        .video-overlay-text {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 28px;
+            font-weight: 500;
+            z-index: 10;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
         }
 
         /* Full Width Image Section */
@@ -329,21 +344,50 @@
 
         /* Features Carousel */
         .features-carousel-section {
-            padding: 40px 20px;
-            background-color: #f4f4f4;
+            padding: 60px 0;
+            background-color: #fff;
+            overflow: hidden;
         }
 
-        .features-carousel {
-            max-width: 1200px;
-            margin: 0 auto;
+        .custom-slider-container {
+            width: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-left: max(20px, calc((100% - 1200px) / 2));
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+        
+        /* Hide scrollbar */
+        .custom-slider-container::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-slider-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .custom-slider-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+        }
+
+        .custom-slide {
+            width: 85vw;
+            max-width: 900px;
+            scroll-snap-align: start;
         }
 
         .feature-slide-media {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             line-height: 0;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            background-color: #000;
         }
 
         .feature-slide-media video, .feature-slide-media img {
@@ -357,18 +401,18 @@
         }
 
         .feature-slide-content h3 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
             color: #171a20;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .feature-slide-content p {
-            font-size: 14px;
+            font-size: 15px;
             color: #5c5e62;
             line-height: 1.5;
             margin-bottom: 0;
-            max-width: 900px;
+            max-width: 800px;
         }
 
     </style>
@@ -571,8 +615,9 @@
         </section>
 
         <!-- Signature Section & Red Car Video -->
-        <section class="full-width-section" style="background-color: #fff;">
+        <section class="full-width-section" style="background-color: #fff; padding-top: 0;">
             <div class="media-container">
+                <div class="video-overlay-text">Outperforms most supercars</div>
                 <video preload="none" autoplay loop muted playsinline>
                     <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-Exterior-Hero-Desktop-Global.mp4" type="video/mp4">
                 </video>
@@ -605,9 +650,10 @@
 
         <!-- Features Carousel Section -->
         <section class="features-carousel-section">
-            <div id="featuresCarousel" class="carousel slide features-carousel" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
+            <div class="custom-slider-container">
+                <div class="custom-slider-track">
+                    <!-- Slide 1 -->
+                    <div class="custom-slide">
                         <div class="feature-slide-media">
                             <video preload="auto" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-1-Slide-1-Display-Poster-Desktop-NA.jpg" autoplay loop muted playsinline>
                                 <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-New-Interior-Carousel-1-Slide-2-Relax-Desktop-NA.mp4" type="video/mp4">
@@ -618,7 +664,8 @@
                             <p>A 17.4" first-row and 9.4" second-row touchscreen offer a vivid image and respond quickly to your touch. Driver cluster display shows your speed, range and more.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <!-- Slide 2 -->
+                    <div class="custom-slide">
                         <div class="feature-slide-media">
                             <video preload="auto" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Color-Poster-Desktop-NA.jpg" autoplay loop muted playsinline>
                                 <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Model-X-New-Interior-Color-Desktop-NA-v2.mp4" type="video/mp4">
@@ -629,7 +676,8 @@
                             <p>Choose from infinite colors to customize your wrap-around lighting and enjoy dynamic illuminations that appear along the dash and door trims when you enter then fade to an ambient glow.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <!-- Slide 3 -->
+                    <div class="custom-slide">
                         <div class="feature-slide-media" style="display: flex;">
                             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-1-Comfort-Desktop-NA.jpg" style="width: 50%;" alt="Maximum Comfort">
                             <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-2-Connected-Desktop-NA.jpg" style="width: 50%;" alt="Always Connected">
@@ -639,7 +687,8 @@
                             <p>Supportive, ventilated front-row seats and heated seats throughout the cabin provide added comfort for every passenger. Bluetooth keeps you connected.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+                    <!-- Slide 4 -->
+                    <div class="custom-slide">
                         <div class="feature-slide-media">
                             <video preload="auto" autoplay loop muted playsinline>
                                 <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Model-X-New-FSD-Desktop.mp4" type="video/mp4">
@@ -650,17 +699,6 @@
                             <p>Enter your destination and your Model X will manage your drive, from start to finish. Full Self-Driving (Supervised) provides advanced features that offer more active guidance.</p>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Custom Carousel Controls below -->
-                <div class="d-flex justify-content-center mt-4 gap-3">
-                    <button type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev" style="background: none; border: 1px solid #171a20; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                    <button type="button" data-bs-target="#featuresCarousel" data-bs-slide="next" style="background: none; border: 1px solid #171a20; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                        <i class="bi bi-chevron-right"></i>
-
-                    </button>
                 </div>
             </div>
         </section>
