@@ -112,7 +112,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
+            padding: 0 max(40px, calc((100vw - 1200px) / 2));
             transition: top 0.3s ease;
         }
 
@@ -341,7 +341,8 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            padding: 0 40px 20px 40px;
+            padding-bottom: 20px;
+            scroll-padding-left: max(40px, calc((100vw - 1200px) / 2));
         }
         
         /* Hide scrollbar */
@@ -357,6 +358,7 @@
             display: flex;
             gap: 24px;
             width: max-content;
+            padding: 0 max(40px, calc((100vw - 1200px) / 2));
         }
 
         .custom-slide {
