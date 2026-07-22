@@ -197,12 +197,12 @@
 
         /* Stats Section */
         .stats-section {
-            padding: 60px 0 140px 0;
+            padding: 40px 0;
             background: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 120px;
+            gap: 80px;
             text-align: center;
         }
 
@@ -228,20 +228,6 @@
             width: 1px;
             height: 40px;
             background-color: #e2e3e3;
-        }
-
-        /* Overlay Text for Video */
-        .video-overlay-text {
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 28px;
-            font-weight: 500;
-            z-index: 10;
-            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
         }
 
         /* Full Width Image Section */
@@ -376,23 +362,23 @@
         }
 
         .custom-slide {
-            width: 85vw;
+            width: 80vw;
             max-width: 900px;
             scroll-snap-align: start;
         }
 
         .feature-slide-media {
             width: 100%;
+            aspect-ratio: 16 / 9;
             border-radius: 12px;
             overflow: hidden;
-            line-height: 0;
             margin-bottom: 20px;
             background-color: #000;
         }
 
         .feature-slide-media video, .feature-slide-media img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
         }
 
@@ -617,7 +603,6 @@
         <!-- Signature Section & Red Car Video -->
         <section class="full-width-section" style="background-color: #fff; padding-top: 0;">
             <div class="media-container">
-                <div class="video-overlay-text">Outperforms most supercars</div>
                 <video preload="none" autoplay loop muted playsinline>
                     <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-Exterior-Hero-Desktop-Global.mp4" type="video/mp4">
                 </video>
