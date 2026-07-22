@@ -397,9 +397,9 @@
 
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Vehicles</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Energy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Charging</a></li>
+                    <li class="nav-item" id="nav-vehicles"><a class="nav-link" href="#">Vehicles</a></li>
+                    <li class="nav-item" id="nav-energy"><a class="nav-link" href="#">Energy</a></li>
+                    <li class="nav-item" id="nav-charging"><a class="nav-link" href="#">Charging</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Discover</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
                 </ul>
@@ -407,6 +407,131 @@
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
                     <a href="account.html" style="color: inherit;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="mega-menu" id="vehicles-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="model_x.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-X-New.png"
+                                alt="Model X" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model X</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_x.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="model_y.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Vehicles-Model-Y-2-v2.png"
+                                alt="Model Y" style="height: 100px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Model Y</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="model_y.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Order</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Test
+                            Drive</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">We,
+                            Robot</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Vehicle
+                            Safety Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="energy-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <a href="powerwall.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Powerwall-Global.png"
+                                alt="Powerwall" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Powerwall</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="powerwall.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <a href="megapack.html" class="text-decoration-none">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Energy-Megapack.png"
+                                alt="Megapack" style="height: 120px; object-fit: contain;">
+                            <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Megapack</h5>
+                        </a>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="megapack.html"
+                                class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Utilities</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold"
+                            style="font-size: 15px;">Commercial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu" id="charging-menu">
+            <div class="container py-5">
+                <div class="row w-100 mx-auto justify-content-center">
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Charging.png"
+                            alt="Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Home-Charging.png"
+                            alt="Home Charging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Home Charging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto text-center px-4">
+                        <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto,w_220,c_scale/dpr_2.0/Mega-Menu-Charging-Supercharging-NA.png"
+                            alt="Supercharging" style="height: 120px; object-fit: contain;">
+                        <h5 class="mt-3 fw-bold text-dark" style="font-size: 18px;">Supercharging</h5>
+                        <div class="d-flex gap-3 justify-content-center mt-2">
+                            <a href="#" class="text-secondary text-decoration-none border-bottom border-secondary"
+                                style="font-size: 14px;">Learn</a>
+                        </div>
+                    </div>
+                    <div class="col-auto px-5 border-start ms-4 d-flex flex-column justify-content-center"
+                        style="gap: 15px;">
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host a
+                            Supercharger</a>
+                        <a href="#" class="text-dark text-decoration-none fw-semibold" style="font-size: 15px;">Host
+                            Wall Connectors</a>
+                    </div>
                 </div>
             </div>
         </div>
