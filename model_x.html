@@ -159,7 +159,7 @@
             height: 100vh;
             width: 100%;
             position: relative;
-            background-image: url('https://placehold.co/1920x1080/3e6ae1/FFFFFF.png?text=Model+X+Hero+Image');
+            background-image: url('https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Hero-Desktop-US.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -233,9 +233,23 @@
         .full-width-image {
             width: 100%;
             height: 80vh;
-            background-image: url('https://placehold.co/1920x1080/AA2222/FFFFFF.png?text=Red+Model+X+Image');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 60px;
+            overflow: hidden;
+        }
+
+        .full-width-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -253,9 +267,15 @@
         .signature-media {
             width: 100%;
             height: 60vh;
-            background-image: url('https://placehold.co/1920x1080/CCCCCC/000000.png?text=White+Model+X+Image');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signature-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         }
 
         .signature-content {
@@ -297,7 +317,7 @@
         .interior-media {
             width: 100%;
             height: 80vh;
-            background-image: url('https://placehold.co/1920x1080/222222/FFFFFF.png?text=Interior+Image');
+            background-image: url('https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Desktop-NA.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -433,12 +453,19 @@
 
         <!-- Full Width Image Section -->
         <section class="full-width-image">
-            <h2>First EV to surpass 400 mi of range</h2>
+            <video class="full-width-video" preload="none" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Exterior-Hero-Desktop-Global.jpg" autoplay loop muted playsinline>
+                <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-Exterior-Hero-Desktop-Global.mp4" type="video/mp4">
+            </video>
+            <h2 style="z-index: 1;">First EV to surpass 400 mi of range</h2>
         </section>
 
         <!-- Signature Section -->
         <section>
-            <div class="signature-media"></div>
+            <div class="signature-media">
+                <video preload="none" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/SX-Event-Tablet-Poster.jpg" autoplay loop muted playsinline>
+                    <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/SX_Delivery.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="signature-content">
                 <h2>Signature From Start to Finish</h2>
                 <p>Model S and Model X marked the beginning of the world's transition to electric transportation. Our limited-release Signature Edition honors their legacy—and made way for what's next.</p>
@@ -463,13 +490,16 @@
                         <div class="row g-0">
                             <div class="col-md-8">
                                 <div class="feature-slide-media">
-                                    <img src="https://placehold.co/800x500/222222/FFFFFF.png?text=Dashboard+Image" alt="Get Comfortable">
+                                    <video preload="auto" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-1-Slide-1-Display-Poster-Desktop-NA.jpg" autoplay loop muted playsinline>
+                                        <!-- Note: Using the Relax video as fallback if Display video is unavailable, but using Display Poster as requested -->
+                                        <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-New-Interior-Carousel-1-Slide-2-Relax-Desktop-NA.mp4" type="video/mp4">
+                                    </video>
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex align-items-center">
                                 <div class="feature-slide-content">
-                                    <h3>Get Comfortable</h3>
-                                    <p>Integrated air vents, tri-zone climate controls and HEPA filtration create your ideal cabin atmosphere.</p>
+                                    <h3>Three Ultra-Responsive Displays</h3>
+                                    <p>A 17.4" first-row and 9.4" second-row touchscreen offer a vivid image and respond quickly to your touch. Driver cluster display shows your speed, range and more.</p>
                                 </div>
                             </div>
                         </div>
@@ -478,13 +508,48 @@
                         <div class="row g-0">
                             <div class="col-md-8">
                                 <div class="feature-slide-media">
-                                    <img src="https://placehold.co/800x500/222222/FFFFFF.png?text=Rear+Screen+Image" alt="Entertain">
+                                    <video preload="auto" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Color-Poster-Desktop-NA.jpg" autoplay loop muted playsinline>
+                                        <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Model-X-New-Interior-Color-Desktop-NA-v2.mp4" type="video/mp4">
+                                    </video>
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex align-items-center">
                                 <div class="feature-slide-content">
-                                    <h3>Entertain</h3>
-                                    <p>Play your favorite games, watch movies and more from the rear screen.</p>
+                                    <h3>Full-Spectrum Color</h3>
+                                    <p>Choose from infinite colors to customize your wrap-around lighting and enjoy dynamic illuminations that appear along the dash and door trims when you enter then fade to an ambient glow.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="feature-slide-media" style="display: flex;">
+                                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-1-Comfort-Desktop-NA.jpg" style="width: 50%;" alt="Maximum Comfort">
+                                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-2-Connected-Desktop-NA.jpg" style="width: 50%; border-left: 5px solid #fff;" alt="Always Connected">
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="feature-slide-content">
+                                    <h3>Maximum Comfort</h3>
+                                    <p>Supportive, ventilated front-row seats and heated seats throughout the cabin provide added comfort for every passenger. Bluetooth keeps you connected.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row g-0">
+                            <div class="col-md-8">
+                                <div class="feature-slide-media">
+                                    <video preload="auto" autoplay loop muted playsinline>
+                                        <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Model-X-New-FSD-Desktop.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="feature-slide-content">
+                                    <h3>The Future of Travel Is Autonomous</h3>
+                                    <p>Enter your destination and your Model X will manage your drive, from start to finish. Full Self-Driving (Supervised) provides advanced features that offer more active guidance.</p>
                                 </div>
                             </div>
                         </div>
@@ -498,6 +563,7 @@
                     </button>
                     <button type="button" data-bs-target="#featuresCarousel" data-bs-slide="next" style="background: none; border: 1px solid #171a20; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
                         <i class="bi bi-chevron-right"></i>
+
                     </button>
                 </div>
             </div>
