@@ -469,6 +469,139 @@
             background-color: #393c41;
         }
 
+        .powertrain-section {
+            background-color: #171a20;
+            padding: 80px 0 40px;
+            color: #fff;
+        }
+
+        .powertrain-hero {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .powertrain-hero img {
+            width: 100%;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .powertrain-hero img.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .powertrain-tabs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            gap: 20px;
+            margin-top: -20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .powertrain-tab {
+            flex: 1;
+            padding-top: 16px;
+            border-top: 3px solid #393c41;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            color: #5c5e62;
+        }
+
+        .powertrain-tab.active {
+            border-top: 3px solid #fff;
+            color: #fff;
+        }
+
+        .powertrain-tab h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .powertrain-tab p {
+            font-size: 15px;
+            color: #d0d1d2;
+            line-height: 1.5;
+            display: none;
+            padding-right: 20px;
+        }
+
+        .powertrain-tab.active p {
+            display: block;
+        }
+
+        .powertrain-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 24px;
+            display: none;
+        }
+
+        .powertrain-tab.active .powertrain-stats {
+            display: flex;
+        }
+
+        .powertrain-stats div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .powertrain-stats strong {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .powertrain-stats small {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .powertrain-stats span {
+            font-size: 12px;
+            color: #d0d1d2;
+            margin-top: 4px;
+        }
+
+        .perf-features-section {
+            background-color: #171a20;
+            padding: 40px max(40px, calc((100vw - 1000px) / 2)) 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .perf-feature-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .perf-feature-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .perf-feature-card h3 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .perf-feature-card p {
+            color: #d0d1d2;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
     </style>
 </head>
 
@@ -824,6 +957,48 @@
             </div>
         </section>
 
+        <!-- Powertrain Section -->
+        <section class="powertrain-section">
+            <div class="powertrain-hero">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Powertrain-Carousel-Slide-1-Model-X-Desktop.jpg" class="powertrain-img active" id="pt-img-1" alt="Model X">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Powertrain-Carousel-Slide-2-Model-X-Plaid-Desktop-annotation.jpg" class="powertrain-img" id="pt-img-2" alt="Model X Plaid">
+            </div>
+            <div class="powertrain-tabs-container">
+                <div class="powertrain-tab active" data-target="pt-img-1">
+                    <h3>Model X</h3>
+                    <div class="powertrain-stats">
+                        <div><strong>3.8 <small>s</small></strong><span>0-60 mph</span></div>
+                        <div><strong>352 <small>mi</small></strong><span>Range (EPA est.)</span></div>
+                        <div><strong>670 <small>hp</small></strong><span>Peak Power</span></div>
+                    </div>
+                    <p>Dual motor all-wheel drive platform has the longest range, with powerful performance in all conditions.</p>
+                </div>
+                <div class="powertrain-tab" data-target="pt-img-2">
+                    <h3>Model X Plaid</h3>
+                    <div class="powertrain-stats">
+                        <div><strong>2.5 <small>s</small></strong><span>0-60 mph¹</span></div>
+                        <div><strong>335 <small>mi</small></strong><span>Range (EPA est.)</span></div>
+                        <div><strong>1,020 <small>hp</small></strong><span>Peak Power</span></div>
+                    </div>
+                    <p>1,000+ horsepower all the way up to 163 mph with tri-motor all-wheel drive featuring torque vectoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Features -->
+        <section class="perf-features-section">
+            <div class="perf-feature-card">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Performance-Desktop-NA.jpg" alt="Model X Performance">
+                <h3>All-Electric Performance</h3>
+                <p>A high-performance powertrain and advanced battery system unlock instant torque, efficiency and range. An optimized thermal system allows for faster charging and more consistent power at the track or on the road.</p>
+            </div>
+            <div class="perf-feature-card">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Tri-Motor-Desktop-NA.jpg" alt="Model X Motor">
+                <h3>Tri-Motor Power</h3>
+                <p>Three carbon-sleeved rotors and an enhanced battery system ensure maximum power without performance degradation, even during back-to-back runs.</p>
+            </div>
+        </section>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -852,6 +1027,14 @@
                 } else {
                     $('#subNavbar').removeClass('visible');
                 }
+                // Powertrain Tabs
+                $('.powertrain-tab').click(function() {
+                    $('.powertrain-tab').removeClass('active');
+                    $(this).addClass('active');
+                    var targetId = $(this).attr('data-target');
+                    $('.powertrain-img').removeClass('active');
+                    $('#' + targetId).addClass('active');
+                });
             });
         });
     </script>
