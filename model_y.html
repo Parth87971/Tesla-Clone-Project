@@ -403,6 +403,38 @@
             }
         }
     </style>
+
+    <style>
+        /* ===== MODAL CSS ===== */
+        .tesla-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 10000;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .tesla-modal-overlay.show { display: flex; opacity: 1; }
+        .tesla-modal {
+            background: #fff; border-radius: 12px; max-width: 900px; width: 92%;
+            max-height: 85vh; overflow-y: auto; padding: 40px; position: relative;
+            animation: modalSlideUp 0.4s ease;
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .tesla-modal-close {
+            position: absolute; top: 16px; right: 20px; background: none; border: none;
+            font-size: 28px; cursor: pointer; color: #393c41; transition: color 0.2s;
+        }
+        .tesla-modal-close:hover { color: #000; }
+        .tesla-modal h2 { font-size: 28px; font-weight: 600; color: #171a20; margin-bottom: 8px; }
+        .tesla-modal p.modal-subtitle { font-size: 14px; color: #5c5e62; margin-bottom: 24px; }
+        .compare-table { width: 100%; border-collapse: collapse; }
+        .compare-table th, .compare-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #e2e3e3; font-size: 14px; }
+        .compare-table th { font-weight: 600; color: #171a20; background: #f4f4f4; }
+        .compare-table td:first-child { color: #5c5e62; font-weight: 500; }
+        .compare-table td { color: #171a20; font-weight: 500; }
+    </style>
 </head>
 
 <body>
@@ -581,7 +613,7 @@
                         <div class="hero-stats-container">
                             <div class="hero-buttons">
                                 <button class="btn btn-primary-tesla" onclick="window.location.href='order_model_y.html'">Order Now</button>
-                                <button class="btn btn-light-tesla" onclick="alert('Model Y Comparison:\n\nModel Y LR AWD: 308 mi range | 0-60 in 4.8s | $44,990\nModel Y Performance: 279 mi range | 0-60 in 3.5s | $49,990\n\nBoth include Autopilot, all-wheel drive, and 5-star safety.')">Compare Models</button>
+                                <button class="btn btn-light-tesla" onclick="openModal(\'compare-modal\')">Compare Models</button>
                             </div>
                         </div>
                     </div>
@@ -596,7 +628,7 @@
                         <div class="hero-stats-container">
                             <div class="hero-buttons">
                                 <button class="btn btn-primary-tesla" onclick="window.location.href='order_model_y.html'">Order Now</button>
-                                <button class="btn btn-light-tesla" onclick="alert('Model Y Comparison:\n\nModel Y LR AWD: 308 mi range | 0-60 in 4.8s | $44,990\nModel Y Performance: 279 mi range | 0-60 in 3.5s | $49,990\n\nBoth include Autopilot, all-wheel drive, and 5-star safety.')">Compare Models</button>
+                                <button class="btn btn-light-tesla" onclick="openModal(\'compare-modal\')">Compare Models</button>
                             </div>
                         </div>
                     </div>
@@ -1306,6 +1338,66 @@
             Schedule a Drive
         </button>
     </div>
+
+    <!-- ===== COMPARE MODELS MODAL ===== -->
+    <div class="tesla-modal-overlay" id="compare-modal">
+        <div class="tesla-modal">
+            <button class="tesla-modal-close" onclick="closeModal('compare-modal')">&times;</button>
+            <h2>Compare Model Y Trims</h2>
+            <p class="modal-subtitle">Side-by-side comparison of Model Y Long Range AWD and Model Y Performance.</p>
+            <table class="compare-table">
+                <thead>
+                    <tr><th>Specification</th><th>Model Y LR AWD</th><th>Model Y Performance</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Starting Price</td><td>$44,990</td><td>$49,990</td></tr>
+                    <tr><td>Range (EPA est.)</td><td>308 mi</td><td>279 mi</td></tr>
+                    <tr><td>0-60 mph</td><td>4.8 s</td><td>3.5 s</td></tr>
+                    <tr><td>Top Speed</td><td>135 mph</td><td>155 mph</td></tr>
+                    <tr><td>Powertrain</td><td>Dual Motor All-Wheel Drive</td><td>Dual Motor All-Wheel Drive</td></tr>
+                    <tr><td>Wheels</td><td>19" or 20"</td><td>21" Uberturbine</td></tr>
+                    <tr><td>Seating</td><td>Up to 7</td><td>Up to 5</td></tr>
+                    <tr><td>Cargo</td><td>76 cu ft</td><td>76 cu ft</td></tr>
+                    <tr><td>Weight</td><td>4,398 lbs</td><td>4,398 lbs</td></tr>
+                    <tr><td>Brakes</td><td>Standard</td><td>Performance Upgrade</td></tr>
+                    <tr><td>Suspension</td><td>Standard</td><td>Lowered</td></tr>
+                    <tr><td>Pedals</td><td>Standard</td><td>Aluminum Alloy</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // ===== MODAL OPEN / CLOSE =====
+        function openModal(id) {
+            var modal = document.getElementById(id);
+            modal.style.display = 'flex';
+            setTimeout(function() { modal.style.opacity = '1'; }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            var modal = document.getElementById(id);
+            modal.style.opacity = '0';
+            setTimeout(function() { modal.style.display = 'none'; }, 300);
+            document.body.style.overflow = '';
+        }
+        // Close modal when clicking overlay background
+        document.querySelectorAll('.tesla-modal-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeModal(overlay.id);
+                }
+            });
+        });
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.tesla-modal-overlay').forEach(function(overlay) {
+                    if (overlay.style.display === 'flex') closeModal(overlay.id);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
