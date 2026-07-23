@@ -453,6 +453,48 @@
             font-weight: 500;
             margin-bottom: 20px;
         }
+    
+    /* --- Mobile Responsive Updates --- */
+    @media (max-width: 991px) {
+        /* Navbar & Mega Menu Fixes */
+        .mega-menu { display: none !important; } /* Disable hover menus on tablet/mobile */
+        .navbar-collapse { background: #fff; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .navbar-nav .nav-link { color: #171a20 !important; border-bottom: 1px solid #f4f4f4; padding: 12px 0; margin: 0; }
+        .nav-icons { color: #171a20 !important; margin-top: 20px; justify-content: flex-start; }
+        .logo svg { color: #171a20 !important; }
+        
+        /* Grid & Flex Layouts */
+        .row { flex-direction: column; }
+        .col-md-3, .col-md-4, .col-md-6, .col-md-8, .col-auto { width: 100% !important; margin-bottom: 20px; }
+        .d-flex { flex-wrap: wrap; }
+        
+        /* Configurator Split Layout (order_model_y.html) */
+        .configurator-container { flex-direction: column !important; }
+        .left-col { width: 100% !important; height: auto !important; position: relative !important; top: 0 !important; padding: 20px !important; }
+        .right-col { width: 100% !important; padding: 20px 20px 150px 20px !important; }
+        .sticky-footer { width: 100% !important; padding: 15px !important; }
+        
+        /* Hero Text & Modals */
+        h1 { font-size: 32px !important; }
+        h2 { font-size: 28px !important; }
+        .tesla-modal { padding: 20px !important; max-height: 90vh !important; }
+        .compare-table-wrapper { overflow-x: auto; width: 100%; }
+        .compare-table { min-width: 500px; }
+        
+        /* Account Dashboard */
+        .dash-header { display: flex; flex-direction: column; gap: 15px; }
+        .product-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 576px) {
+        /* Smaller Phones */
+        .hero-section h1 { font-size: 28px !important; }
+        .btn, .btn-primary, .btn-light { width: 100% !important; margin-bottom: 10px; }
+        .d-flex.gap-4 { gap: 10px !important; flex-direction: column; }
+    }
+    /* Form Error Styles */
+    .form-input.error, .form-control-custom.error { border-color: #e31937 !important; background-color: #fff8f8 !important; }
+    .error-msg { color: #e31937; font-size: 12px; margin-top: 4px; display: none; text-align: left; }
+
     </style>
 </head>
 <body>
@@ -594,6 +636,7 @@
                     <div class="form-group">
                         <label>Email <i class="bi bi-info-circle"></i></label>
                         <input type="email" id="signin-email" class="form-control-custom" placeholder="">
+                        <div class="error-msg" id="err-signin-email">This field is required.</div>
                     </div>
                     <button class="btn-primary-custom" onclick="handleSignInNext()">Next</button>
                     <a class="auth-link">Trouble Signing In?</a>
@@ -605,6 +648,7 @@
                     <div class="form-group">
                         <label>Password</label>
                         <input type="password" id="signin-password" class="form-control-custom" placeholder="">
+                        <div class="error-msg" id="err-signin-password">This field is required.</div>
                     </div>
                     <button class="btn-primary-custom" onclick="handleLogin()">Sign In</button>
                     <a class="auth-link" onclick="$('#signin-step-2').hide(); $('#signin-step-1').show();">Back</a>
@@ -645,10 +689,12 @@
                 <div class="form-group">
                     <label>First Name</label>
                     <input type="text" id="reg-fname" class="form-control-custom">
+                        <div class="error-msg" id="err-reg-fname">This field is required.</div>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
                     <input type="text" id="reg-lname" class="form-control-custom">
+                        <div class="error-msg" id="err-reg-lname">This field is required.</div>
                 </div>
 
                 <p style="font-size: 12px; color: #5c5e62; line-height: 1.5; margin-bottom: 20px;">
@@ -681,10 +727,12 @@
                 <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="reg-email" class="form-control-custom">
+                        <div class="error-msg" id="err-reg-email">This field is required.</div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" id="reg-password" class="form-control-custom" onkeyup="checkPwd(this.value)">
+                        <div class="error-msg" id="err-reg-password">This field is required.</div>
                     <div class="pwd-reqs">
                         <div>Password requirements:</div>
                         <div class="pwd-req" id="req-len"><i class="bi bi-check2"></i> At least 8 characters</div>
@@ -696,6 +744,7 @@
                 <div class="form-group">
                     <label>Confirm Password</label>
                     <input type="password" id="reg-confirm" class="form-control-custom">
+                        <div class="error-msg" id="err-reg-confirm">This field is required.</div>
                 </div>
 
                 <div style="display: flex; gap: 10px; margin-bottom: 20px;">
@@ -1002,10 +1051,22 @@
 
         // Authentication Logic
         function handleSignInNext() {
-            const email = $('#signin-email').val();
-            if(!email) { alert("Please enter an email"); return; }
+            const emailInput = $('#signin-email');
+            const email = emailInput.val().trim();
+            $('.error-msg').hide();
+            $('.form-control-custom').removeClass('error');
             
-            // Simulating DB check
+            if(!email) {
+                $('#err-signin-email').text('Please enter an email.').show();
+                emailInput.addClass('error');
+                return;
+            }
+            if(!email.includes('@')) {
+                $('#err-signin-email').text('Please enter a valid email address.').show();
+                emailInput.addClass('error');
+                return;
+            }
+            
             const savedAccStr = localStorage.getItem('teslaAccount');
             if(savedAccStr) {
                 const acc = JSON.parse(savedAccStr);
@@ -1015,21 +1076,32 @@
                     return;
                 }
             }
-            alert("No account found with this email. Please create an account.");
+            $('#err-signin-email').text("No account found with this email. Please create an account.").show();
+            emailInput.addClass('error');
         }
 
         function handleLogin() {
-            const pwd = $('#signin-password').val();
+            const pwdInput = $('#signin-password');
+            const pwd = pwdInput.val();
+            $('.error-msg').hide();
+            $('.form-control-custom').removeClass('error');
+            
+            if(!pwd) {
+                $('#err-signin-password').text('Please enter your password.').show();
+                pwdInput.addClass('error');
+                return;
+            }
+            
             const savedAccStr = localStorage.getItem('teslaAccount');
             if(savedAccStr) {
                 const acc = JSON.parse(savedAccStr);
                 if(acc.password === pwd) {
-                    // Success
                     localStorage.setItem('isLoggedIn', 'true');
                     populateDashboard();
                     switchView('view-dashboard');
                 } else {
-                    alert("Incorrect password!");
+                    $('#err-signin-password').text('Incorrect password!').show();
+                    pwdInput.addClass('error');
                 }
             }
         }
@@ -1052,6 +1124,39 @@
         }
 
         function handleRegister() {
+            let isValid = true;
+            $('.error-msg').hide();
+            $('.form-control-custom').removeClass('error');
+            
+            const fields = ['reg-fname', 'reg-lname', 'reg-email', 'reg-password', 'reg-confirm'];
+            fields.forEach(id => {
+                const input = $('#' + id);
+                if(!input.val().trim()) {
+                    $('#err-' + id).text('This field is required.').show();
+                    input.addClass('error');
+                    isValid = false;
+                }
+            });
+            
+            if(!isValid) return;
+            
+            if(!$('#reg-email').val().includes('@')) {
+                $('#err-reg-email').text('Please enter a valid email.').show();
+                $('#reg-email').addClass('error');
+                return;
+            }
+            
+            if($('#reg-password').val() !== $('#reg-confirm').val()) {
+                $('#err-reg-confirm').text('Passwords do not match!').show();
+                $('#reg-confirm').addClass('error');
+                return;
+            }
+            
+            if(!$('#captcha-box').hasClass('checked')) {
+                alert("Please complete the captcha by clicking the checkbox.");
+                return;
+            }
+
             const acc = {
                 region: $('#reg-region').val(),
                 language: $('#reg-lang').val(),
@@ -1061,20 +1166,7 @@
                 password: $('#reg-password').val()
             };
 
-            if(!acc.fname || !acc.lname || !acc.email || !acc.password) {
-                alert("Please fill all fields"); return;
-            }
-            if(!$('#captcha-box').hasClass('checked')) {
-                alert("Please complete the captcha"); return;
-            }
-            if($('#reg-password').val() !== $('#reg-confirm').val()) {
-                alert("Passwords do not match!"); return;
-            }
-
-            // Save to 'DB'
             localStorage.setItem('teslaAccount', JSON.stringify(acc));
-            
-            // Show Popup
             $('#success-popup').addClass('active');
         }
 
