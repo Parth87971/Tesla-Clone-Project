@@ -646,12 +646,7 @@
 
                 <div id="signin-step-2" style="display: none;">
                     
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="reg-phone" class="form-control-custom" placeholder="e.g. 9876543210">
-                        <div class="error-msg" id="err-reg-phone">This field is required.</div>
-                </div>
-                <div class="form-group">
+<div class="form-group">
                         <label>Password</label>
                         <input type="password" id="signin-password" class="form-control-custom" placeholder="">
                         <div class="error-msg" id="err-signin-password">This field is required.</div>
@@ -736,12 +731,7 @@
                         <div class="error-msg" id="err-reg-email">This field is required.</div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="reg-phone" class="form-control-custom" placeholder="e.g. 9876543210">
-                        <div class="error-msg" id="err-reg-phone">This field is required.</div>
-                </div>
-                <div class="form-group">
+<div class="form-group">
                     <label>Password</label>
                     <input type="password" id="reg-password" class="form-control-custom" onkeyup="checkPwd(this.value)">
                         <div class="error-msg" id="err-reg-password">This field is required.</div>
@@ -1228,8 +1218,23 @@
         function validateCard() {
             let isValid = true;
             $('.error-msg').hide();
-            $('.form-control-custom').css('border', 'none');
-            $('.form-control-custom').css('background-color', '#f4f4f4');
+            $('.form-control-custom').css({'border': 'none', 'background-color': '#f4f4f4'});
+            
+            // Validate all text fields
+            const requiredFields = ['cc-name', 'cc-country', 'cc-address', 'cc-city', 'cc-province', 'cc-zip'];
+            requiredFields.forEach(id => {
+                const el = $('#' + id);
+                if(!el.val().trim()) {
+                    let err = $('#' + id + '-error');
+                    if(err.length === 0) {
+                        el.after('<div class="error-msg" id="'+id+'-error" style="color: #d10000; font-size: 13px; margin-top: 6px;">Required</div>');
+                        err = $('#' + id + '-error');
+                    }
+                    err.show();
+                    el.css({'border': '1px solid #d10000', 'background-color': '#fff'});
+                    isValid = false;
+                }
+            });
 
             // Card Number: 13-19 digits regex
             const ccRegex = /^\d{13,19}$/;
