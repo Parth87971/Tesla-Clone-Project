@@ -1080,26 +1080,39 @@
             emailInput.addClass('error');
         }
 
+        // ==========================================
+        // USER LOGIN LOGIC
+        // ==========================================
+        
         function handleLogin() {
             const pwdInput = $('#signin-password');
             const pwd = pwdInput.val();
+            
+            // Reset any previous errors
             $('.error-msg').hide();
             $('.form-control-custom').removeClass('error');
             
+            // Check if password field is empty
             if(!pwd) {
                 $('#err-signin-password').text('Please enter your password.').show();
                 pwdInput.addClass('error');
                 return;
             }
             
+            // Fetch the user's saved details from the browser's Local Storage
+            // This acts like our "Fake Database"
             const savedAccStr = localStorage.getItem('teslaAccount');
             if(savedAccStr) {
                 const acc = JSON.parse(savedAccStr);
+                
+                // Check if the typed password matches the saved password
                 if(acc.password === pwd) {
+                    // Success! Tell the browser the user is logged in and show Dashboard
                     localStorage.setItem('isLoggedIn', 'true');
                     populateDashboard();
                     switchView('view-dashboard');
                 } else {
+                    // Failure! Show red error box
                     $('#err-signin-password').text('Incorrect password!').show();
                     pwdInput.addClass('error');
                 }

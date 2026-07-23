@@ -1223,19 +1223,25 @@
             document.getElementById('err-agree').style.display = 'none';
         });
 
+        // ==========================================
+        // CHECKOUT & FORM VALIDATION LOGIC
+        // ==========================================
+        
         function processOrder() {
+            // 1. Assume the form is perfectly valid to start
             let isValid = true;
             
-            // Basic required fields
+            // 2. Loop through every required field to check if it's empty
             document.querySelectorAll('.req-field').forEach(input => {
                 if (!input.value.trim()) {
+                    // If empty, turn the box red and show the error message!
                     input.classList.add('error');
                     input.nextElementSibling.style.display = 'block';
                     isValid = false;
                 }
             });
 
-            // Email validation
+            // 3. Specifically check if the email address contains an '@' symbol
             let email = document.getElementById('chk-email');
             if (email.value.trim() && !email.value.includes('@')) {
                 email.classList.add('error');
@@ -1243,25 +1249,31 @@
                 isValid = false;
             }
 
-            // Checkbox
+            // 4. Check if the user agreed to the Terms of Service
             let agree = document.getElementById('chk-agree');
             if (!agree.checked) {
                 document.getElementById('err-agree').style.display = 'block';
                 isValid = false;
             }
 
+            // 5. If ANY errors were found, stop the checkout and scroll to the top
             if (!isValid) {
-                // Scroll to top of modal if there are errors
                 document.querySelector('.tesla-modal').scrollTo({top: 0, behavior: 'smooth'});
                 return;
             }
 
-            // Proceed with simulated processing
+            // ==========================================
+            // SIMULATE SERVER PROCESSING (Fake Loading)
+            // ==========================================
+            
+            // 6. Disable the button so the user can't double-click it
             let btn = document.getElementById('btn-submit-order');
             btn.disabled = true;
+            
+            // 7. Inject a spinning loading animation directly into the button
             btn.innerHTML = '<span style="display:inline-block; width:16px; height:16px; border:2px solid #fff; border-radius:50%; border-top-color:transparent; animation:spin 1s linear infinite; margin-right:8px; vertical-align:middle;"></span> Processing...';
             
-            // Add keyframes for spinner if not exists
+            // Generate the spinning CSS animation if it doesn't exist yet
             if (!document.getElementById('spin-style')) {
                 let s = document.createElement('style');
                 s.id = 'spin-style';
@@ -1269,7 +1281,10 @@
                 document.head.appendChild(s);
             }
 
+            // 8. Tell the browser to wait EXACTLY 2 seconds (2000 milliseconds)
+            // This mimics the time it takes to talk to a bank for payment verification
             setTimeout(function() {
+                // 9. Hide the form and show the beautiful Success Checkmark screen!
                 document.getElementById('checkout-form-container').style.display = 'none';
                 document.getElementById('checkout-success').style.display = 'flex';
                 btn.innerHTML = 'Place Order';
