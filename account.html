@@ -645,7 +645,13 @@
                 </div>
 
                 <div id="signin-step-2" style="display: none;">
-                    <div class="form-group">
+                    
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="reg-phone" class="form-control-custom" placeholder="e.g. 9876543210">
+                        <div class="error-msg" id="err-reg-phone">This field is required.</div>
+                </div>
+                <div class="form-group">
                         <label>Password</label>
                         <input type="password" id="signin-password" class="form-control-custom" placeholder="">
                         <div class="error-msg" id="err-signin-password">This field is required.</div>
@@ -728,6 +734,12 @@
                     <label>Email</label>
                     <input type="email" id="reg-email" class="form-control-custom">
                         <div class="error-msg" id="err-reg-email">This field is required.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="reg-phone" class="form-control-custom" placeholder="e.g. 9876543210">
+                        <div class="error-msg" id="err-reg-phone">This field is required.</div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
@@ -1141,7 +1153,7 @@
             $('.error-msg').hide();
             $('.form-control-custom').removeClass('error');
             
-            const fields = ['reg-fname', 'reg-lname', 'reg-email', 'reg-password', 'reg-confirm'];
+            const fields = ['reg-fname', 'reg-lname', 'reg-email', 'reg-phone', 'reg-password', 'reg-confirm'];
             fields.forEach(id => {
                 const input = $('#' + id);
                 if(!input.val().trim()) {
@@ -1156,6 +1168,14 @@
             if(!$('#reg-email').val().includes('@')) {
                 $('#err-reg-email').text('Please enter a valid email.').show();
                 $('#reg-email').addClass('error');
+                return;
+            }
+            
+            const phone = $('#reg-phone').val().trim();
+            const phoneRegex = /^[0-9]{10}$/;
+            if(!phoneRegex.test(phone)) {
+                $('#err-reg-phone').text('Please enter a valid 10-digit phone number.').show();
+                $('#reg-phone').addClass('error');
                 return;
             }
             
@@ -1176,6 +1196,7 @@
                 fname: $('#reg-fname').val(),
                 lname: $('#reg-lname').val(),
                 email: $('#reg-email').val(),
+                phone: $('#reg-phone').val(),
                 password: $('#reg-password').val()
             };
 
