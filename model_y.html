@@ -655,7 +655,7 @@
                         <div class="hero-stats-container">
                             <div class="hero-buttons">
                                 <button class="btn btn-primary-tesla" onclick="window.location.href='order_model_y.html'">Order Now</button>
-                                <button class="btn btn-light-tesla" onclick="openModal(\'compare-modal\')">Compare Models</button>
+                                <button class="btn btn-light-tesla" onclick="openModal('compare-modal')">Compare Models</button>
                             </div>
                         </div>
                     </div>
@@ -670,7 +670,7 @@
                         <div class="hero-stats-container">
                             <div class="hero-buttons">
                                 <button class="btn btn-primary-tesla" onclick="window.location.href='order_model_y.html'">Order Now</button>
-                                <button class="btn btn-light-tesla" onclick="openModal(\'compare-modal\')">Compare Models</button>
+                                <button class="btn btn-light-tesla" onclick="openModal('compare-modal')">Compare Models</button>
                             </div>
                         </div>
                     </div>
@@ -1381,31 +1381,65 @@
         </button>
     </div>
 
-    <!-- ===== COMPARE MODELS MODAL ===== -->
+        <!-- ===== COMPARE MODELS MODAL ===== -->
     <div class="tesla-modal-overlay" id="compare-modal">
-        <div class="tesla-modal">
+        <div class="tesla-modal" style="max-width: 900px; padding: 60px;">
             <button class="tesla-modal-close" onclick="closeModal('compare-modal')">&times;</button>
-            <h2>Compare Model Y Trims</h2>
-            <p class="modal-subtitle">Side-by-side comparison of Model Y Long Range AWD and Model Y Performance.</p>
-            <div class="compare-table-wrapper"><table class="compare-table">
-                <thead>
-                    <tr><th>Specification</th><th>Model Y LR AWD</th><th>Model Y Performance</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Starting Price</td><td>$44,990</td><td>$49,990</td></tr>
-                    <tr><td>Range (EPA est.)</td><td>308 mi</td><td>279 mi</td></tr>
-                    <tr><td>0-60 mph</td><td>4.8 s</td><td>3.5 s</td></tr>
-                    <tr><td>Top Speed</td><td>135 mph</td><td>155 mph</td></tr>
-                    <tr><td>Powertrain</td><td>Dual Motor All-Wheel Drive</td><td>Dual Motor All-Wheel Drive</td></tr>
-                    <tr><td>Wheels</td><td>19" or 20"</td><td>21" Uberturbine</td></tr>
-                    <tr><td>Seating</td><td>Up to 7</td><td>Up to 5</td></tr>
-                    <tr><td>Cargo</td><td>76 cu ft</td><td>76 cu ft</td></tr>
-                    <tr><td>Weight</td><td>4,398 lbs</td><td>4,398 lbs</td></tr>
-                    <tr><td>Brakes</td><td>Standard</td><td>Performance Upgrade</td></tr>
-                    <tr><td>Suspension</td><td>Standard</td><td>Lowered</td></tr>
-                    <tr><td>Pedals</td><td>Standard</td><td>Aluminum Alloy</td></tr>
-                </tbody>
-            </table></div>
+            <h2 style="font-size: 32px; font-weight: 500; margin-bottom: 40px; color: #171a20;">Compare Model Y</h2>
+            
+            <div style="display: flex; flex-direction: column;">
+                
+                <!-- Headers -->
+                <div style="display: flex; border-bottom: 1px solid #e2e3e3; padding-bottom: 30px; margin-bottom: 30px;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 500; margin-bottom: 8px;">Model Y Premium</div>
+                        <div style="font-size: 15px; margin-bottom: 8px; color: #171a20;">Rear Wheel Drive</div>
+                        <div style="font-size: 14px; color: #5c5e62;">₹50,89,000¹</div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 500; margin-bottom: 8px;">Model Y L Premium</div>
+                        <div style="font-size: 15px; margin-bottom: 8px; color: #171a20;">All-Wheel Drive</div>
+                        <div style="font-size: 14px; color: #5c5e62;">₹61,99,000¹</div>
+                    </div>
+                </div>
+
+                <!-- Range -->
+                <div style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #e2e3e3;">
+                    <div style="font-size: 18px; font-weight: 500; margin-bottom: 15px;">Range²</div>
+                    <div style="display: flex;">
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">500 kilometers (WLTP)</div>
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">681 kilometers (WLTP)</div>
+                    </div>
+                </div>
+
+                <!-- 0-100 -->
+                <div style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #e2e3e3;">
+                    <div style="font-size: 18px; font-weight: 500; margin-bottom: 15px;">0-100 km/h</div>
+                    <div style="display: flex;">
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">5.9 seconds</div>
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">5.0 seconds</div>
+                    </div>
+                </div>
+
+                <!-- Supercharge -->
+                <div style="margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #e2e3e3;">
+                    <div style="font-size: 18px; font-weight: 500; margin-bottom: 15px;">Supercharge in 15 min³</div>
+                    <div style="display: flex;">
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">Up to 238 kilometers</div>
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">Up to 288 kilometers</div>
+                    </div>
+                </div>
+
+                <!-- Audio -->
+                <div style="margin-bottom: 10px;">
+                    <div style="font-size: 18px; font-weight: 500; margin-bottom: 15px;">Audio</div>
+                    <div style="display: flex;">
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">Custom Audio – 7 speakers, 1 amp</div>
+                        <div style="flex: 1; font-size: 15px; color: #5c5e62;">Premium Audio – 13 speakers, 1 sub, 2 amps</div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
