@@ -1073,7 +1073,8 @@
                 emailInput.addClass('error');
                 return;
             }
-            if(!email.includes('@')) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(email)) {
                 $('#err-signin-email').text('Please enter a valid email address.').show();
                 emailInput.addClass('error');
                 return;
@@ -1165,7 +1166,8 @@
             
             if(!isValid) return;
             
-            if(!$('#reg-email').val().includes('@')) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test($('#reg-email').val())) {
                 $('#err-reg-email').text('Please enter a valid email.').show();
                 $('#reg-email').addClass('error');
                 return;
