@@ -320,7 +320,7 @@
                 <path fill="#171a20" d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6 13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7m0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7M308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7"></path>
             </svg>
         </a>
-        <a href="#" class="header-lang">
+        <a href="javascript:void(0)" class="header-lang">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             IN
         </a>
@@ -356,8 +356,8 @@
             </div>
 
             <div class="payment-toggle">
-                <button class="payment-toggle-btn" data-type="cash">Full Payment</button>
-                <button class="payment-toggle-btn active" data-type="loan">Auto Loan</button>
+                <button class="payment-toggle-btn" data-type="cash" onclick="document.getElementById('full-pay-section')&&(document.getElementById('full-pay-section').style.display='block');document.getElementById('loan-section')&&(document.getElementById('loan-section').style.display='none');this.style.background='#171a20';this.style.color='#fff';this.nextElementSibling&&(this.nextElementSibling.style.background='#fff',this.nextElementSibling.style.color='#171a20')">Full Payment</button>
+                <button class="payment-toggle-btn active" data-type="loan" onclick="document.getElementById('loan-section')&&(document.getElementById('loan-section').style.display='block');document.getElementById('full-pay-section')&&(document.getElementById('full-pay-section').style.display='none');this.style.background='#171a20';this.style.color='#fff';this.previousElementSibling&&(this.previousElementSibling.style.background='#fff',this.previousElementSibling.style.color='#171a20')">Auto Loan</button>
             </div>
 
             <div class="option-card active" data-price="96063" data-full="5089000">
@@ -383,7 +383,7 @@
             <p style="text-align: center; font-size: 12px; color: #5c5e62; margin-bottom: 20px;">
                 ₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price<br><br>
                 Price excludes est. fuel savings of ₹5,725 /mo<br><br>
-                <a href="#" style="color: #5c5e62;">Edit Financial Terms & Savings</a>
+                <a href="javascript:void(0)" style="color: #5c5e62;">Edit Financial Terms & Savings</a>
             </p>
 
             <h2 class="section-title">Paint</h2>
@@ -440,12 +440,12 @@
 
             <h2 class="section-title" style="margin-top: 60px;">Your Model Y</h2>
             <div style="text-align: center; margin-bottom: 30px;">
-                <a href="#" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Save Your Design</a>
+                <a href="javascript:void(0)" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Save Your Design</a>
                 <p style="font-size: 14px; color: #171a20; margin-bottom: 8px;">Estimated Delivery: 4 - 6 weeks</p>
-                <a href="#" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Registration in Maharashtra</a>
+                <a href="javascript:void(0)" style="color: #5c5e62; font-size: 14px; display: block; margin-bottom: 8px;">Registration in Maharashtra</a>
                 <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Your On-Road Price is calculated based on selected state</p>
 
-                <a href="#" style="font-size: 14px; font-weight: 500; color: #171a20; text-decoration: none;">Show Pricing Details v</a>
+                <a href="javascript:void(0)" style="font-size: 14px; font-weight: 500; color: #171a20; text-decoration: none;">Show Pricing Details v</a>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
@@ -454,7 +454,7 @@
             </div>
 
             <p style="font-size: 12px; color: #5c5e62; margin-bottom: 16px;" id="summary-subtext">₹5,20,246 down payment, 60 months, 8.50% ROI, ₹52,02,460 Purchase Price</p>
-            <a href="#" style="font-size: 14px; color: #5c5e62; display: block; margin-bottom: 32px;">Explore Financing</a>
+            <a href="javascript:void(0)" style="font-size: 14px; color: #5c5e62; display: block; margin-bottom: 32px;">Explore Financing</a>
 
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
                 <div style="font-size: 14px; color: #5c5e62;">Due within 7 days</div>
@@ -466,8 +466,8 @@
             </div>
             <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Non-refundable order deposit including TCS</p>
 
-            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';">Order with Card</button>
-            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';">Order with UPI</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="this.innerHTML='Processing...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Confirmed!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order with Card';btn.disabled=false;btn.style.background=''},2000)},2000)">Order with Card</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="this.innerHTML='Processing...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Confirmed!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order with UPI';btn.disabled=false;btn.style.background=''},2000)},2000)">Order with UPI</button>
 
         </div>
     </div>
@@ -477,7 +477,7 @@
             <span id="footer-price-display" style="font-size: 20px; font-weight: 600; color: #171a20; margin: 0;">₹96,063 /mo</span>
             <span id="footer-price-subtext" style="font-size: 12px; font-weight: 500; color: #5c5e62;">Auto Loan</span>
         </div>
-        <button class="btn-order-now">Order Now</button>
+        <button class="btn-order-now" onclick="this.innerHTML='Placing Order...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Placed Successfully!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order Now';btn.disabled=false;btn.style.background=''},3000)},2000)">Order Now</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -641,7 +641,7 @@
             <div class="features-modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; border-bottom: 1px solid #e2e3e3; position: sticky; top: 0; background: white; z-index: 10;">
                 <h2 id="features-modal-title" style="font-size: 24px; font-weight: 600; margin: 0; color: #171a20;">Features</h2>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <a href="#" style="font-size: 14px; color: #5c5e62; text-decoration: underline;" onclick="event.preventDefault(); $('#features-modal').hide(); $('#compare-modal').css('display', 'flex').hide().fadeIn();">Compare Models</a>
+                    <a href="javascript:void(0)" style="font-size: 14px; color: #5c5e62; text-decoration: underline;" onclick="event.preventDefault(); $('#features-modal').hide(); $('#compare-modal').css('display', 'flex').hide().fadeIn();">Compare Models</a>
                     <i class="bi bi-x-lg" style="font-size: 20px; cursor: pointer; color: #171a20;" onclick="$('#features-modal').fadeOut(); document.body.style.overflow='auto';"></i>
                 </div>
             </div>
@@ -806,7 +806,7 @@
             <div class="features-modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 35px 50px 25px; border-bottom: 1px solid #e2e3e3; position: sticky; top: 0; background: white; z-index: 10;">
                 <h2 style="font-size: 32px; font-weight: 500; margin: 0; color: #171a20;">Compare Model Y</h2>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <a href="#" style="font-size: 15px; color: #5c5e62; text-decoration: underline; font-weight: 400;" onclick="event.preventDefault(); $('#compare-modal').hide(); $('#features-modal').css('display', 'flex').hide().fadeIn();">View Features</a>
+                    <a href="javascript:void(0)" style="font-size: 15px; color: #5c5e62; text-decoration: underline; font-weight: 400;" onclick="event.preventDefault(); $('#compare-modal').hide(); $('#features-modal').css('display', 'flex').hide().fadeIn();">View Features</a>
                     <i class="bi bi-x-lg" style="font-size: 20px; cursor: pointer; color: #171a20;" onclick="$('#compare-modal').fadeOut(); document.body.style.overflow='auto';"></i>
                 </div>
             </div>
