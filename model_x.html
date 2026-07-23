@@ -1160,6 +1160,317 @@
                 padding-left: 0;
             }
         }
+
+        /* ===== MODAL OVERLAY ===== */
+        .tesla-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .tesla-modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        .tesla-modal {
+            background: #fff;
+            border-radius: 12px;
+            max-width: 900px;
+            width: 92%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: modalSlideUp 0.4s ease;
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .tesla-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #393c41;
+            transition: color 0.2s;
+        }
+        .tesla-modal-close:hover { color: #000; }
+        .tesla-modal h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #171a20;
+            margin-bottom: 8px;
+        }
+        .tesla-modal p.modal-subtitle {
+            font-size: 14px;
+            color: #5c5e62;
+            margin-bottom: 24px;
+        }
+
+        /* Inventory Modal */
+        .inv-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .inv-filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1.5px solid #d0d1d2;
+            background: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #393c41;
+        }
+        .inv-filter-btn.active {
+            background: #171a20;
+            color: #fff;
+            border-color: #171a20;
+        }
+        .inv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .inv-card {
+            border: 1px solid #e2e3e3;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .inv-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .inv-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .inv-card-body {
+            padding: 16px;
+        }
+        .inv-card-body h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #171a20;
+            margin: 0 0 4px;
+        }
+        .inv-card-body .inv-trim {
+            font-size: 12px;
+            color: #5c5e62;
+            margin-bottom: 8px;
+        }
+        .inv-card-body .inv-specs {
+            font-size: 12px;
+            color: #393c41;
+            margin-bottom: 10px;
+        }
+        .inv-card-body .inv-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #171a20;
+        }
+
+        /* Trade-In Modal */
+        .trade-form-group {
+            margin-bottom: 18px;
+        }
+        .trade-form-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #393c41;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .trade-form-group select, .trade-form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #d0d1d2;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            appearance: auto;
+        }
+        .trade-form-group select:focus, .trade-form-group input:focus {
+            outline: none;
+            border-color: #3e6ae1;
+        }
+        .trade-result {
+            background: #f4f4f4;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        .trade-result.show { display: block; }
+        .trade-result .trade-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #171a20;
+        }
+        .trade-result p {
+            font-size: 13px;
+            color: #5c5e62;
+            margin-top: 6px;
+        }
+        .btn-tesla-submit {
+            background: #3e6ae1;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+        }
+        .btn-tesla-submit:hover { background: #3457b1; }
+
+        /* Compare Modal */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compare-table th, .compare-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e2e3e3;
+            font-size: 14px;
+        }
+        .compare-table th {
+            font-weight: 600;
+            color: #171a20;
+            background: #f4f4f4;
+        }
+        .compare-table td:first-child {
+            color: #5c5e62;
+            font-weight: 500;
+        }
+        .compare-table td {
+            color: #171a20;
+            font-weight: 500;
+        }
+
+        /* Payment Estimator */
+        .estimate-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .estimate-result {
+            background: linear-gradient(135deg, #171a20 0%, #2d3139 100%);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: #fff;
+        }
+        .estimate-result .est-monthly {
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .estimate-result .est-label {
+            font-size: 14px;
+            color: #d0d1d2;
+            margin-top: 4px;
+        }
+        .estimate-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 16px;
+        }
+        .estimate-details div {
+            text-align: center;
+        }
+        .estimate-details strong {
+            font-size: 16px;
+            display: block;
+        }
+        .estimate-details span {
+            font-size: 12px;
+            color: #d0d1d2;
+        }
+
+        /* Expandable Panels */
+        .expand-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: #f4f4f4;
+            border-radius: 8px;
+            margin-top: 0;
+        }
+        .expand-panel.open {
+            max-height: 600px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        .expand-panel-dark {
+            background: #222;
+        }
+        .expand-panel-dark.open {
+            background: #222;
+        }
+        .expand-panel h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #171a20;
+        }
+        .expand-panel-dark h4 { color: #fff; }
+        .expand-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .expand-panel ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e3e3;
+            font-size: 14px;
+            color: #393c41;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .expand-panel-dark ul li {
+            border-bottom-color: #333;
+            color: #d0d1d2;
+        }
+        .expand-panel ul li:last-child { border-bottom: none; }
+        .expand-panel ul li .ep-icon {
+            color: #3e6ae1;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .expand-panel ul li strong {
+            color: #171a20;
+        }
+        .expand-panel-dark ul li strong { color: #fff; }
+
+        @media (max-width: 768px) {
+            .tesla-modal { padding: 24px; }
+            .inv-grid { grid-template-columns: 1fr; }
+            .estimate-inputs { grid-template-columns: 1fr; }
+            .estimate-result .est-monthly { font-size: 36px; }
+        }
     </style>
 </head>
 
@@ -1324,8 +1635,8 @@
     <div class="sub-navbar" id="subNavbar">
         <div class="sub-navbar-title">Model X</div>
         <div class="sub-navbar-links">
-            <a href="index.html">Trade In</a>
-            <button class="btn-order" onclick="window.location.href='index.html'">Browse Inventory</button>
+            <a href="javascript:void(0)" onclick="openModal('tradein-modal')">Trade In</a>
+            <button class="btn-order" onclick="openModal('inventory-modal')">Browse Inventory</button>
         </div>
     </div>
 
@@ -1336,7 +1647,7 @@
             <div class="hero-title">
                 <h1>Model X</h1>
                 <div class="hero-buttons mt-4">
-                    <button class="btn" onclick="window.location.href='index.html'">Browse Inventory</button>
+                    <button class="btn" onclick="openModal('inventory-modal')">Browse Inventory</button>
                 </div>
             </div>
         </div>
@@ -1378,7 +1689,7 @@
                 <h2>Signature From Start to Finish</h2>
                 <p>Model S and Model X marked the beginning of the world's transition to electric transportation. Our limited-release Signature Edition honors their legacy—and made way for what's next.</p>
                 <p>Model X is no longer in production. Pre-owned non-Signature Edition inventory vehicles may still be available.</p>
-                <button class="btn-dark-tesla mt-3" onclick="window.location.href='index.html'">Browse Inventory</button>
+                <button class="btn-dark-tesla mt-3" onclick="openModal('inventory-modal')">Browse Inventory</button>
             </div>
         </section>
 
@@ -1511,7 +1822,18 @@
             <div class="autonomous-content">
                 <h2>The Future of Travel Is Autonomous</h2>
                 <p>Enter your destination and your Model X will manage your drive, from start to finish. Full Self-Driving (Supervised) provides advanced features that offer more active guidance and assisted driving under your active supervision.</p>
-                <button class="btn-dark-tesla" onclick="window.location.href='index.html'">Learn More</button>
+                <button class="btn-dark-tesla" id="btn-fsd-learn" onclick="togglePanel('fsd-panel')">Learn More</button>
+                <div class="expand-panel" id="fsd-panel">
+                    <h4>Full Self-Driving Features</h4>
+                    <ul>
+                        <li><span class="ep-icon">✓</span><div><strong>Navigate on Autopilot</strong> — Automatically drives to your destination, including highway on-ramps and off-ramps.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Auto Lane Change</strong> — Automatically changes lanes while driving on the highway.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Autopark</strong> — Automatically parallel and perpendicular parks with a single tap.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Summon</strong> — Move your parked car in and out of tight spaces using your phone.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Traffic Light & Stop Sign Control</strong> — Automatically slows and stops for traffic lights and stop signs.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>City Street Driving</strong> — Makes turns, navigates intersections, and handles complex city driving scenarios.</div></li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -1677,7 +1999,16 @@
             </div>
             <div class="charge-at-home-content">
                 <h2>Charge at Home</h2>
-                <p>Charge your Model X at home to wake up charged and start your day with plenty of range, no gas station needed—ever. <a href="index.html">Learn more about home charging</a>.</p>
+                <p>Charge your Model X at home to wake up charged and start your day with plenty of range, no gas station needed—ever. <a href="javascript:void(0)" onclick="togglePanel('charging-panel')">Learn more about home charging</a>.</p>
+                <div class="expand-panel" id="charging-panel">
+                    <h4>Home Charging Options</h4>
+                    <ul>
+                        <li><span class="ep-icon">⚡</span><div><strong>Tesla Wall Connector</strong> — Delivers up to 44 miles of range per hour. Install indoors or outdoors. Full charge in ~8 hours.</div></li>
+                        <li><span class="ep-icon">⚡</span><div><strong>NEMA 14-50 Outlet</strong> — Standard 240V outlet delivers ~30 miles of range per hour. Full charge in ~10 hours.</div></li>
+                        <li><span class="ep-icon">⚡</span><div><strong>Mobile Connector</strong> — Included with every Tesla. Plugs into standard household outlets for convenient overnight charging.</div></li>
+                        <li><span class="ep-icon">⚡</span><div><strong>Scheduled Charging</strong> — Set your car to start charging at off-peak hours to save on electricity costs.</div></li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -1690,7 +2021,18 @@
                 <h2>Safety Comes Standard</h2>
                 <p>Safety at Tesla is paramount. Every Tesla vehicle is designed with impact-absorbing zones, a stiff passenger compartment to minimize intrusion and multiple airbags to help protect occupants.</p>
                 <p>Active safety features can help reduce impact severity or help prevent accidents altogether. Forward Collision Warning, Active Emergency Braking and Lane Departure Avoidance come standard.</p>
-                <p>The passive and active safety systems are engineered to make Tesla vehicles the safest in the world with a very low probability of injury.<br><a href="index.html">Learn More</a></p>
+                <p>The passive and active safety systems are engineered to make Tesla vehicles the safest in the world with a very low probability of injury.<br><a href="javascript:void(0)" onclick="togglePanel('safety-panel')">Learn More</a></p>
+                <div class="expand-panel" id="safety-panel">
+                    <h4>Safety Features & Ratings</h4>
+                    <ul>
+                        <li><span class="ep-icon">★</span><div><strong>NHTSA 5-Star Rating</strong> — Achieved the highest safety rating across all categories from the National Highway Traffic Safety Administration.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Forward Collision Warning</strong> — Alerts you of potential front-end collisions and applies brakes automatically.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Automatic Emergency Braking</strong> — Detects obstacles and applies brakes to reduce crash severity.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Lane Departure Avoidance</strong> — Steers the car back into the lane if it begins to drift unintentionally.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>Blind Spot Monitoring</strong> — Continuously monitors surrounding areas and alerts you to vehicles in your blind spot.</div></li>
+                        <li><span class="ep-icon">✓</span><div><strong>8 Airbags</strong> — Front, knee, side curtain, and side pelvis airbags provide comprehensive occupant protection.</div></li>
+                    </ul>
+                </div>
                 
                 <div class="safety-stats-grid">
                     <div class="safety-stat">
@@ -1846,7 +2188,7 @@
                 <div class="specs-footer">
                     <div class="specs-footer-left"></div>
                     <div class="specs-footer-right">
-                        <a href="index.html">Compare Models</a>
+                        <a href="javascript:void(0)" onclick="openModal('compare-modal')">Compare Models</a>
                     </div>
                 </div>
                 
@@ -1869,19 +2211,306 @@
                 <h2>Model X</h2>
                 <p>Design yours or get a trade-in estimate for your current vehicle.</p>
                 <div class="end-of-page-buttons">
-                    <button class="btn-blue" onclick="window.location.href='index.html'">Browse Inventory</button>
-                    <button class="btn-white" onclick="window.location.href='index.html'">Get an Estimate</button>
+                    <button class="btn-blue" onclick="openModal('inventory-modal')">Browse Inventory</button>
+                    <button class="btn-white" onclick="openModal('estimate-modal')">Get an Estimate</button>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- ===== INVENTORY MODAL ===== -->
+    <div class="tesla-modal-overlay" id="inventory-modal">
+        <div class="tesla-modal">
+            <button class="tesla-modal-close" onclick="closeModal('inventory-modal')">&times;</button>
+            <h2>Browse Model X Inventory</h2>
+            <p class="modal-subtitle">Explore available Model X vehicles ready for delivery.</p>
+            <div class="inv-filters">
+                <button class="inv-filter-btn active" data-filter="all">All</button>
+                <button class="inv-filter-btn" data-filter="awd">Model X</button>
+                <button class="inv-filter-btn" data-filter="plaid">Model X Plaid</button>
+            </div>
+            <div class="inv-grid" id="inv-grid">
+                <div class="inv-card" data-trim="awd">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Powertrain-Carousel-Slide-1-Model-X-Desktop.jpg" alt="Model X Pearl White">
+                    <div class="inv-card-body">
+                        <h4>Model X — Pearl White</h4>
+                        <div class="inv-trim">Dual Motor All-Wheel Drive</div>
+                        <div class="inv-specs">352 mi range · 3.8s 0-60 · 20" Wheels</div>
+                        <div class="inv-price">$79,990</div>
+                    </div>
+                </div>
+                <div class="inv-card" data-trim="plaid">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Powertrain-Carousel-Slide-2-Model-X-Plaid-Desktop-annotation.jpg" alt="Model X Plaid Solid Black">
+                    <div class="inv-card-body">
+                        <h4>Model X Plaid — Solid Black</h4>
+                        <div class="inv-trim">Tri Motor All-Wheel Drive</div>
+                        <div class="inv-specs">333 mi range · 2.5s 0-60 · 22" Wheels</div>
+                        <div class="inv-price">$94,990</div>
+                    </div>
+                </div>
+                <div class="inv-card" data-trim="awd">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Exterior-Desktop-NA.jpg" alt="Model X Deep Blue">
+                    <div class="inv-card-body">
+                        <h4>Model X — Deep Blue</h4>
+                        <div class="inv-trim">Dual Motor All-Wheel Drive</div>
+                        <div class="inv-specs">352 mi range · 3.8s 0-60 · 22" Wheels</div>
+                        <div class="inv-price">$84,490</div>
+                    </div>
+                </div>
+                <div class="inv-card" data-trim="plaid">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Performance-Desktop-NA.jpg" alt="Model X Plaid Ultra Red">
+                    <div class="inv-card-body">
+                        <h4>Model X Plaid — Ultra Red</h4>
+                        <div class="inv-trim">Tri Motor All-Wheel Drive</div>
+                        <div class="inv-specs">333 mi range · 2.5s 0-60 · 22" Wheels</div>
+                        <div class="inv-price">$97,490</div>
+                    </div>
+                </div>
+                <div class="inv-card" data-trim="awd">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Exterior-Carousel-Slide-1-Entry-Desktop.jpg" alt="Model X Quicksilver">
+                    <div class="inv-card-body">
+                        <h4>Model X — Quicksilver</h4>
+                        <div class="inv-trim">Dual Motor All-Wheel Drive</div>
+                        <div class="inv-specs">352 mi range · 3.8s 0-60 · 20" Wheels</div>
+                        <div class="inv-price">$82,490</div>
+                    </div>
+                </div>
+                <div class="inv-card" data-trim="plaid">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Tri-Motor-Desktop-NA.jpg" alt="Model X Plaid Midnight Cherry">
+                    <div class="inv-card-body">
+                        <h4>Model X Plaid — Midnight Cherry</h4>
+                        <div class="inv-trim">Tri Motor All-Wheel Drive</div>
+                        <div class="inv-specs">333 mi range · 2.5s 0-60 · 22" Wheels</div>
+                        <div class="inv-price">$99,990</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TRADE-IN MODAL ===== -->
+    <div class="tesla-modal-overlay" id="tradein-modal">
+        <div class="tesla-modal" style="max-width: 560px;">
+            <button class="tesla-modal-close" onclick="closeModal('tradein-modal')">&times;</button>
+            <h2>Trade-In Estimator</h2>
+            <p class="modal-subtitle">Get an instant estimate for your current vehicle toward a new Model X.</p>
+            <div class="trade-form-group">
+                <label>Year</label>
+                <select id="trade-year">
+                    <option value="">Select Year</option>
+                    <option value="2025">2025</option><option value="2024">2024</option>
+                    <option value="2023">2023</option><option value="2022">2022</option>
+                    <option value="2021">2021</option><option value="2020">2020</option>
+                    <option value="2019">2019</option><option value="2018">2018</option>
+                    <option value="2017">2017</option><option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                </select>
+            </div>
+            <div class="trade-form-group">
+                <label>Make</label>
+                <select id="trade-make">
+                    <option value="">Select Make</option>
+                    <option value="35000">Toyota</option><option value="32000">Honda</option>
+                    <option value="38000">Ford</option><option value="45000">BMW</option>
+                    <option value="42000">Mercedes-Benz</option><option value="48000">Audi</option>
+                    <option value="30000">Hyundai</option><option value="28000">Kia</option>
+                    <option value="40000">Chevrolet</option><option value="36000">Nissan</option>
+                    <option value="55000">Tesla</option><option value="50000">Lexus</option>
+                </select>
+            </div>
+            <div class="trade-form-group">
+                <label>Condition</label>
+                <select id="trade-condition">
+                    <option value="">Select Condition</option>
+                    <option value="0.9">Excellent — Like new, no visible wear</option>
+                    <option value="0.75">Good — Minor wear, well maintained</option>
+                    <option value="0.55">Fair — Noticeable wear, needs attention</option>
+                </select>
+            </div>
+            <button class="btn-tesla-submit" onclick="calculateTradeIn()">Get My Estimate</button>
+            <div class="trade-result" id="trade-result">
+                <div class="trade-value" id="trade-value">$0</div>
+                <p>Estimated trade-in value toward your new Model X</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== COMPARE MODELS MODAL ===== -->
+    <div class="tesla-modal-overlay" id="compare-modal">
+        <div class="tesla-modal">
+            <button class="tesla-modal-close" onclick="closeModal('compare-modal')">&times;</button>
+            <h2>Compare Model X Trims</h2>
+            <p class="modal-subtitle">Side-by-side comparison of Model X and Model X Plaid specifications.</p>
+            <table class="compare-table">
+                <thead>
+                    <tr><th>Specification</th><th>Model X</th><th>Model X Plaid</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Starting Price</td><td>$79,990</td><td>$94,990</td></tr>
+                    <tr><td>Range (EPA est.)</td><td>352 mi</td><td>333 mi</td></tr>
+                    <tr><td>0-60 mph</td><td>3.8 s</td><td>2.5 s</td></tr>
+                    <tr><td>Top Speed</td><td>155 mph</td><td>163 mph</td></tr>
+                    <tr><td>Peak Power</td><td>670 hp</td><td>1,020 hp</td></tr>
+                    <tr><td>1/4 Mile</td><td>—</td><td>9.9 s</td></tr>
+                    <tr><td>Powertrain</td><td>Dual Motor</td><td>Tri Motor</td></tr>
+                    <tr><td>Weight</td><td>5,152 lbs</td><td>5,434 lbs</td></tr>
+                    <tr><td>Seating</td><td>Up to 7</td><td>Up to 6</td></tr>
+                    <tr><td>Cargo</td><td>94.5 cu ft</td><td>94.5 cu ft</td></tr>
+                    <tr><td>Towing</td><td>5,000 lbs</td><td>5,000 lbs</td></tr>
+                    <tr><td>Drag Coefficient</td><td>0.24 Cd</td><td>0.24 Cd</td></tr>
+                    <tr><td>Supercharging Max</td><td>250 kW</td><td>250 kW</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== PAYMENT ESTIMATOR MODAL ===== -->
+    <div class="tesla-modal-overlay" id="estimate-modal">
+        <div class="tesla-modal" style="max-width: 620px;">
+            <button class="tesla-modal-close" onclick="closeModal('estimate-modal')">&times;</button>
+            <h2>Payment Estimator</h2>
+            <p class="modal-subtitle">Estimate your monthly payment for a new Model X.</p>
+            <div class="trade-form-group">
+                <label>Select Model</label>
+                <select id="est-model" onchange="calculatePayment()">
+                    <option value="79990">Model X — $79,990</option>
+                    <option value="94990">Model X Plaid — $94,990</option>
+                </select>
+            </div>
+            <div class="estimate-inputs">
+                <div class="trade-form-group">
+                    <label>Down Payment ($)</label>
+                    <input type="number" id="est-down" value="5000" min="0" max="90000" oninput="calculatePayment()">
+                </div>
+                <div class="trade-form-group">
+                    <label>Loan Term</label>
+                    <select id="est-term" onchange="calculatePayment()">
+                        <option value="36">36 months</option>
+                        <option value="48">48 months</option>
+                        <option value="60" selected>60 months</option>
+                        <option value="72">72 months</option>
+                    </select>
+                </div>
+            </div>
+            <div class="estimate-result">
+                <div class="est-monthly" id="est-monthly">$1,247</div>
+                <div class="est-label">Estimated Monthly Payment</div>
+                <div class="estimate-details">
+                    <div><strong id="est-loan-amt">$74,990</strong><span>Loan Amount</span></div>
+                    <div><strong>6.5%</strong><span>APR</span></div>
+                    <div><strong id="est-total-cost">$74,820</strong><span>Total Cost</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <script>
+        // ===== MODAL OPEN / CLOSE =====
+        function openModal(id) {
+            var modal = document.getElementById(id);
+            modal.style.display = 'flex';
+            setTimeout(function() { modal.style.opacity = '1'; }, 10);
+            document.body.style.overflow = 'hidden';
+            if (id === 'estimate-modal') calculatePayment();
+        }
+        function closeModal(id) {
+            var modal = document.getElementById(id);
+            modal.style.opacity = '0';
+            setTimeout(function() { modal.style.display = 'none'; }, 300);
+            document.body.style.overflow = '';
+        }
+        // Close modal when clicking overlay background
+        document.querySelectorAll('.tesla-modal-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    closeModal(overlay.id);
+                }
+            });
+        });
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.tesla-modal-overlay').forEach(function(overlay) {
+                    if (overlay.style.display === 'flex') closeModal(overlay.id);
+                });
+            }
+        });
+
+        // ===== EXPANDABLE PANELS =====
+        function togglePanel(id) {
+            var panel = document.getElementById(id);
+            panel.classList.toggle('open');
+        }
+
+        // ===== INVENTORY FILTER =====
+        document.querySelectorAll('.inv-filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.inv-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.inv-card').forEach(function(card) {
+                    if (filter === 'all' || card.getAttribute('data-trim') === filter) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== TRADE-IN CALCULATOR =====
+        function calculateTradeIn() {
+            var year = document.getElementById('trade-year').value;
+            var makePrice = document.getElementById('trade-make').value;
+            var condition = document.getElementById('trade-condition').value;
+            
+            if (!year || !makePrice || !condition) {
+                alert('Please fill in all fields to get your estimate.');
+                return;
+            }
+            
+            var currentYear = 2026;
+            var age = currentYear - parseInt(year);
+            var depreciation = Math.max(0.15, 1 - (age * 0.12));
+            var baseValue = parseInt(makePrice);
+            var estimate = Math.round(baseValue * depreciation * parseFloat(condition));
+            
+            document.getElementById('trade-value').textContent = '$' + estimate.toLocaleString();
+            document.getElementById('trade-result').classList.add('show');
+        }
+
+        // ===== PAYMENT ESTIMATOR =====
+        function calculatePayment() {
+            var price = parseInt(document.getElementById('est-model').value);
+            var down = parseInt(document.getElementById('est-down').value) || 0;
+            var months = parseInt(document.getElementById('est-term').value);
+            var annualRate = 0.065;
+            var monthlyRate = annualRate / 12;
+            
+            var loanAmount = price - down;
+            if (loanAmount < 0) loanAmount = 0;
+            
+            var monthly;
+            if (monthlyRate === 0) {
+                monthly = loanAmount / months;
+            } else {
+                monthly = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+            }
+            
+            var totalCost = Math.round(monthly * months);
+            monthly = Math.round(monthly);
+            
+            document.getElementById('est-monthly').textContent = '$' + monthly.toLocaleString();
+            document.getElementById('est-loan-amt').textContent = '$' + loanAmount.toLocaleString();
+            document.getElementById('est-total-cost').textContent = '$' + totalCost.toLocaleString();
+        }
+
+        // ===== EXISTING JQUERY LOGIC =====
         $(document).ready(function () {
             // Navbar color change on scroll
             $(window).scroll(function () {
