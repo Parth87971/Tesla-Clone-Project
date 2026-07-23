@@ -1184,7 +1184,7 @@
                 </div>
                 <h2 class="success-title">Order Placed Successfully!</h2>
                 <p class="success-desc">Thank you for your order. Your reservation for the Model Y is confirmed. We've sent a receipt and next steps to your email address.</p>
-                <p style="font-size: 14px; font-weight: 500; color: #171a20; margin-bottom: 30px;">RN: RN118239042</p>
+                <p style="font-size: 14px; font-weight: 500; color: #171a20; margin-bottom: 30px;" id="order-rn-number">RN: RN118239042</p>
                 <button class="btn-place-order" style="max-width: 200px;" onclick="window.location.href='index.html'">Return Home</button>
             </div>
         </div>
@@ -1284,7 +1284,11 @@
             // 8. Tell the browser to wait EXACTLY 2 seconds (2000 milliseconds)
             // This mimics the time it takes to talk to a bank for payment verification
             setTimeout(function() {
-                // 9. Hide the form and show the beautiful Success Checkmark screen!
+                // 9. Generate a random 9-digit Reservation Number (RN)
+                const randomRN = 'RN' + Math.floor(100000000 + Math.random() * 900000000);
+                document.getElementById('order-rn-number').innerText = 'Reservation Number: ' + randomRN;
+
+                // 10. Hide the form and show the beautiful Success Checkmark screen!
                 document.getElementById('checkout-form-container').style.display = 'none';
                 document.getElementById('checkout-success').style.display = 'flex';
                 btn.innerHTML = 'Place Order';
