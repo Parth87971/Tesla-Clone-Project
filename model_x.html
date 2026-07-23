@@ -253,10 +253,21 @@
             height: auto;
             object-fit: cover;
         }
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 60px;
+
+        .full-bleed-media {
+            width: 100%;
+            position: relative;
+            line-height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .full-bleed-media video, .full-bleed-media img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
         }
 
         .full-width-image h2 {
@@ -1097,8 +1108,8 @@
 
         <!-- Utility Section -->
         <section class="utility-section">
-            <div class="media-container">
-                <video preload="none" poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Utility-Poster-Desktop-NA.jpg" autoplay playsinline loop muted>
+            <div class="full-bleed-media">
+                <video poster="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Utility-Poster-Desktop-NA.jpg" autoplay playsinline loop muted>
                     <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto:best/Model-X-New-Utility-Desktop-NA.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1131,7 +1142,7 @@
 
         <!-- Exterior Section -->
         <section class="exterior-section">
-            <div class="media-container">
+            <div class="full-bleed-media">
                 <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Exterior-Desktop-NA.jpg" alt="Model X Refined Exterior">
             </div>
             <div class="exterior-content">
@@ -1157,7 +1168,7 @@
                     <!-- Slide 2 -->
                     <div class="custom-slide slide-narrow">
                         <div class="feature-slide-media">
-                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-S-Exterior-Carousel-2-Adaptive-Headlights-Desktop.jpg" alt="Adaptive Driving Headlights">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Exterior-Desktop-NA.jpg" alt="Adaptive Driving Headlights">
                         </div>
                         <div class="feature-slide-content">
                             <h3>Adaptive Driving Headlights</h3>
