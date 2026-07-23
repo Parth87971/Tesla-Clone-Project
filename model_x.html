@@ -709,6 +709,363 @@
             padding: 0 0 80px 0;
         }
 
+        /* Go Anywhere Section */
+        .go-anywhere-section {
+            background-color: #fff;
+            padding-bottom: 60px;
+        }
+
+        .go-anywhere-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .go-anywhere-content h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #171a20;
+        }
+
+        .go-anywhere-content > p {
+            font-size: 15px;
+            color: #393c41;
+            max-width: 900px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .go-anywhere-stats-grid {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .go-anywhere-stat {
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #e2e3e3;
+            padding-left: 24px;
+        }
+
+        .go-anywhere-stat:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .go-anywhere-stat strong {
+            font-size: 32px;
+            font-weight: 600;
+            color: #171a20;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+        
+        .go-anywhere-stat strong span {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .go-anywhere-stat p {
+            font-size: 14px;
+            color: #5c5e62;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .btn-dark-route {
+            background-color: #171a20;
+            color: #fff;
+            padding: 10px 40px;
+            border-radius: 4px;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-dark-route:hover {
+            background-color: #393c41;
+        }
+
+        /* Charge at Home Section */
+        .charge-at-home-section {
+            background-color: #fff;
+            padding-bottom: 80px;
+        }
+        
+        .charge-at-home-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .charge-at-home-content h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #171a20;
+        }
+
+        .charge-at-home-content p {
+            font-size: 15px;
+            color: #393c41;
+            line-height: 1.5;
+            max-width: 900px;
+        }
+        
+        .charge-at-home-content a {
+            color: #393c41;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .charge-at-home-content a:hover {
+            color: #171a20;
+        }
+
+        /* Safety Section */
+        .safety-section {
+            background-color: #fff;
+            padding-bottom: 80px;
+        }
+
+        .safety-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .safety-content h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #171a20;
+        }
+
+        .safety-content p {
+            font-size: 15px;
+            color: #393c41;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .safety-content a {
+            color: #393c41;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .safety-stats-grid {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .safety-stat {
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #e2e3e3;
+            padding-left: 24px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .safety-stat:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .safety-stat strong {
+            font-size: 32px;
+            font-weight: 600;
+            color: #171a20;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .safety-stat strong span {
+            font-size: 20px;
+        }
+
+        .safety-stat strong svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .safety-stat p {
+            font-size: 14px;
+            color: #5c5e62;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Specs Section */
+        .specs-section {
+            background-color: #000;
+            color: #fff;
+            padding: 80px 20px;
+        }
+
+        .specs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .specs-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .specs-left h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+
+        .specs-right {
+            flex: 2;
+            min-width: 500px;
+        }
+
+        .specs-tabs {
+            display: flex;
+            border-bottom: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        .specs-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: #888;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .specs-tab.active {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        .specs-row {
+            display: flex;
+            margin-bottom: 40px;
+        }
+
+        .specs-row-title {
+            width: 150px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .specs-row-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px 20px;
+        }
+
+        .specs-row-content.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .specs-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .specs-item-label {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .specs-item-value {
+            font-size: 15px;
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        .specs-divider {
+            height: 1px;
+            background-color: #333;
+            margin: 40px 0;
+        }
+
+        .specs-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -80px;
+            pointer-events: none;
+        }
+
+        .specs-image-container img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+        }
+
+        .specs-footer {
+            margin-bottom: 40px;
+        }
+
+        .specs-footer a {
+            color: #fff;
+            font-size: 14px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .specs-disclaimers p {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 991px) {
+            .specs-container {
+                flex-direction: column;
+            }
+            .specs-right {
+                min-width: auto;
+            }
+            .specs-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .specs-row-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .specs-row-content.cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .specs-image-container {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .go-anywhere-stats-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .go-anywhere-stat {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
     </style>
 </head>
 
@@ -1187,6 +1544,161 @@
                             <p>Exterior details are optimized to reduce drag and boost range efficiency. A rear spoiler decreases lift for refined performance.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Go Anywhere Section -->
+        <section class="go-anywhere-section">
+            <div class="full-bleed-media">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-Anywhere-Desktop-NA-TW-KR.jpg" alt="Model X Go Anywhere">
+            </div>
+            <div class="go-anywhere-content">
+                <h2>Go Anywhere</h2>
+                <p>Drive up to 352 miles on a single charge. When you need to recharge, add up to 179 miles in just 15 minutes³ at one of over 80,000 Superchargers globally. Navigate with Trip Planner and your Tesla will automatically take you to Supercharging stops along the way while optimizing your route.</p>
+                
+                <div class="go-anywhere-stats-grid">
+                    <div class="go-anywhere-stat">
+                        <strong>352 <span>mi</span></strong>
+                        <p>Range (EPA est.)</p>
+                    </div>
+                    <div class="go-anywhere-stat">
+                        <strong>15 <span>min</span></strong>
+                        <p>Recharge up to 179 miles³</p>
+                    </div>
+                    <div class="go-anywhere-stat">
+                        <strong>80,000 <span>+</span></strong>
+                        <p>Global Superchargers</p>
+                    </div>
+                </div>
+                
+                <button class="btn-dark-route">Find My Route</button>
+            </div>
+        </section>
+
+        <!-- Charge at Home Section -->
+        <section class="charge-at-home-section">
+            <div class="full-bleed-media">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Charge-Desktop-NA.jpg" alt="Model X Charge At Home">
+            </div>
+            <div class="charge-at-home-content">
+                <h2>Charge at Home</h2>
+                <p>Charge your Model X at home to wake up charged and start your day with plenty of range, no gas station needed—ever. <a href="#">Learn more about home charging</a>.</p>
+            </div>
+        </section>
+
+        <!-- Safety Section -->
+        <section class="safety-section">
+            <div class="full-bleed-media">
+                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Safety-Desktop-NA.jpg" alt="Model X Safety">
+            </div>
+            <div class="safety-content">
+                <h2>Safety Comes Standard</h2>
+                <p>Safety at Tesla is paramount. Every Tesla vehicle is designed with impact-absorbing zones, a stiff passenger compartment to minimize intrusion and multiple airbags to help protect occupants.</p>
+                <p>Active safety features can help reduce impact severity or help prevent accidents altogether. Forward Collision Warning, Active Emergency Braking and Lane Departure Avoidance come standard.</p>
+                <p>The passive and active safety systems are engineered to make Tesla vehicles the safest in the world with a very low probability of injury.<br><a href="#">Learn More</a></p>
+                
+                <div class="safety-stats-grid">
+                    <div class="safety-stat">
+                        <strong>360 <span>°</span></strong>
+                        <p>Rear, side and forward-facing cameras provide complete visibility</p>
+                    </div>
+                    <div class="safety-stat">
+                        <strong>250 <span>m</span></strong>
+                        <p>Visual processing detects objects up to 250 meters away</p>
+                    </div>
+                    <div class="safety-stat">
+                        <strong>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </strong>
+                        <p>Tesla Vision monitors vehicles, assists with parking and helps avoid collisions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specs Section -->
+        <section class="specs-section">
+            <div class="specs-container">
+                <div class="specs-left">
+                    <h2>Model X Specs</h2>
+                </div>
+                <div class="specs-right">
+                    <div class="specs-tabs">
+                        <div class="specs-tab active">Model X Plaid</div>
+                        <div class="specs-tab">Model X</div>
+                    </div>
+
+                    <!-- Drive Row -->
+                    <div class="specs-row">
+                        <div class="specs-row-title">Drive</div>
+                        <div class="specs-row-content">
+                            <div class="specs-item"><div class="specs-item-label">Range (EPA est.)</div><div class="specs-item-value">335 mi</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Acceleration¹</div><div class="specs-item-value">2.5 s 0-60 mph</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Top Speed</div><div class="specs-item-value">163 mph</div></div>
+                            <div class="specs-item"><div class="specs-item-label">1/4 Mile</div><div class="specs-item-value">9.9 s</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Peak Power</div><div class="specs-item-value">1,020 hp</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Drag Coefficient</div><div class="specs-item-value">0.24 <i>Cd</i></div></div>
+                            <div class="specs-item"><div class="specs-item-label">Towing</div><div class="specs-item-value">5,000 lbs</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Powertrain</div><div class="specs-item-value">Tri Motor</div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="specs-divider"></div>
+
+                    <!-- Dimensions Row -->
+                    <div class="specs-row">
+                        <div class="specs-row-title">Dimensions</div>
+                        <div style="flex: 1; display: flex; flex-direction: column;">
+                            <div class="specs-row-content cols-2" style="width: 100%;">
+                                <div class="specs-item"><div class="specs-item-label">Weight (Curb Mass)</div><div class="specs-item-value">5,434 lbs</div></div>
+                                <div class="specs-item"><div class="specs-item-label">Cargo</div><div class="specs-item-value">94.5 cu ft</div></div>
+                                <div class="specs-item"><div class="specs-item-label">Seating</div><div class="specs-item-value">Up to 6</div></div>
+                                <div class="specs-item"><div class="specs-item-label">Wheels</div><div class="specs-item-value">20" or 22"</div></div>
+                            </div>
+                            <div class="specs-image-container">
+                                <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Specs-Plaid-Desktop-Imperial.png" alt="Model X Plaid Specs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="specs-divider"></div>
+
+                    <!-- Charging Row -->
+                    <div class="specs-row">
+                        <div class="specs-row-title">Charging</div>
+                        <div class="specs-row-content cols-2">
+                            <div class="specs-item"><div class="specs-item-label">Supercharging Max</div><div class="specs-item-value">250 kW</div></div>
+                        </div>
+                    </div>
+
+                    <div class="specs-divider"></div>
+
+                    <!-- Warranty Row -->
+                    <div class="specs-row">
+                        <div class="specs-row-title">Warranty</div>
+                        <div class="specs-row-content cols-2">
+                            <div class="specs-item"><div class="specs-item-label">Basic Vehicle</div><div class="specs-item-value">4 years or 50,000 miles,<br>whichever comes first</div></div>
+                            <div class="specs-item"><div class="specs-item-label">Battery & Drive Unit</div><div class="specs-item-value">8 years or 150,000 miles,<br>whichever comes first<br><a href="#" style="color: #fff; text-decoration: underline; margin-top: 10px; display: inline-block;">See Details</a></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="specs-divider"></div>
+                    
+                    <div class="specs-footer">
+                        <a href="#">Compare Models</a>
+                    </div>
+                    
+                    <div class="specs-disclaimers">
+                        <p>¹ With rollout subtracted</p>
+                        <p>² Separate subscription required</p>
+                        <p>³ Range added in 15 minutes is based on constant speed data.</p>
+                        <p>Certain high data usage vehicle features require at least Standard Connectivity, including maps, navigation and voice commands. Access to features that use cellular data and third-party licenses are subject to change.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
