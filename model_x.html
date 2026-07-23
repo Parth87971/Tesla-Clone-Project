@@ -387,18 +387,59 @@
         }
 
         .feature-slide-content h3 {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 500;
             color: #171a20;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .feature-slide-content p {
-            font-size: 15px;
-            color: #5c5e62;
+            font-size: 14px;
+            color: #393c41;
             line-height: 1.5;
-            margin-bottom: 0;
-            max-width: 800px;
+        }
+
+        /* Dual Feature Section */
+        .dual-feature-section {
+            padding: 60px max(40px, calc((100vw - 1200px) / 2));
+            background-color: #000;
+            color: #fff;
+        }
+
+        .dual-feature-container {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .dual-feature-item {
+            flex: 1;
+            position: relative;
+        }
+
+        .dual-feature-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .dual-feature-text h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .dual-feature-text p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #e2e3e3;
+        }
+        
+        @media (max-width: 768px) {
+            .dual-feature-container {
+                flex-direction: column;
+            }
         }
 
     </style>
@@ -692,6 +733,28 @@
                             <h3>The Future of Travel Is Autonomous</h3>
                             <p>Enter your destination and your Model X will manage your drive, from start to finish. Full Self-Driving (Supervised) provides advanced features that offer more active guidance.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Dual Image Section -->
+        <section class="dual-feature-section">
+            <div class="dual-feature-container">
+                <div class="dual-feature-item">
+                    <div role="none" class="tds-video-player__overlay"></div>
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-1-Comfort-Desktop-NA.jpg" class="tcl-react-media__asset" alt="Even Quieter">
+                    <div class="dual-feature-text">
+                        <h3>Even Quieter</h3>
+                        <p>Active Road Noise Reduction and a 22-speaker audio system ensure a quiet, immersive experience.</p>
+                    </div>
+                </div>
+                <div class="dual-feature-item">
+                    <div role="none" class="tds-video-player__overlay"></div>
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-X-New-Interior-Carousel-2-Slide-2-Connected-Desktop-NA.jpg" class="tcl-react-media__asset" alt="More Efficient">
+                    <div class="dual-feature-text">
+                        <h3>More Efficient</h3>
+                        <p>With the lowest drag coefficient of any SUV, Model X is built for speed and range.</p>
                     </div>
                 </div>
             </div>
