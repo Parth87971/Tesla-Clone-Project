@@ -310,6 +310,72 @@
             }
         }
     </style>
+
+        /* ===== CHECKOUT MODAL CSS ===== */
+        .tesla-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 10000;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .tesla-modal-overlay.show { display: flex; opacity: 1; }
+        .tesla-modal {
+            background: #f4f4f4; border-radius: 12px; max-width: 600px; width: 92%;
+            max-height: 90vh; overflow-y: auto; padding: 40px; position: relative;
+            animation: modalSlideUp 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .tesla-modal-close {
+            position: absolute; top: 16px; right: 20px; background: none; border: none;
+            font-size: 28px; cursor: pointer; color: #393c41; transition: color 0.2s; z-index: 10;
+        }
+        .tesla-modal-close:hover { color: #000; }
+        .checkout-title {
+            font-size: 28px; font-weight: 600; color: #171a20; margin-bottom: 24px; text-align: center;
+        }
+        .checkout-section { margin-bottom: 30px; }
+        .checkout-section h3 { font-size: 18px; font-weight: 500; margin-bottom: 16px; color: #171a20; }
+        .form-group { margin-bottom: 16px; position: relative; }
+        .form-row { display: flex; gap: 16px; }
+        .form-row .form-group { flex: 1; }
+        .form-label { display: block; font-size: 13px; font-weight: 500; color: #5c5e62; margin-bottom: 6px; }
+        .form-input {
+            width: 100%; padding: 12px 16px; background-color: #fff; border: 1px solid #d0d1d2;
+            border-radius: 4px; font-size: 15px; color: #171a20; transition: border-color 0.2s;
+        }
+        .form-input:focus { outline: none; border-color: #3e6ae1; box-shadow: 0 0 0 1px #3e6ae1; }
+        .form-input.error { border-color: #e31937; background-color: #fff8f8; }
+        .error-msg { color: #e31937; font-size: 12px; margin-top: 4px; display: none; }
+        .due-today-box {
+            background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 24px;
+            display: flex; justify-content: space-between; align-items: center; border: 1px solid #d0d1d2;
+        }
+        .btn-place-order {
+            width: 100%; background: #3e6ae1; color: #fff; border: none; border-radius: 4px;
+            padding: 14px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.3s;
+        }
+        .btn-place-order:hover { background: #3457b1; }
+        .btn-place-order:disabled { opacity: 0.7; cursor: not-allowed; }
+        
+        /* Success State */
+        .success-state {
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 40px 20px;
+        }
+        .checkmark-circle {
+            width: 80px; height: 80px; border-radius: 50%; background: #28a745;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes scaleIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        .checkmark-circle svg { width: 40px; height: 40px; color: #fff; }
+        .success-title { font-size: 32px; font-weight: 600; color: #171a20; margin-bottom: 16px; }
+        .success-desc { font-size: 15px; color: #5c5e62; line-height: 1.5; margin-bottom: 30px; }
+    </style>
 </head>
 
 <body>
@@ -466,8 +532,8 @@
             </div>
             <p style="font-size: 12px; color: #5c5e62; margin-bottom: 24px;">Non-refundable order deposit including TCS</p>
 
-            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="this.innerHTML='Processing...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Confirmed!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order with Card';btn.disabled=false;btn.style.background=''},2000)},2000)">Order with Card</button>
-            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="this.innerHTML='Processing...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Confirmed!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order with UPI';btn.disabled=false;btn.style.background=''},2000)},2000)">Order with UPI</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; margin-bottom: 16px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="openCheckout()">Order with Card</button>
+            <button style="width: 100%; background-color: transparent; border: 2px solid #171a20; padding: 12px; border-radius: 4px; font-weight: 500; font-size: 14px; cursor: pointer; transition: 0.3s; color: #171a20;" onmouseover="this.style.backgroundColor='#171a20'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#171a20';" onclick="openCheckout()">Order with UPI</button>
 
         </div>
     </div>
@@ -477,7 +543,7 @@
             <span id="footer-price-display" style="font-size: 20px; font-weight: 600; color: #171a20; margin: 0;">₹96,063 /mo</span>
             <span id="footer-price-subtext" style="font-size: 12px; font-weight: 500; color: #5c5e62;">Auto Loan</span>
         </div>
-        <button class="btn-order-now" onclick="this.innerHTML='Placing Order...';this.disabled=true;var btn=this;setTimeout(function(){btn.innerHTML='✓ Order Placed Successfully!';btn.style.background='#28a745';setTimeout(function(){btn.innerHTML='Order Now';btn.disabled=false;btn.style.background=''},3000)},2000)">Order Now</button>
+        <button class="btn-order-now" onclick="openCheckout()">Order Now</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -971,6 +1037,202 @@
                 }
             };
         });
+    </script>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="tesla-modal-overlay" id="checkout-modal">
+        <div class="tesla-modal">
+            <button class="tesla-modal-close" onclick="closeCheckout()">&times;</button>
+            
+            <div id="checkout-form-container">
+                <h2 class="checkout-title">Complete Your Order</h2>
+                
+                <div class="due-today-box">
+                    <div>
+                        <div style="font-size: 18px; font-weight: 600; color: #171a20;">Due Today</div>
+                        <div style="font-size: 12px; color: #5c5e62; margin-top: 4px;">Non-refundable order deposit including TCS</div>
+                    </div>
+                    <div style="font-size: 20px; font-weight: 600; color: #171a20;">₹22,220</div>
+                </div>
+
+                <div class="checkout-section">
+                    <h3>Account Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input req-field" id="chk-fname">
+                            <div class="error-msg">First name is required.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input req-field" id="chk-lname">
+                            <div class="error-msg">Last name is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input req-field req-email" id="chk-email">
+                        <div class="error-msg">Please enter a valid email address.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input req-field req-phone" id="chk-phone" placeholder="e.g. 9876543210">
+                        <div class="error-msg">Please enter a valid phone number.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PAN Number</label>
+                        <input type="text" class="form-input req-field" id="chk-pan" placeholder="ABCDE1234F">
+                        <div class="error-msg">PAN number is required.</div>
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h3>Billing Details</h3>
+                    <div class="form-group">
+                        <label class="form-label">Country</label>
+                        <select class="form-input req-field" id="chk-country">
+                            <option value="India">India</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address Line 1</label>
+                        <input type="text" class="form-input req-field" id="chk-address">
+                        <div class="error-msg">Address is required.</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" class="form-input req-field" id="chk-city">
+                            <div class="error-msg">City is required.</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">State</label>
+                            <select class="form-input req-field" id="chk-state">
+                                <option value="">Select State</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="DL">Delhi</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="TS">Telangana</option>
+                            </select>
+                            <div class="error-msg">State is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%;">
+                        <label class="form-label">PIN Code</label>
+                        <input type="text" class="form-input req-field" id="chk-pin">
+                        <div class="error-msg">PIN Code is required.</div>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 24px; font-size: 12px; color: #5c5e62;">
+                    <input type="checkbox" id="chk-agree" style="margin-right: 8px;" class="req-check">
+                    <label for="chk-agree">By placing this order, you agree to the Motor Vehicle Order Agreement, Terms of Use and the Privacy Notice.</label>
+                    <div class="error-msg" id="err-agree">You must agree to the terms.</div>
+                </div>
+
+                <button class="btn-place-order" id="btn-submit-order" onclick="processOrder()">Place Order</button>
+            </div>
+
+            <!-- Success State -->
+            <div id="checkout-success" class="success-state">
+                <div class="checkmark-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <h2 class="success-title">Order Placed Successfully!</h2>
+                <p class="success-desc">Thank you for your order. Your reservation for the Model Y is confirmed. We've sent a receipt and next steps to your email address.</p>
+                <p style="font-size: 14px; font-weight: 500; color: #171a20; margin-bottom: 30px;">RN: RN118239042</p>
+                <button class="btn-place-order" style="max-width: 200px;" onclick="window.location.href='index.html'">Return Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCheckout() {
+            var modal = document.getElementById('checkout-modal');
+            modal.style.display = 'flex';
+            setTimeout(function() { modal.style.opacity = '1'; }, 10);
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form
+            document.getElementById('checkout-form-container').style.display = 'block';
+            document.getElementById('checkout-success').style.display = 'none';
+            document.querySelectorAll('.form-input').forEach(i => { i.value = ''; i.classList.remove('error'); });
+            document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+            document.getElementById('chk-agree').checked = false;
+        }
+
+        function closeCheckout() {
+            var modal = document.getElementById('checkout-modal');
+            modal.style.opacity = '0';
+            setTimeout(function() { modal.style.display = 'none'; }, 300);
+            document.body.style.overflow = '';
+        }
+
+        // Validate as user types
+        document.querySelectorAll('.req-field').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error');
+                this.nextElementSibling.style.display = 'none';
+            });
+        });
+        document.getElementById('chk-agree').addEventListener('change', function() {
+            document.getElementById('err-agree').style.display = 'none';
+        });
+
+        function processOrder() {
+            let isValid = true;
+            
+            // Basic required fields
+            document.querySelectorAll('.req-field').forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('error');
+                    input.nextElementSibling.style.display = 'block';
+                    isValid = false;
+                }
+            });
+
+            // Email validation
+            let email = document.getElementById('chk-email');
+            if (email.value.trim() && !email.value.includes('@')) {
+                email.classList.add('error');
+                email.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            // Checkbox
+            let agree = document.getElementById('chk-agree');
+            if (!agree.checked) {
+                document.getElementById('err-agree').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                // Scroll to top of modal if there are errors
+                document.querySelector('.tesla-modal').scrollTo({top: 0, behavior: 'smooth'});
+                return;
+            }
+
+            // Proceed with simulated processing
+            let btn = document.getElementById('btn-submit-order');
+            btn.disabled = true;
+            btn.innerHTML = '<span style="display:inline-block; width:16px; height:16px; border:2px solid #fff; border-radius:50%; border-top-color:transparent; animation:spin 1s linear infinite; margin-right:8px; vertical-align:middle;"></span> Processing...';
+            
+            // Add keyframes for spinner if not exists
+            if (!document.getElementById('spin-style')) {
+                let s = document.createElement('style');
+                s.id = 'spin-style';
+                s.innerHTML = '@keyframes spin { 100% { transform: rotate(360deg); } }';
+                document.head.appendChild(s);
+            }
+
+            setTimeout(function() {
+                document.getElementById('checkout-form-container').style.display = 'none';
+                document.getElementById('checkout-success').style.display = 'flex';
+                btn.innerHTML = 'Place Order';
+                btn.disabled = false;
+            }, 2000);
+        }
     </script>
 </body>
 </html>
